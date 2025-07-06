@@ -1,0 +1,517 @@
+{
+  "metadata": {
+    "title": "Torn Travel Items Database",
+    "description": "Complete database of travel items (plushies and flowers) with buy prices and flight times",
+    "lastUpdated": "2025-06-30",
+    "totalLocations": 11,
+    "totalItems": 19,
+    "totalPlushies": 9,
+    "totalFlowers": 10
+  },
+  "locations": [
+    {
+      "id": 1,
+      "name": "Mexico",
+      "items": [
+        {
+          "name": "Jag Plush",
+          "type": "plush",
+          "buyPrice": 10000,
+          "flightTimes": {
+            "standard": {
+              "standard": "26min",
+              "airstrip": "18min",
+              "wltStock": "13min",
+              "businessClass": "8min"
+            },
+            "withBook": {
+              "standard": "19min",
+              "airstrip": "14min",
+              "wltStock": "10min",
+              "businessClass": "6min"
+            }
+          }
+        },
+        {
+          "name": "Dahlia",
+          "type": "flower",
+          "buyPrice": 300,
+          "flightTimes": {
+            "standard": {
+              "standard": "26min",
+              "airstrip": "18min",
+              "wltStock": "13min",
+              "businessClass": "8min"
+            },
+            "withBook": {
+              "standard": "19min",
+              "airstrip": "14min",
+              "wltStock": "10min",
+              "businessClass": "6min"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Cayman Island",
+      "items": [
+        {
+          "name": "Stingray Plush",
+          "type": "plush",
+          "buyPrice": 400,
+          "flightTimes": {
+            "standard": {
+              "standard": "35min",
+              "airstrip": "25min",
+              "wltStock": "18min",
+              "businessClass": "11min"
+            },
+            "withBook": {
+              "standard": "26min",
+              "airstrip": "18min",
+              "wltStock": "13min",
+              "businessClass": "8min"
+            }
+          }
+        },
+        {
+          "name": "Banana Orchid",
+          "type": "flower",
+          "buyPrice": 4000,
+          "flightTimes": {
+            "standard": {
+              "standard": "35min",
+              "airstrip": "25min",
+              "wltStock": "18min",
+              "businessClass": "11min"
+            },
+            "withBook": {
+              "standard": "26min",
+              "airstrip": "18min",
+              "wltStock": "13min",
+              "businessClass": "8min"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Canada",
+      "items": [
+        {
+          "name": "Wolverine Plush",
+          "type": "plush",
+          "buyPrice": 30,
+          "flightTimes": {
+            "standard": {
+              "standard": "41min",
+              "airstrip": "29min",
+              "wltStock": "20min",
+              "businessClass": "12min"
+            },
+            "withBook": {
+              "standard": "31min",
+              "airstrip": "22min",
+              "wltStock": "15min",
+              "businessClass": "9min"
+            }
+          }
+        },
+        {
+          "name": "Crocus",
+          "type": "flower",
+          "buyPrice": 600,
+          "flightTimes": {
+            "standard": {
+              "standard": "41min",
+              "airstrip": "29min",
+              "wltStock": "20min",
+              "businessClass": "12min"
+            },
+            "withBook": {
+              "standard": "31min",
+              "airstrip": "22min",
+              "wltStock": "15min",
+              "businessClass": "9min"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Hawaii",
+      "items": [
+        {
+          "name": "Orchid",
+          "type": "flower",
+          "buyPrice": 700,
+          "flightTimes": {
+            "standard": {
+              "standard": "2h 14min",
+              "airstrip": "1h 34min",
+              "wltStock": "1h 7min",
+              "businessClass": "40min"
+            },
+            "withBook": {
+              "standard": "1h 40min",
+              "airstrip": "1h 10min",
+              "wltStock": "50min",
+              "businessClass": "30min"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "United Kingdom",
+      "items": [
+        {
+          "name": "Red Fox Plush",
+          "type": "plush",
+          "buyPrice": 1000,
+          "flightTimes": {
+            "standard": {
+              "standard": "2h 39min",
+              "airstrip": "1h 51min",
+              "wltStock": "1h 20min",
+              "businessClass": "48min"
+            },
+            "withBook": {
+              "standard": "1h 59min",
+              "airstrip": "1h 24min",
+              "wltStock": "1h 00min",
+              "businessClass": "36min"
+            }
+          }
+        },
+        {
+          "name": "Nessie Plush",
+          "type": "plush",
+          "buyPrice": 200,
+          "flightTimes": {
+            "standard": {
+              "standard": "2h 39min",
+              "airstrip": "1h 51min",
+              "wltStock": "1h 20min",
+              "businessClass": "48min"
+            },
+            "withBook": {
+              "standard": "1h 59min",
+              "airstrip": "1h 24min",
+              "wltStock": "1h 00min",
+              "businessClass": "36min"
+            }
+          }
+        },
+        {
+          "name": "Heather",
+          "type": "flower",
+          "buyPrice": 5000,
+          "flightTimes": {
+            "standard": {
+              "standard": "2h 39min",
+              "airstrip": "1h 51min",
+              "wltStock": "1h 20min",
+              "businessClass": "48min"
+            },
+            "withBook": {
+              "standard": "1h 59min",
+              "airstrip": "1h 24min",
+              "wltStock": "1h 00min",
+              "businessClass": "36min"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Argentina",
+      "items": [
+        {
+          "name": "Monkey Plush",
+          "type": "plush",
+          "buyPrice": 400,
+          "flightTimes": {
+            "standard": {
+              "standard": "2h 47m",
+              "airstrip": "1h 57min",
+              "wltStock": "1h 23min",
+              "businessClass": "50min"
+            },
+            "withBook": {
+              "standard": "2h 05min",
+              "airstrip": "1h 27min",
+              "wltStock": "1h 02min",
+              "businessClass": "37min"
+            }
+          }
+        },
+        {
+          "name": "Ceibo Flower",
+          "type": "flower",
+          "buyPrice": 500,
+          "flightTimes": {
+            "standard": {
+              "standard": "2h 47m",
+              "airstrip": "1h 57min",
+              "wltStock": "1h 23min",
+              "businessClass": "50min"
+            },
+            "withBook": {
+              "standard": "2h 05min",
+              "airstrip": "1h 27min",
+              "wltStock": "1h 02min",
+              "businessClass": "37min"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Switzerland",
+      "items": [
+        {
+          "name": "Chamois Plush",
+          "type": "plush",
+          "buyPrice": 400,
+          "flightTimes": {
+            "standard": {
+              "standard": "2h 55m",
+              "airstrip": "2h 3min",
+              "wltStock": "1h 28min",
+              "businessClass": "53min"
+            },
+            "withBook": {
+              "standard": "2h 12min",
+              "airstrip": "1h 32min",
+              "wltStock": "1h 06min",
+              "businessClass": "39min"
+            }
+          }
+        },
+        {
+          "name": "Edelweiss",
+          "type": "flower",
+          "buyPrice": 900,
+          "flightTimes": {
+            "standard": {
+              "standard": "2h 55m",
+              "airstrip": "2h 3min",
+              "wltStock": "1h 28min",
+              "businessClass": "53min"
+            },
+            "withBook": {
+              "standard": "2h 12min",
+              "airstrip": "1h 32min",
+              "wltStock": "1h 06min",
+              "businessClass": "39min"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Japan",
+      "items": [
+        {
+          "name": "Cherry Blossom",
+          "type": "flower",
+          "buyPrice": 500,
+          "flightTimes": {
+            "standard": {
+              "standard": "3h 45m",
+              "airstrip": "2h 38min",
+              "wltStock": "1h 53min",
+              "businessClass": "1h 8min"
+            },
+            "withBook": {
+              "standard": "2h 49min",
+              "airstrip": "1h 58min",
+              "wltStock": "1h 24min",
+              "businessClass": "51min"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "China",
+      "items": [
+        {
+          "name": "Panda Plush",
+          "type": "plush",
+          "buyPrice": 400,
+          "flightTimes": {
+            "standard": {
+              "standard": "4h 2m",
+              "airstrip": "2h 49min",
+              "wltStock": "2h 1min",
+              "businessClass": "1h 12min"
+            },
+            "withBook": {
+              "standard": "3h 1min",
+              "airstrip": "2h 07min",
+              "wltStock": "1h 31min",
+              "businessClass": "54min"
+            }
+          }
+        },
+        {
+          "name": "Peony",
+          "type": "flower",
+          "buyPrice": 5000,
+          "flightTimes": {
+            "standard": {
+              "standard": "4h 2m",
+              "airstrip": "2h 49min",
+              "wltStock": "2h 1min",
+              "businessClass": "1h 12min"
+            },
+            "withBook": {
+              "standard": "3h 1min",
+              "airstrip": "2h 07min",
+              "wltStock": "1h 31min",
+              "businessClass": "54min"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "UAE",
+      "items": [
+        {
+          "name": "Camel Plush",
+          "type": "plush",
+          "buyPrice": 14000,
+          "flightTimes": {
+            "standard": {
+              "standard": "4h 31m",
+              "airstrip": "3h 10min",
+              "wltStock": "2h 15min",
+              "businessClass": "1h 21min"
+            },
+            "withBook": {
+              "standard": "3h 23min",
+              "airstrip": "2h 22min",
+              "wltStock": "1h 42min",
+              "businessClass": "1h 1min"
+            }
+          }
+        },
+        {
+          "name": "Tribulus Omanese",
+          "type": "flower",
+          "buyPrice": 6000,
+          "flightTimes": {
+            "standard": {
+              "standard": "4h 31m",
+              "airstrip": "3h 10min",
+              "wltStock": "2h 15min",
+              "businessClass": "1h 21min"
+            },
+            "withBook": {
+              "standard": "3h 23min",
+              "airstrip": "2h 22min",
+              "wltStock": "1h 42min",
+              "businessClass": "1h 1min"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "South Africa",
+      "items": [
+        {
+          "name": "Lion Plush",
+          "type": "plush",
+          "buyPrice": 400,
+          "flightTimes": {
+            "standard": {
+              "standard": "4h 57m",
+              "airstrip": "3h 28min",
+              "wltStock": "2h 29min",
+              "businessClass": "1h 29min"
+            },
+            "withBook": {
+              "standard": "3h 43min",
+              "airstrip": "2h 36min",
+              "wltStock": "1h 52min",
+              "businessClass": "1h 7min"
+            }
+          }
+        },
+        {
+          "name": "African Violet",
+          "type": "flower",
+          "buyPrice": 2000,
+          "flightTimes": {
+            "standard": {
+              "standard": "4h 57m",
+              "airstrip": "3h 28min",
+              "wltStock": "2h 29min",
+              "businessClass": "1h 29min"
+            },
+            "withBook": {
+              "standard": "3h 43min",
+              "airstrip": "2h 36min",
+              "wltStock": "1h 52min",
+              "businessClass": "1h 7min"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "priceRanges": {
+    "low": {
+      "min": 0,
+      "max": 999,
+      "description": "Under $1,000"
+    },
+    "medium": {
+      "min": 1000,
+      "max": 5000,
+      "description": "$1,000 - $5,000"
+    },
+    "high": {
+      "min": 5001,
+      "max": 999999,
+      "description": "Over $5,000"
+    }
+  },
+  "travelMethods": [
+    {
+      "id": "standard",
+      "name": "Standard",
+      "description": "Regular commercial flight"
+    },
+    {
+      "id": "airstrip",
+      "name": "Airstrip",
+      "description": "Private airstrip flight"
+    },
+    {
+      "id": "wltStock",
+      "name": "WLT Stock",
+      "description": "White Lotus Transportation stock benefit"
+    },
+    {
+      "id": "businessClass",
+      "name": "Business Class Ticket",
+      "description": "Premium flight service"
+    }
+  ]
+}

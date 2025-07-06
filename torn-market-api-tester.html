@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torn Market API v2 Tester</title>
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --radius-sm: 0.25rem;
+            --radius-md: 0.375rem;
+            --radius-lg: 0.5rem;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-lg);
+        }
+
+        .header {
+            background: white;
+            padding: var(--spacing-md) 0;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .subtitle {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .api-key-section {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+        }
+
+        label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--gray-600);
+        }
+
+        input[type="text"], input[type="number"] {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            background: white;
+            color: var(--gray-700);
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--gray-400);
+        }
+
+        .endpoints-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .endpoint-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .method-badge {
+            background: var(--primary-color);
+            color: white;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: 0.625rem;
+            font-weight: 600;
+        }
+
+        .endpoint-url {
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: var(--gray-700);
+            background: var(--gray-100);
+            padding: var(--spacing-xs);
+            border-radius: var(--radius-sm);
+            word-break: break-all;
+        }
+
+        .endpoint-description {
+            font-size: 0.75rem;
+            color: var(--gray-600);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .endpoint-params {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .param-group {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+            align-items: end;
+        }
+
+        .param-group .input-group {
+            flex: 1;
+        }
+
+        button {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            background: white;
+            color: var(--gray-700);
+        }
+
+        button:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-400);
+        }
+
+        .test-button {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .test-button:hover {
+            background: #2563eb;
+        }
+
+        .response-section {
+            margin-top: var(--spacing-md);
+            border-top: 1px solid var(--gray-200);
+            padding-top: var(--spacing-md);
+        }
+
+        .response-header {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--gray-700);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .response-content {
+            background: var(--gray-900);
+            color: #10b981;
+            padding: var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-family: monospace;
+            font-size: 0.625rem;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .loading {
+            color: var(--warning-color);
+        }
+
+        .error {
+            color: var(--danger-color);
+        }
+
+        .success {
+            color: var(--success-color);
+        }
+
+        .clear-all {
+            position: fixed;
+            top: var(--spacing-lg);
+            right: var(--spacing-lg);
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+        }
+
+        .clear-all:hover {
+            background: #dc2626;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Torn Market API v2 Tester</h1>
+        <p class="subtitle">Test all Torn API v2 market endpoints</p>
+    </div>
+
+    <button class="clear-all" onclick="clearAllResponses()">Clear All Responses</button>
+
+    <div class="container">
+        <div class="api-key-section">
+            <div class="input-group">
+                <label for="apiKey">API Key</label>
+                <input type="text" id="apiKey" placeholder="Enter your Torn API key" value="nSOlIqpPu3VY4COb">
+            </div>
+        </div>
+
+        <div class="endpoints-grid">
+            <!-- Market Bazaar -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method-badge">GET</span>
+                    <div>
+                        <div class="endpoint-url">/market/bazaar</div>
+                        <div class="endpoint-description">Get bazaar directory</div>
+                    </div>
+                </div>
+                <button class="test-button" onclick="testEndpoint('bazaar', '/market/bazaar')">Test Endpoint</button>
+                <div class="response-section">
+                    <div class="response-header">Response:</div>
+                    <div id="response-bazaar" class="response-content">Click "Test Endpoint" to see response</div>
+                </div>
+            </div>
+
+            <!-- Market ID Bazaar -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method-badge">GET</span>
+                    <div>
+                        <div class="endpoint-url">/market/{id}/bazaar</div>
+                        <div class="endpoint-description">Get item specialized bazaar directory</div>
+                    </div>
+                </div>
+                <div class="endpoint-params">
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label for="bazaarId">Item ID</label>
+                            <input type="number" id="bazaarId" placeholder="e.g., 206" value="206">
+                        </div>
+                    </div>
+                </div>
+                <button class="test-button" onclick="testEndpointWithId('id-bazaar', '/market/{id}/bazaar', 'bazaarId')">Test Endpoint</button>
+                <div class="response-section">
+                    <div class="response-header">Response:</div>
+                    <div id="response-id-bazaar" class="response-content">Click "Test Endpoint" to see response</div>
+                </div>
+            </div>
+
+            <!-- Market Item Market -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method-badge">GET</span>
+                    <div>
+                        <div class="endpoint-url">/market/{id}/itemmarket</div>
+                        <div class="endpoint-description">Get item market listings</div>
+                    </div>
+                </div>
+                <div class="endpoint-params">
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label for="itemMarketId">Item ID</label>
+                            <input type="number" id="itemMarketId" placeholder="e.g., 206" value="206">
+                        </div>
+                    </div>
+                </div>
+                <button class="test-button" onclick="testEndpointWithId('itemmarket', '/market/{id}/itemmarket', 'itemMarketId')">Test Endpoint</button>
+                <div class="response-section">
+                    <div class="response-header">Response:</div>
+                    <div id="response-itemmarket" class="response-content">Click "Test Endpoint" to see response</div>
+                </div>
+            </div>
+
+            <!-- Market Properties -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method-badge">GET</span>
+                    <div>
+                        <div class="endpoint-url">/market/{propertyTypeId}/properties</div>
+                        <div class="endpoint-description">Get properties market listings</div>
+                    </div>
+                </div>
+                <div class="endpoint-params">
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label for="propertyTypeId">Property Type ID</label>
+                            <input type="number" id="propertyTypeId" placeholder="e.g., 1" value="1">
+                        </div>
+                    </div>
+                </div>
+                <button class="test-button" onclick="testEndpointWithId('properties', '/market/{propertyTypeId}/properties', 'propertyTypeId')">Test Endpoint</button>
+                <div class="response-section">
+                    <div class="response-header">Response:</div>
+                    <div id="response-properties" class="response-content">Click "Test Endpoint" to see response</div>
+                </div>
+            </div>
+
+            <!-- Market Rentals -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method-badge">GET</span>
+                    <div>
+                        <div class="endpoint-url">/market/{propertyTypeId}/rentals</div>
+                        <div class="endpoint-description">Get properties rental listings</div>
+                    </div>
+                </div>
+                <div class="endpoint-params">
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label for="rentalPropertyTypeId">Property Type ID</label>
+                            <input type="number" id="rentalPropertyTypeId" placeholder="e.g., 1" value="1">
+                        </div>
+                    </div>
+                </div>
+                <button class="test-button" onclick="testEndpointWithId('rentals', '/market/{propertyTypeId}/rentals', 'rentalPropertyTypeId')">Test Endpoint</button>
+                <div class="response-section">
+                    <div class="response-header">Response:</div>
+                    <div id="response-rentals" class="response-content">Click "Test Endpoint" to see response</div>
+                </div>
+            </div>
+
+            <!-- Market Lookup -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method-badge">GET</span>
+                    <div>
+                        <div class="endpoint-url">/market/lookup</div>
+                        <div class="endpoint-description">Get all available market selections</div>
+                    </div>
+                </div>
+                <button class="test-button" onclick="testEndpoint('lookup', '/market/lookup')">Test Endpoint</button>
+                <div class="response-section">
+                    <div class="response-header">Response:</div>
+                    <div id="response-lookup" class="response-content">Click "Test Endpoint" to see response</div>
+                </div>
+            </div>
+
+            <!-- Market Timestamp -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method-badge">GET</span>
+                    <div>
+                        <div class="endpoint-url">/market/timestamp</div>
+                        <div class="endpoint-description">Get current server time</div>
+                    </div>
+                </div>
+                <button class="test-button" onclick="testEndpoint('timestamp', '/market/timestamp')">Test Endpoint</button>
+                <div class="response-section">
+                    <div class="response-header">Response:</div>
+                    <div id="response-timestamp" class="response-content">Click "Test Endpoint" to see response</div>
+                </div>
+            </div>
+
+            <!-- Market General -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method-badge">GET</span>
+                    <div>
+                        <div class="endpoint-url">/market</div>
+                        <div class="endpoint-description">Get any Market selection</div>
+                    </div>
+                </div>
+                <button class="test-button" onclick="testEndpoint('market', '/market')">Test Endpoint</button>
+                <div class="response-section">
+                    <div class="response-header">Response:</div>
+                    <div id="response-market" class="response-content">Click "Test Endpoint" to see response</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const PROXY_URL = 'https://api.allorigins.win/raw?url=';
+
+        async function testEndpoint(responseId, endpoint) {
+            const apiKey = document.getElementById('apiKey').value.trim();
+            if (!apiKey) {
+                updateResponse(responseId, 'Error: Please enter your API key', 'error');
+                return;
+            }
+
+            const url = `https://api.torn.com/v2${endpoint}?key=${apiKey}`;
+            const proxiedUrl = PROXY_URL + encodeURIComponent(url);
+            
+            updateResponse(responseId, 'Loading...', 'loading');
+
+            try {
+                const response = await fetch(proxiedUrl);
+                const data = await response.text();
+                
+                try {
+                    const jsonData = JSON.parse(data);
+                    updateResponse(responseId, JSON.stringify(jsonData, null, 2), 'success');
+                } catch (parseError) {
+                    updateResponse(responseId, data, 'success');
+                }
+            } catch (error) {
+                updateResponse(responseId, `Error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testEndpointWithId(responseId, endpoint, idInputId) {
+            const apiKey = document.getElementById('apiKey').value.trim();
+            const id = document.getElementById(idInputId).value.trim();
+            
+            if (!apiKey) {
+                updateResponse(responseId, 'Error: Please enter your API key', 'error');
+                return;
+            }
+            
+            if (!id) {
+                updateResponse(responseId, 'Error: Please enter an ID', 'error');
+                return;
+            }
+
+            const url = `https://api.torn.com/v2${endpoint.replace('{id}', id).replace('{propertyTypeId}', id)}?key=${apiKey}`;
+            const proxiedUrl = PROXY_URL + encodeURIComponent(url);
+            
+            updateResponse(responseId, 'Loading...', 'loading');
+
+            try {
+                const response = await fetch(proxiedUrl);
+                const data = await response.text();
+                
+                try {
+                    const jsonData = JSON.parse(data);
+                    updateResponse(responseId, JSON.stringify(jsonData, null, 2), 'success');
+                } catch (parseError) {
+                    updateResponse(responseId, data, 'success');
+                }
+            } catch (error) {
+                updateResponse(responseId, `Error: ${error.message}`, 'error');
+            }
+        }
+
+        function updateResponse(responseId, content, type) {
+            const element = document.getElementById(`response-${responseId}`);
+            element.textContent = content;
+            element.className = `response-content ${type}`;
+        }
+
+        function clearAllResponses() {
+            const responseElements = document.querySelectorAll('.response-content');
+            responseElements.forEach(element => {
+                element.textContent = 'Click "Test Endpoint" to see response';
+                element.className = 'response-content';
+            });
+        }
+
+        // Auto-focus API key input on page load
+        window.addEventListener('load', () => {
+            document.getElementById('apiKey').focus();
+        });
+    </script>
+</body>
+</html>
