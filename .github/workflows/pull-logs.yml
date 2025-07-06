@@ -1,0 +1,23 @@
+name: Pull Torn Logs Every 5 Minutes
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  pull-logs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: cd scripts && npm install
+      - name: Run log pull script
+        env:
+          TORN_API_KEY: ${{ secrets.TORN_API_KEY }}
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+        run: cd scripts && node torn-logs-to-mongo.js 
