@@ -17,30 +17,46 @@ async function fetchTornLogs() {
 }
 
 async function storeLogs(logs) {
-    const client = new MongoClient(MONGO_URI);
-    await client.connect();
-    const db = client.db(DB_NAME);
-    const collection = db.collection(COLLECTION);
+    let client;
+    let newCount = 0;
+    try {
+        client = new MongoClient(MONGO_URI);
+        await client.connect();
+        const db = client.db(DB_NAME);
+        const collection = db.collection(COLLECTION);
 
-    for (const [logId, entry] of Object.entries(logs)) {
-        // Convert timestamp to Central Time date string (YYYY-MM-DD)
-        const centralDate = entry.timestamp
-            ? DateTime.fromSeconds(entry.timestamp, { zone: 'America/Chicago' }).toISODate()
-            : null;
-        // Upsert: only insert if not already present
-        await collection.updateOne(
-            { logId: logId },
-            { $setOnInsert: { logId, ...entry, date: centralDate } },
-            { upsert: true }
-        );
+        for (const [logId, entry] of Object.entries(logs)) {
+            // Convert timestamp to Central Time date string (YYYY-MM-DD)
+            const centralDate = entry.timestamp
+                ? DateTime.fromSeconds(entry.timestamp, { zone: 'America/Chicago' }).toISODate()
+                : null;
+            // Upsert: only insert if not already present
+            const result = await collection.updateOne(
+                { logId: logId },
+                { $setOnInsert: { logId, ...entry, date: centralDate } },
+                { upsert: true }
+            );
+            if (result.upsertedCount > 0) newCount++;
+        }
+    } catch (err) {
+        console.error('MongoDB connection or operation failed:', err);
+        throw err;
+    } finally {
+        if (client) await client.close();
     }
-    await client.close();
+    return newCount;
 }
 
 async function main() {
+    console.log('--- Torn log pull script started ---');
     const logs = await fetchTornLogs();
-    await storeLogs(logs);
-    console.log(`Stored ${Object.keys(logs).length} logs.`);
+    const newCount = await storeLogs(logs);
+    console.log(`Fetched ${Object.keys(logs).length} logs from Torn API.`);
+    console.log(`Inserted ${newCount} new logs into MongoDB.`);
+    console.log('--- Torn log pull script finished ---');
 }
 
-main().catch(console.error); 
+main().catch(err => {
+    console.error('Script failed:', err);
+    process.exit(1);
+}); 
