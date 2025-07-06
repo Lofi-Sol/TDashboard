@@ -1,6 +1,16 @@
 const fetch = require('node-fetch');
 const { MongoClient } = require('mongodb');
 const { DateTime } = require('luxon');
+const fs = require('fs');
+const path = require('path');
+
+// Load item details for item name lookup
+const itemDetails = JSON.parse(fs.readFileSync(path.join(__dirname, '../itemdetails.json'), 'utf8'));
+function getItemName(itemId) {
+    return itemDetails.itemsById && itemDetails.itemsById[itemId]
+        ? itemDetails.itemsById[itemId].name
+        : `Item #${itemId}`;
+}
 
 // CONFIGURE THESE:
 const TORN_API_KEY = process.env.TORN_API_KEY;
@@ -30,10 +40,21 @@ async function storeLogs(logs) {
             const centralDate = entry.timestamp
                 ? DateTime.fromSeconds(entry.timestamp, { zone: 'America/Chicago' }).toISODate()
                 : null;
+            // Lookup item name if item ID is present
+            let itemId = null;
+            if (entry.data && Array.isArray(entry.data.items) && entry.data.items[0] && entry.data.items[0].id) {
+                itemId = entry.data.items[0].id.toString();
+            } else if (entry.data && entry.data.item) {
+                itemId = entry.data.item.toString();
+            }
+            const itemName = itemId ? getItemName(itemId) : null;
+            // Build document to insert
+            const docToInsert = { logId, ...entry, date: centralDate };
+            if (itemName) docToInsert.itemName = itemName;
             // Upsert: only insert if not already present
             const result = await collection.updateOne(
                 { logId: logId },
-                { $setOnInsert: { logId, ...entry, date: centralDate } },
+                { $setOnInsert: docToInsert },
                 { upsert: true }
             );
             if (result.upsertedCount > 0) newCount++;
