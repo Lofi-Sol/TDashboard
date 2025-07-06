@@ -1,3 +1,4 @@
+# Trigger schedule
 name: Pull Torn Logs Every 5 Minutes
 
 on:
