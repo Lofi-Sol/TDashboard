@@ -1,0 +1,38 @@
+name: Test Workflow
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Test connection
+      env:
+        MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        TORN_API_KEY: ${{ secrets.TORN_API_KEY }}
+      run: node scripts/test-connection.js
+      
+    - name: Show environment info
+      run: |
+        echo "Node version: $(node --version)"
+        echo "NPM version: $(npm --version)"
+        echo "Current directory: $(pwd)"
+        echo "Files in scripts/: $(ls -la scripts/)"
+        echo "MongoDB URI set: ${{ secrets.MONGODB_URI != '' }}"
+        echo "Torn API Key set: ${{ secrets.TORN_API_KEY != '' }}" 

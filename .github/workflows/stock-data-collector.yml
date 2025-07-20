@@ -34,6 +34,15 @@ jobs:
     - name: Install dependencies
       run: npm install
       
+    - name: Show environment info
+      run: |
+        echo "Node version: $(node --version)"
+        echo "NPM version: $(npm --version)"
+        echo "Current directory: $(pwd)"
+        echo "Files in scripts/: $(ls -la scripts/)"
+        echo "MongoDB URI set: ${{ secrets.MONGODB_URI != '' }}"
+        echo "Torn API Key set: ${{ secrets.TORN_API_KEY != '' }}"
+        
     - name: Collect stock data
       env:
         MONGODB_URI: ${{ secrets.MONGODB_URI }}
