@@ -70,6 +70,21 @@ async function testTornAPI() {
                         const stockCount = Object.keys(jsonData.stocks).length;
                         console.log('✅ Torn API connection successful');
                         console.log(`   Stocks available: ${stockCount}`);
+                        
+                        // Show sample data structure with new fields
+                        const sampleStockId = Object.keys(jsonData.stocks)[0];
+                        if (sampleStockId) {
+                            const sampleStock = jsonData.stocks[sampleStockId];
+                            const timestamp = new Date();
+                            console.log('\n📊 Sample data structure with new fields:');
+                            console.log(`   Stock: ${sampleStock.name} (${sampleStock.acronym})`);
+                            console.log(`   Price: $${sampleStock.current_price.toLocaleString()}`);
+                            console.log(`   Time Block: ${getTimeBlock(timestamp)}`);
+                            console.log(`   Central Time: ${getCentralTimeOfDay(timestamp)}`);
+                            console.log(`   Day: ${getDayOfWeek(timestamp)}`);
+                            console.log(`   Date: ${getMonthName(timestamp)} ${timestamp.getUTCDate()}, ${timestamp.getUTCFullYear()}`);
+                        }
+                        
                         resolve(true);
                     } else {
                         console.error('❌ Unexpected API response format');
@@ -85,6 +100,39 @@ async function testTornAPI() {
             resolve(false);
         });
     });
+}
+
+// Helper functions for time calculations (same as in collect-stock-data.js)
+function getTimeBlock(utcDate) {
+    const hour = utcDate.getUTCHours();
+    if (hour >= 8 && hour < 10) return 1;
+    if (hour >= 10 && hour < 12) return 2;
+    if (hour >= 12 && hour < 14) return 3;
+    if (hour >= 14 && hour < 16) return 4;
+    if (hour >= 16 && hour < 18) return 5;
+    if (hour >= 18 && hour < 20) return 6;
+    if (hour >= 20 && hour < 22) return 7;
+    if (hour >= 22 || hour < 2) return 8;
+    if (hour >= 2 && hour < 4) return 9;
+    if (hour >= 4 && hour < 8) return 10;
+    return 0;
+}
+
+function getCentralTimeOfDay(utcDate) {
+    const centralTime = new Date(utcDate.getTime() - (6 * 60 * 60 * 1000));
+    const hour = centralTime.getUTCHours();
+    const minute = centralTime.getUTCMinutes();
+    return `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+}
+
+function getDayOfWeek(utcDate) {
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    return days[utcDate.getUTCDay()];
+}
+
+function getMonthName(utcDate) {
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    return months[utcDate.getUTCMonth()];
 }
 
 // Test data directory

@@ -10,39 +10,6 @@ const TORN_API_KEY = process.env.TORN_API_KEY;
 const DATABASE_NAME = 'torn_data';
 const COLLECTION_NAME = 'stock_prices';
 
-// Torn City stock IDs
-const STOCK_IDS = [
-    '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
-    '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
-    '21', '22', '23', '24', '25', '26', '27', '28', '29', '30',
-    '31', '32', '33', '34', '35', '36', '37', '38', '39', '40',
-    '41', '42', '43', '44', '45', '46', '47', '48', '49', '50'
-];
-
-// Helper function to make HTTP requests
-function makeRequest(url) {
-    return new Promise((resolve, reject) => {
-        https.get(url, (res) => {
-            let data = '';
-            
-            res.on('data', (chunk) => {
-                data += chunk;
-            });
-            
-            res.on('end', () => {
-                try {
-                    const jsonData = JSON.parse(data);
-                    resolve(jsonData);
-                } catch (error) {
-                    reject(new Error(`Failed to parse JSON: ${error.message}`));
-                }
-            });
-        }).on('error', (error) => {
-            reject(new Error(`Request failed: ${error.message}`));
-        });
-    });
-}
-
 // Helper function to get time block number based on UTC time
 function getTimeBlock(utcDate) {
     const hour = utcDate.getUTCHours();
@@ -90,9 +57,33 @@ function getMonthName(utcDate) {
     return months[utcDate.getUTCMonth()];
 }
 
-// Fetch stock data from Torn API
-async function fetchStockData() {
-    console.log('Fetching stock data from Torn City API...');
+// Helper function to make HTTP requests
+function makeRequest(url) {
+    return new Promise((resolve, reject) => {
+        https.get(url, (res) => {
+            let data = '';
+            
+            res.on('data', (chunk) => {
+                data += chunk;
+            });
+            
+            res.on('end', () => {
+                try {
+                    const jsonData = JSON.parse(data);
+                    resolve(jsonData);
+                } catch (error) {
+                    reject(new Error(`Failed to parse JSON: ${error.message}`));
+                }
+            });
+        }).on('error', (error) => {
+            reject(new Error(`Request failed: ${error.message}`));
+        });
+    });
+}
+
+// Fetch stock data from Torn API (manual collection)
+async function fetchStockDataManual() {
+    console.log('Fetching stock data from Torn City API (MANUAL COLLECTION)...');
     
     const stockData = {};
     const timestamp = new Date();
@@ -109,6 +100,7 @@ async function fetchStockData() {
     const minuteUTC = timestamp.getUTCMinutes();
     
     console.log(`Time Block: ${timeBlock}, Central Time: ${centralTimeOfDay}, Day: ${dayOfWeek}, Month: ${monthName} ${year}`);
+    console.log(`Collection Type: MANUAL`);
     
     try {
         // Fetch all stocks data
@@ -146,7 +138,7 @@ async function fetchStockData() {
                 day_of_month: dayOfMonth,
                 hour_utc: hourUTC,
                 minute_utc: minuteUTC,
-                collection_type: 'automatic' // or 'manual' if triggered manually
+                collection_type: 'manual' // Manual collection
             };
         });
         
@@ -185,6 +177,9 @@ async function storeStockData(stockData) {
         // Create indexes for better query performance
         await collection.createIndex({ stock_id: 1, timestamp: -1 });
         await collection.createIndex({ timestamp: -1 });
+        await collection.createIndex({ time_block: 1 });
+        await collection.createIndex({ day_of_week: 1 });
+        await collection.createIndex({ collection_type: 1 });
         console.log('Database indexes created/updated');
         
     } catch (error) {
@@ -210,16 +205,16 @@ async function saveLocalBackup(stockData) {
         
         // Save current data
         const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-        const filename = `stock-data-${timestamp}.json`;
+        const filename = `manual-stock-data-${timestamp}.json`;
         const filepath = path.join(dataDir, filename);
         
         fs.writeFileSync(filepath, JSON.stringify(stockData, null, 2));
         console.log(`Local backup saved: ${filename}`);
         
-        // Save latest data (overwrite)
-        const latestFilepath = path.join(dataDir, 'latest-stock-data.json');
+        // Save latest manual data (overwrite)
+        const latestFilepath = path.join(dataDir, 'latest-manual-stock-data.json');
         fs.writeFileSync(latestFilepath, JSON.stringify(stockData, null, 2));
-        console.log('Latest data file updated');
+        console.log('Latest manual data file updated');
         
     } catch (error) {
         console.error('Error saving local backup:', error.message);
@@ -229,7 +224,7 @@ async function saveLocalBackup(stockData) {
 
 // Main execution function
 async function main() {
-    console.log('=== Torn City Stock Data Collector ===');
+    console.log('=== Torn City Stock Data Collector (MANUAL) ===');
     console.log(`Started at: ${new Date().toISOString()}`);
     
     if (!TORN_API_KEY) {
@@ -239,7 +234,7 @@ async function main() {
     
     try {
         // Fetch stock data
-        const stockData = await fetchStockData();
+        const stockData = await fetchStockDataManual();
         
         // Store in MongoDB
         await storeStockData(stockData);
@@ -247,10 +242,10 @@ async function main() {
         // Save local backup
         await saveLocalBackup(stockData);
         
-        console.log('=== Data collection completed successfully ===');
+        console.log('=== Manual data collection completed successfully ===');
         
     } catch (error) {
-        console.error('=== Data collection failed ===');
+        console.error('=== Manual data collection failed ===');
         console.error('Error:', error.message);
         process.exit(1);
     }
@@ -261,4 +256,4 @@ if (require.main === module) {
     main();
 }
 
-module.exports = { fetchStockData, storeStockData, saveLocalBackup }; 
+module.exports = { fetchStockDataManual, storeStockData, saveLocalBackup }; 
