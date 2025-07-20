@@ -10,9 +10,9 @@
     "collect-data": "node scripts/collect-stock-data.js"
   },
   "dependencies": {
+    "dotenv": "^17.2.0",
     "mongodb": "^6.3.0"
   },
-  "devDependencies": {},
   "keywords": [
     "torn",
     "dashboard",

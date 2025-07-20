@@ -1,3 +1,6 @@
+// Load environment variables
+require('dotenv').config();
+
 const { MongoClient } = require('mongodb');
 const https = require('https');
 
