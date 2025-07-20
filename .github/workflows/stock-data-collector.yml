@@ -1,0 +1,49 @@
+name: Torn City Stock Data Collector
+
+on:
+  schedule:
+    # Start of day (8 AM UTC)
+    - cron: '0 8 * * *'
+    # End of day (8 PM UTC) 
+    - cron: '0 20 * * *'
+    # Random times throughout the day (every 2 hours starting at 10 AM UTC)
+    - cron: '0 10 * * *'
+    - cron: '0 12 * * *'
+    - cron: '0 14 * * *'
+    - cron: '0 16 * * *'
+    - cron: '0 18 * * *'
+    - cron: '0 22 * * *'
+    - cron: '0 2 * * *'
+    - cron: '0 4 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  collect-stock-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Collect stock data
+      env:
+        MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        TORN_API_KEY: ${{ secrets.TORN_API_KEY }}
+      run: node scripts/collect-stock-data.js
+      
+    - name: Commit and push data files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add data/
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update stock data - $(date -u +'%Y-%m-%d %H:%M UTC')"
+        git push 

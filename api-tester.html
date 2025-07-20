@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torn API Comprehensive Tester</title>
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .header {
+            background: white;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--gray-600);
+            font-size: 0.875rem;
+        }
+
+        .api-key-section {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--gray-600);
+        }
+
+        input[type="text"], input[type="number"] {
+            padding: 0.5rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .endpoints-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 1rem;
+        }
+
+        .endpoint-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .method-badge {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.625rem;
+            font-weight: 600;
+        }
+
+        .endpoint-url {
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: var(--gray-700);
+            background: var(--gray-100);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            word-break: break-all;
+        }
+
+        .endpoint-description {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin-bottom: 0.75rem;
+        }
+
+        .param-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            align-items: end;
+        }
+
+        .param-group .input-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            background: white;
+            color: var(--gray-700);
+        }
+
+        button:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-400);
+        }
+
+        .test-button {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .test-button:hover {
+            background: #2563eb;
+        }
+
+        .response-section {
+            margin-top: 0.75rem;
+            border-top: 1px solid var(--gray-200);
+            padding-top: 0.75rem;
+        }
+
+        .response-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.625rem;
+            font-weight: 600;
+        }
+
+        .status-success {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .status-error {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .status-loading {
+            background: var(--warning-color);
+            color: white;
+        }
+
+        .response-content {
+            background: var(--gray-100);
+            border-radius: 4px;
+            padding: 0.75rem;
+            font-family: monospace;
+            font-size: 0.75rem;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0.25rem;
+            margin-bottom: 1rem;
+            background: var(--gray-200);
+            padding: 0.25rem;
+            border-radius: 6px;
+        }
+
+        .tab {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.15s ease;
+        }
+
+        .tab.active {
+            background: white;
+            color: var(--gray-800);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab:not(.active) {
+            color: var(--gray-600);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--gray-300);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            color: var(--danger-color);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Torn API v2 Comprehensive Tester</h1>
+            <p class="subtitle">Test all Torn API v2 endpoints with your API key</p>
+        </div>
+
+        <div class="api-key-section">
+            <div class="input-group">
+                <label for="apiKey">API Key:</label>
+                <input type="text" id="apiKey" placeholder="Enter your Torn API key">
+            </div>
+            <div class="input-group">
+                <label for="userId">User ID (optional):</label>
+                <input type="number" id="userId" placeholder="Enter user ID for user-specific endpoints">
+            </div>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" data-tab="user">User Data</div>
+            <div class="tab" data-tab="property">Property</div>
+            <div class="tab" data-tab="company">Company</div>
+            <div class="tab" data-tab="faction">Faction</div>
+            <div class="tab" data-tab="market">Market</div>
+            <div class="tab" data-tab="other">Other</div>
+        </div>
+
+        <!-- User Data Tab -->
+        <div class="tab-content active" id="user">
+            <div class="endpoints-grid">
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/user/attacks</span>
+                    </div>
+                    <div class="endpoint-description">Get your detailed attacks</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('user-attacks')">Test</button>
+                    </div>
+                    <div class="response-section" id="user-attacks-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/user/attacksfull</span>
+                    </div>
+                    <div class="endpoint-description">Get your simplified attacks</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('user-attacksfull')">Test</button>
+                    </div>
+                    <div class="response-section" id="user-attacksfull-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/user/bounties</span>
+                    </div>
+                    <div class="endpoint-description">Get bounties placed on you</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('user-bounties')">Test</button>
+                    </div>
+                    <div class="response-section" id="user-bounties-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/user/{id}/bounties</span>
+                    </div>
+                    <div class="endpoint-description">Get bounties placed on a specific user</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>User ID:</label>
+                            <input type="number" id="user-bounties-id" placeholder="User ID">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('user-bounties-specific')">Test</button>
+                    </div>
+                    <div class="response-section" id="user-bounties-specific-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/user/calendar</span>
+                    </div>
+                    <div class="endpoint-description">Get your competition's event start time</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('user-calendar')">Test</button>
+                    </div>
+                    <div class="response-section" id="user-calendar-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/user/{crimeId}/crimes</span>
+                    </div>
+                    <div class="endpoint-description">Get your crime statistics</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>Crime ID:</label>
+                            <input type="number" id="user-crimes-id" placeholder="Crime ID">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('user-crimes')">Test</button>
+                    </div>
+                    <div class="response-section" id="user-crimes-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/user/education</span>
+                    </div>
+                    <div class="endpoint-description">Get your education information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('user-education')">Test</button>
+                    </div>
+                    <div class="response-section" id="user-education-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/user/enlistedcars</span>
+                    </div>
+                    <div class="endpoint-description">Get user enlisted cars</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('user-enlistedcars')">Test</button>
+                    </div>
+                    <div class="response-section" id="user-enlistedcars-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/user/factionbalance</span>
+                    </div>
+                    <div class="endpoint-description">Get your current faction balance</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('user-factionbalance')">Test</button>
+                    </div>
+                    <div class="response-section" id="user-factionbalance-response"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Property Tab -->
+        <div class="tab-content" id="property">
+            <div class="endpoints-grid">
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/property/{id}</span>
+                    </div>
+                    <div class="endpoint-description">Get property information</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>Property ID:</label>
+                            <input type="number" id="property-id" placeholder="Property ID">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('property')">Test</button>
+                    </div>
+                    <div class="response-section" id="property-response"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Company Tab -->
+        <div class="tab-content" id="company">
+            <div class="endpoints-grid">
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/company/{id}</span>
+                    </div>
+                    <div class="endpoint-description">Get company information</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>Company ID:</label>
+                            <input type="number" id="company-id" placeholder="Company ID">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('company')">Test</button>
+                    </div>
+                    <div class="response-section" id="company-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/company/{id}?selections=detailed</span>
+                    </div>
+                    <div class="endpoint-description">Get detailed company information</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>Company ID:</label>
+                            <input type="number" id="company-detailed-id" placeholder="Company ID">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('company-detailed')">Test</button>
+                    </div>
+                    <div class="response-section" id="company-detailed-response"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Faction Tab -->
+        <div class="tab-content" id="faction">
+            <div class="endpoints-grid">
+                <!-- Applications -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/applications</span>
+                    </div>
+                    <div class="endpoint-description">Get your faction's applications</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-applications')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-applications-response"></div>
+                </div>
+
+                <!-- Attacks -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/attacks</span>
+                    </div>
+                    <div class="endpoint-description">Get your faction's detailed attacks</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-attacks')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-attacks-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/attacksfull</span>
+                    </div>
+                    <div class="endpoint-description">Get your faction's simplified attacks</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-attacksfull')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-attacksfull-response"></div>
+                </div>
+
+                <!-- Balance -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/balance</span>
+                    </div>
+                    <div class="endpoint-description">Get your faction's & member's balance details</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-balance')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-balance-response"></div>
+                </div>
+
+                <!-- Basic Information -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/basic</span>
+                    </div>
+                    <div class="endpoint-description">Get your faction's basic details</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-basic')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-basic-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/{id}/basic</span>
+                    </div>
+                    <div class="endpoint-description">Get a faction's basic details</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>Faction ID:</label>
+                            <input type="number" id="faction-basic-id" placeholder="Faction ID" value="53359">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('faction-basic-id')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-basic-id-response"></div>
+                </div>
+
+                <!-- Chains -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/chain</span>
+                    </div>
+                    <div class="endpoint-description">Get your faction's current chain</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-chain')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-chain-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/{id}/chain</span>
+                    </div>
+                    <div class="endpoint-description">Get a faction's current chain</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>Faction ID:</label>
+                            <input type="number" id="faction-chain-id" placeholder="Faction ID" value="53359">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('faction-chain-id')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-chain-id-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/chains</span>
+                    </div>
+                    <div class="endpoint-description">Get a list of your faction's completed chains</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-chains')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-chains-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/{id}/chains</span>
+                    </div>
+                    <div class="endpoint-description">Get a list of a faction's completed chains</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>Faction ID:</label>
+                            <input type="number" id="faction-chains-id" placeholder="Faction ID" value="53359">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('faction-chains-id')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-chains-id-response"></div>
+                </div>
+
+                <!-- Chain Reports -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/chainreport</span>
+                    </div>
+                    <div class="endpoint-description">Get your faction's latest chain report</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-chainreport')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-chainreport-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/{chainId}/chainreport</span>
+                    </div>
+                    <div class="endpoint-description">Get a chain report</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>Chain ID:</label>
+                            <input type="number" id="faction-chainreport-id" placeholder="Chain ID">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('faction-chainreport-id')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-chainreport-id-response"></div>
+                </div>
+
+                <!-- Contributors -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/contributors</span>
+                    </div>
+                    <div class="endpoint-description">Get your faction's challenge contributors</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-contributors')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-contributors-response"></div>
+                </div>
+
+                <!-- Crimes -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/crimes</span>
+                    </div>
+                    <div class="endpoint-description">Get your faction's organized crimes</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-crimes')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-crimes-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/{crimeId}/crime</span>
+                    </div>
+                    <div class="endpoint-description">Get a specific organized crime</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>Crime ID:</label>
+                            <input type="number" id="faction-crime-id" placeholder="Crime ID">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('faction-crime-id')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-crime-id-response"></div>
+                </div>
+
+                <!-- Hall of Fame -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/hof</span>
+                    </div>
+                    <div class="endpoint-description">Get your faction's hall of fame rankings</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-hof')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-hof-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/{id}/hof</span>
+                    </div>
+                    <div class="endpoint-description">Get a faction's hall of fame rankings</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>Faction ID:</label>
+                            <input type="number" id="faction-hof-id" placeholder="Faction ID" value="53359">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('faction-hof-id')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-hof-id-response"></div>
+                </div>
+
+                <!-- Members -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/members</span>
+                    </div>
+                    <div class="endpoint-description">Get a list of your faction's members</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-members')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-members-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/{id}/members</span>
+                    </div>
+                    <div class="endpoint-description">Get a list of a faction's members</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>Faction ID:</label>
+                            <input type="number" id="faction-members-id" placeholder="Faction ID" value="53359">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('faction-members-id')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-members-id-response"></div>
+                </div>
+
+                <!-- News -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/news</span>
+                    </div>
+                    <div class="endpoint-description">Get your faction's news details</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-news')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-news-response"></div>
+                </div>
+
+                <!-- Positions -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/positions</span>
+                    </div>
+                    <div class="endpoint-description">Get your faction's positions details</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-positions')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-positions-response"></div>
+                </div>
+
+                <!-- Rackets -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/rackets</span>
+                    </div>
+                    <div class="endpoint-description">Get a list of current rackets</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-rackets')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-rackets-response"></div>
+                </div>
+
+                <!-- Raids -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/{raidWarId}/raidreport</span>
+                    </div>
+                    <div class="endpoint-description">Get raid war details</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>Raid War ID:</label>
+                            <input type="number" id="faction-raidreport-id" placeholder="Raid War ID" value="27630">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('faction-raidreport-id')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-raidreport-id-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/raids</span>
+                    </div>
+                    <div class="endpoint-description">Get raids history for your faction</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-raids')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-raids-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/{id}/raids</span>
+                    </div>
+                    <div class="endpoint-description">Get a faction's raids history</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>Faction ID:</label>
+                            <input type="number" id="faction-raids-id" placeholder="Faction ID" value="53359">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('faction-raids-id')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-raids-id-response"></div>
+                </div>
+
+                <!-- Ranked Wars -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/rankedwars</span>
+                    </div>
+                    <div class="endpoint-description">Get ranked wars history for your faction</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-rankedwars')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-rankedwars-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/{id}/rankedwars</span>
+                    </div>
+                    <div class="endpoint-description">Get a faction's ranked wars history</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>Faction ID:</label>
+                            <input type="number" id="faction-rankedwars-id" placeholder="Faction ID" value="53359">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('faction-rankedwars-id')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-rankedwars-id-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/{rankedWarId}/rankedwarreport</span>
+                    </div>
+                    <div class="endpoint-description">Get ranked war details</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>Ranked War ID:</label>
+                            <input type="number" id="faction-rankedwarreport-id" placeholder="Ranked War ID" value="27630">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('faction-rankedwarreport-id')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-rankedwarreport-id-response"></div>
+                </div>
+
+                <!-- Reports -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/reports</span>
+                    </div>
+                    <div class="endpoint-description">Get faction reports</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-reports')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-reports-response"></div>
+                </div>
+
+                <!-- Revives -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/revives</span>
+                    </div>
+                    <div class="endpoint-description">Get your faction's detailed revives</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-revives')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-revives-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/revivesFull</span>
+                    </div>
+                    <div class="endpoint-description">Get your faction's simplified revives</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-revivesFull')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-revivesFull-response"></div>
+                </div>
+
+                <!-- Search -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/search</span>
+                    </div>
+                    <div class="endpoint-description">Search factions by name or other criteria</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-search')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-search-response"></div>
+                </div>
+
+                <!-- Statistics -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/stats</span>
+                    </div>
+                    <div class="endpoint-description">Get your faction's challenges stats</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-stats')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-stats-response"></div>
+                </div>
+
+                <!-- Territory -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/territory</span>
+                    </div>
+                    <div class="endpoint-description">Get a list of your faction's territories</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-territory')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-territory-response"></div>
+                </div>
+
+
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/{id}/territory</span>
+                    </div>
+                    <div class="endpoint-description">Get a list of a faction's territories</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>Faction ID:</label>
+                            <input type="number" id="faction-territory-id" placeholder="Faction ID" value="53359">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('faction-territory-id')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-territory-id-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/territoryownership</span>
+                    </div>
+                    <div class="endpoint-description">Get a list of your faction's territories</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-territoryownership')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-territoryownership-response"></div>
+                </div>
+
+                <!-- Territory Wars -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/territorywars</span>
+                    </div>
+                    <div class="endpoint-description">Get territory wars history for your faction</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-territorywars')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-territorywars-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/{id}/territorywars</span>
+                    </div>
+                    <div class="endpoint-description">Get a faction's territory wars history</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>Faction ID:</label>
+                            <input type="number" id="faction-territorywars-id" placeholder="Faction ID" value="53359">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('faction-territorywars-id')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-territorywars-id-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/{territoryWarId}/territorywarreport</span>
+                    </div>
+                    <div class="endpoint-description">Get territory war details</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>Territory War ID:</label>
+                            <input type="number" id="faction-territorywarreport-id" placeholder="Territory War ID" value="27630">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('faction-territorywarreport-id')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-territorywarreport-id-response"></div>
+                </div>
+
+                <!-- Upgrades -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/upgrades</span>
+                    </div>
+                    <div class="endpoint-description">Get your faction's upgrades</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-upgrades')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-upgrades-response"></div>
+                </div>
+
+                <!-- Warfare -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/warfare</span>
+                    </div>
+                    <div class="endpoint-description">Get faction warfare</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-warfare')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-warfare-response"></div>
+                </div>
+
+                <!-- Wars & Pacts -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/wars</span>
+                    </div>
+                    <div class="endpoint-description">Get your faction's wars & pacts details</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-wars')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-wars-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/{id}/wars</span>
+                    </div>
+                    <div class="endpoint-description">Get a faction's wars & pacts details</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>Faction ID:</label>
+                            <input type="number" id="faction-wars-id" placeholder="Faction ID" value="53359">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('faction-wars-id')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-wars-id-response"></div>
+                </div>
+
+                <!-- Miscellaneous -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/lookup</span>
+                    </div>
+                    <div class="endpoint-description">Faction lookup</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-lookup')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-lookup-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction/timestamp</span>
+                    </div>
+                    <div class="endpoint-description">Get current server time</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-timestamp')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-timestamp-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/faction</span>
+                    </div>
+                    <div class="endpoint-description">Get any Faction selection</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('faction-general')">Test</button>
+                    </div>
+                    <div class="response-section" id="faction-general-response"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Market Tab -->
+        <div class="tab-content" id="market">
+            <div class="endpoints-grid">
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/market/{id}</span>
+                    </div>
+                    <div class="endpoint-description">Get market item information</div>
+                    <div class="param-group">
+                        <div class="input-group">
+                            <label>Item ID:</label>
+                            <input type="number" id="market-item-id" placeholder="Item ID">
+                        </div>
+                        <button class="test-button" onclick="testEndpoint('market-item')">Test</button>
+                    </div>
+                    <div class="response-section" id="market-item-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/market</span>
+                    </div>
+                    <div class="endpoint-description">Get all market items</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('market-all')">Test</button>
+                    </div>
+                    <div class="response-section" id="market-all-response"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other Tab -->
+        <div class="tab-content" id="other">
+            <div class="endpoints-grid">
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn</span>
+                    </div>
+                    <div class="endpoint-description">Get Torn City information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-response"></div>
+                </div>
+
+                <!-- Stock Market -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=stocks</span>
+                    </div>
+                    <div class="endpoint-description">Get Torn City stock market data</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('stocks')">Test</button>
+                    </div>
+                    <div class="response-section" id="stocks-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/items</span>
+                    </div>
+                    <div class="endpoint-description">Get all items information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('items')">Test</button>
+                    </div>
+                    <div class="response-section" id="items-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/honors</span>
+                    </div>
+                    <div class="endpoint-description">Get honors information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('honors')">Test</button>
+                    </div>
+                    <div class="response-section" id="honors-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/medals</span>
+                    </div>
+                    <div class="endpoint-description">Get medals information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('medals')">Test</button>
+                    </div>
+                    <div class="response-section" id="medals-response"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and content
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // API testing functionality
+        async function testEndpoint(endpointType) {
+            const apiKey = document.getElementById('apiKey').value;
+            const userId = document.getElementById('userId').value;
+            
+            if (!apiKey) {
+                alert('Please enter your API key');
+                return;
+            }
+
+            const responseElement = document.getElementById(`${endpointType}-response`);
+            responseElement.innerHTML = `
+                <div class="response-header">
+                    <span>Response</span>
+                    <span class="status-badge status-loading">
+                        <span class="loading"></span> Loading...
+                    </span>
+                </div>
+                <div class="response-content">Testing endpoint...</div>
+            `;
+
+            let url = '';
+            let params = {};
+
+            switch (endpointType) {
+                case 'user-attacks':
+                    url = 'https://api.torn.com/v2/user/attacks';
+                    break;
+                
+                case 'user-attacksfull':
+                    url = 'https://api.torn.com/v2/user/attacksfull';
+                    break;
+                
+                case 'user-bounties':
+                    url = 'https://api.torn.com/v2/user/bounties';
+                    break;
+                
+                case 'user-bounties-specific':
+                    const bountiesId = document.getElementById('user-bounties-id').value;
+                    if (!bountiesId) {
+                        showError(responseElement, 'Please enter a User ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/user/${bountiesId}/bounties`;
+                    break;
+                
+                case 'user-calendar':
+                    url = 'https://api.torn.com/v2/user/calendar';
+                    break;
+                
+                case 'user-crimes':
+                    const crimesId = document.getElementById('user-crimes-id').value;
+                    if (!crimesId) {
+                        showError(responseElement, 'Please enter a Crime ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/user/${crimesId}/crimes`;
+                    break;
+                
+                case 'user-education':
+                    url = 'https://api.torn.com/v2/user/education';
+                    break;
+                
+                case 'user-enlistedcars':
+                    url = 'https://api.torn.com/v2/user/enlistedcars';
+                    break;
+                
+                case 'user-factionbalance':
+                    url = 'https://api.torn.com/v2/user/factionbalance';
+                    break;
+                
+                case 'property':
+                    const propertyId = document.getElementById('property-id').value;
+                    if (!propertyId) {
+                        showError(responseElement, 'Please enter a Property ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/property/${propertyId}`;
+                    break;
+                
+                case 'company':
+                    const companyId = document.getElementById('company-id').value;
+                    if (!companyId) {
+                        showError(responseElement, 'Please enter a Company ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/company/${companyId}`;
+                    break;
+                
+                case 'company-detailed':
+                    const companyDetailedId = document.getElementById('company-detailed-id').value;
+                    if (!companyDetailedId) {
+                        showError(responseElement, 'Please enter a Company ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/company/${companyDetailedId}`;
+                    params = { selections: 'detailed' };
+                    break;
+                
+                case 'faction':
+                    const factionId = document.getElementById('faction-id').value;
+                    if (!factionId) {
+                        showError(responseElement, 'Please enter a Faction ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/faction/${factionId}`;
+                    break;
+                
+                case 'faction-detailed':
+                    const factionDetailedId = document.getElementById('faction-detailed-id').value;
+                    if (!factionDetailedId) {
+                        showError(responseElement, 'Please enter a Faction ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/faction/${factionDetailedId}`;
+                    params = { selections: 'detailed' };
+                    break;
+
+                // Faction Applications
+                case 'faction-applications':
+                    url = 'https://api.torn.com/v2/faction/applications';
+                    break;
+
+                // Faction Attacks
+                case 'faction-attacks':
+                    url = 'https://api.torn.com/v2/faction/attacks';
+                    break;
+
+                case 'faction-attacksfull':
+                    url = 'https://api.torn.com/v2/faction/attacksfull';
+                    break;
+
+                // Faction Balance
+                case 'faction-balance':
+                    url = 'https://api.torn.com/v2/faction/balance';
+                    break;
+
+                // Faction Basic
+                case 'faction-basic':
+                    url = 'https://api.torn.com/v2/faction/basic';
+                    break;
+
+                case 'faction-basic-id':
+                    const factionBasicId = document.getElementById('faction-basic-id').value;
+                    if (!factionBasicId) {
+                        showError(responseElement, 'Please enter a Faction ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/faction/${factionBasicId}/basic`;
+                    break;
+
+                // Faction Chains
+                case 'faction-chain':
+                    url = 'https://api.torn.com/v2/faction/chain';
+                    break;
+
+                case 'faction-chain-id':
+                    const factionChainId = document.getElementById('faction-chain-id').value;
+                    if (!factionChainId) {
+                        showError(responseElement, 'Please enter a Faction ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/faction/${factionChainId}/chain`;
+                    break;
+
+                case 'faction-chains':
+                    url = 'https://api.torn.com/v2/faction/chains';
+                    break;
+
+                case 'faction-chains-id':
+                    const factionChainsId = document.getElementById('faction-chains-id').value;
+                    if (!factionChainsId) {
+                        showError(responseElement, 'Please enter a Faction ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/faction/${factionChainsId}/chains`;
+                    break;
+
+                // Faction Chain Reports
+                case 'faction-chainreport':
+                    url = 'https://api.torn.com/v2/faction/chainreport';
+                    break;
+
+                case 'faction-chainreport-id':
+                    const factionChainreportId = document.getElementById('faction-chainreport-id').value;
+                    if (!factionChainreportId) {
+                        showError(responseElement, 'Please enter a Chain ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/faction/${factionChainreportId}/chainreport`;
+                    break;
+
+                // Faction Contributors
+                case 'faction-contributors':
+                    url = 'https://api.torn.com/v2/faction/contributors';
+                    break;
+
+                // Faction Crimes
+                case 'faction-crimes':
+                    url = 'https://api.torn.com/v2/faction/crimes';
+                    break;
+
+                case 'faction-crime-id':
+                    const factionCrimeId = document.getElementById('faction-crime-id').value;
+                    if (!factionCrimeId) {
+                        showError(responseElement, 'Please enter a Crime ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/faction/${factionCrimeId}/crime`;
+                    break;
+
+                // Faction Hall of Fame
+                case 'faction-hof':
+                    url = 'https://api.torn.com/v2/faction/hof';
+                    break;
+
+                case 'faction-hof-id':
+                    const factionHofId = document.getElementById('faction-hof-id').value;
+                    if (!factionHofId) {
+                        showError(responseElement, 'Please enter a Faction ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/faction/${factionHofId}/hof`;
+                    break;
+
+                // Faction Members
+                case 'faction-members':
+                    url = 'https://api.torn.com/v2/faction/members';
+                    break;
+
+                case 'faction-members-id':
+                    const factionMembersId = document.getElementById('faction-members-id').value;
+                    if (!factionMembersId) {
+                        showError(responseElement, 'Please enter a Faction ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/faction/${factionMembersId}/members`;
+                    break;
+
+                // Faction News
+                case 'faction-news':
+                    url = 'https://api.torn.com/v2/faction/news';
+                    break;
+
+                // Faction Positions
+                case 'faction-positions':
+                    url = 'https://api.torn.com/v2/faction/positions';
+                    break;
+
+                // Faction Rackets
+                case 'faction-rackets':
+                    url = 'https://api.torn.com/v2/faction/rackets';
+                    break;
+
+                // Faction Raids
+                case 'faction-raidreport-id':
+                    const factionRaidreportId = document.getElementById('faction-raidreport-id').value;
+                    if (!factionRaidreportId) {
+                        showError(responseElement, 'Please enter a Raid War ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/faction/${factionRaidreportId}/raidreport`;
+                    break;
+
+                case 'faction-raids':
+                    url = 'https://api.torn.com/v2/faction/raids';
+                    break;
+
+                case 'faction-raids-id':
+                    const factionRaidsId = document.getElementById('faction-raids-id').value;
+                    if (!factionRaidsId) {
+                        showError(responseElement, 'Please enter a Faction ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/faction/${factionRaidsId}/raids`;
+                    break;
+
+                // Faction Ranked Wars
+                case 'faction-rankedwars':
+                    url = 'https://api.torn.com/v2/faction/rankedwars';
+                    break;
+
+                case 'faction-rankedwars-id':
+                    const factionRankedwarsId = document.getElementById('faction-rankedwars-id').value;
+                    if (!factionRankedwarsId) {
+                        showError(responseElement, 'Please enter a Faction ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/faction/${factionRankedwarsId}/rankedwars`;
+                    break;
+
+                case 'faction-rankedwarreport-id':
+                    const factionRankedwarreportId = document.getElementById('faction-rankedwarreport-id').value;
+                    if (!factionRankedwarreportId) {
+                        showError(responseElement, 'Please enter a Ranked War ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/faction/${factionRankedwarreportId}/rankedwarreport`;
+                    break;
+
+                // Faction Reports
+                case 'faction-reports':
+                    url = 'https://api.torn.com/v2/faction/reports';
+                    break;
+
+                // Faction Revives
+                case 'faction-revives':
+                    url = 'https://api.torn.com/v2/faction/revives';
+                    break;
+
+                case 'faction-revivesFull':
+                    url = 'https://api.torn.com/v2/faction/revivesFull';
+                    break;
+
+                // Faction Search
+                case 'faction-search':
+                    url = 'https://api.torn.com/v2/faction/search';
+                    break;
+
+                // Faction Statistics
+                case 'faction-stats':
+                    url = 'https://api.torn.com/v2/faction/stats';
+                    break;
+
+                // Faction Territory
+                case 'faction-territory':
+                    url = 'https://api.torn.com/v2/faction/territory';
+                    break;
+
+                case 'faction-territory-id':
+                    const factionTerritoryId = document.getElementById('faction-territory-id').value;
+                    if (!factionTerritoryId) {
+                        showError(responseElement, 'Please enter a Faction ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/faction/${factionTerritoryId}/territory`;
+                    break;
+
+                case 'faction-territoryownership':
+                    url = 'https://api.torn.com/v2/faction/territoryownership';
+                    break;
+
+
+
+                // Faction Territory Wars
+                case 'faction-territorywars':
+                    url = 'https://api.torn.com/v2/faction/territorywars';
+                    break;
+
+                case 'faction-territorywars-id':
+                    const factionTerritorywarsId = document.getElementById('faction-territorywars-id').value;
+                    if (!factionTerritorywarsId) {
+                        showError(responseElement, 'Please enter a Faction ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/faction/${factionTerritorywarsId}/territorywars`;
+                    break;
+
+                case 'faction-territorywarreport-id':
+                    const factionTerritorywarreportId = document.getElementById('faction-territorywarreport-id').value;
+                    if (!factionTerritorywarreportId) {
+                        showError(responseElement, 'Please enter a Territory War ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/faction/${factionTerritorywarreportId}/territorywarreport`;
+                    break;
+
+                // Faction Upgrades
+                case 'faction-upgrades':
+                    url = 'https://api.torn.com/v2/faction/upgrades';
+                    break;
+
+                // Faction Warfare
+                case 'faction-warfare':
+                    url = 'https://api.torn.com/v2/faction/warfare';
+                    break;
+
+                // Faction Wars & Pacts
+                case 'faction-wars':
+                    url = 'https://api.torn.com/v2/faction/wars';
+                    break;
+
+                case 'faction-wars-id':
+                    const factionWarsId = document.getElementById('faction-wars-id').value;
+                    if (!factionWarsId) {
+                        showError(responseElement, 'Please enter a Faction ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/faction/${factionWarsId}/wars`;
+                    break;
+
+                // Faction Miscellaneous
+                case 'faction-lookup':
+                    url = 'https://api.torn.com/v2/faction/lookup';
+                    break;
+
+                case 'faction-timestamp':
+                    url = 'https://api.torn.com/v2/faction/timestamp';
+                    break;
+
+                case 'faction-general':
+                    url = 'https://api.torn.com/v2/faction';
+                    break;
+                
+                case 'market-item':
+                    const itemId = document.getElementById('market-item-id').value;
+                    if (!itemId) {
+                        showError(responseElement, 'Please enter an Item ID');
+                        return;
+                    }
+                    url = `https://api.torn.com/v2/market/${itemId}`;
+                    break;
+                
+                case 'market-all':
+                    url = 'https://api.torn.com/v2/market';
+                    break;
+                
+                case 'torn':
+                    url = 'https://api.torn.com/v2/torn';
+                    break;
+                
+                case 'stocks':
+                    url = 'https://api.torn.com/v2/torn';
+                    params = { selections: 'stocks' };
+                    break;
+                
+                case 'items':
+                    url = 'https://api.torn.com/v2/items';
+                    break;
+                
+                case 'honors':
+                    url = 'https://api.torn.com/v2/honors';
+                    break;
+                
+                case 'medals':
+                    url = 'https://api.torn.com/v2/medals';
+                    break;
+            }
+
+            try {
+                // Add API key to params
+                params.key = apiKey;
+                
+                // Build query string
+                const queryString = new URLSearchParams(params).toString();
+                const fullUrl = queryString ? `${url}?${queryString}` : url;
+
+                const response = await fetch(fullUrl);
+                const data = await response.json();
+
+                if (response.ok) {
+                    responseElement.innerHTML = `
+                        <div class="response-header">
+                            <span>Response</span>
+                            <span class="status-badge status-success">Success</span>
+                        </div>
+                        <div class="response-content">${JSON.stringify(data, null, 2)}</div>
+                    `;
+                } else {
+                    showError(responseElement, data.error || 'API request failed');
+                }
+            } catch (error) {
+                showError(responseElement, `Network error: ${error.message}`);
+            }
+        }
+
+        function showError(responseElement, message) {
+            responseElement.innerHTML = `
+                <div class="response-header">
+                    <span>Response</span>
+                    <span class="status-badge status-error">Error</span>
+                </div>
+                <div class="response-content">${message}</div>
+            `;
+        }
+
+        // Auto-fill user ID from the main input
+        document.getElementById('userId').addEventListener('input', function() {
+            const userId = this.value;
+            if (userId) {
+                document.getElementById('user-bounties-id').value = userId;
+            }
+        });
+    </script>
+</body>
+</html> 

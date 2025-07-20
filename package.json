@@ -1,0 +1,25 @@
+{
+  "name": "dashboard",
+  "version": "1.0.0",
+  "description": "Torn City Dashboard with Faction Management and War Tools",
+  "main": "dashboard.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000",
+    "test-connection": "node scripts/test-connection.js",
+    "collect-data": "node scripts/collect-stock-data.js"
+  },
+  "dependencies": {
+    "mongodb": "^6.3.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "torn",
+    "dashboard",
+    "faction",
+    "war",
+    "payout"
+  ],
+  "author": "",
+  "license": "MIT"
+}

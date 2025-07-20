@@ -1,0 +1,676 @@
+{
+  "log_types": {
+    "money": {
+      "description": "Money-related transactions",
+      "types": {
+        "money_add": "Money added to wallet",
+        "money_remove": "Money removed from wallet",
+        "trade_money_add": "Money added from trade",
+        "trade_money_remove": "Money removed from trade",
+        "trade_money_add_other": "Money added from other user in trade",
+        "trade_money_remove_other": "Money removed to other user in trade"
+      }
+    },
+    "items": {
+      "description": "Item-related transactions",
+      "types": {
+        "item_use": "Item used",
+        "item_use_wallet": "Item used from wallet",
+        "item_buy": "Item purchased",
+        "item_sell": "Item sold",
+        "item_trade": "Item traded",
+        "item_trade_other": "Item traded with other user",
+        "item_give": "Item given",
+        "item_receive": "Item received",
+        "item_drop": "Item dropped",
+        "item_pickup": "Item picked up",
+        "item_find": "Item found",
+        "item_lose": "Item lost",
+        "item_steal": "Item stolen",
+        "item_steal_fail": "Failed to steal item",
+        "item_steal_success": "Successfully stole item",
+        "item_steal_victim": "Item stolen from you",
+        "item_steal_victim_fail": "Failed theft attempt on you",
+        "item_steal_victim_success": "Successfully stolen from you"
+      }
+    },
+    "crimes": {
+      "description": "Crime-related transactions",
+      "types": {
+        "crime_success": "Successful crime",
+        "crime_fail": "Failed crime",
+        "crime_jail": "Sent to jail",
+        "crime_bail": "Bailed out of jail",
+        "crime_escape": "Escaped from jail",
+        "crime_escape_fail": "Failed to escape jail",
+        "crime_escape_success": "Successfully escaped jail",
+        "crime_escape_victim": "Someone escaped from your jail",
+        "crime_escape_victim_fail": "Failed escape attempt on your jail",
+        "crime_escape_victim_success": "Successfully escaped from your jail"
+      }
+    },
+    "stocks": {
+      "description": "Stock market transactions",
+      "types": {
+        "stock_buy": "Stock purchased",
+        "stock_sell": "Stock sold",
+        "stock_dividend": "Stock dividend received",
+        "stock_bonus": "Stock bonus received",
+        "stock_split": "Stock split",
+        "stock_merge": "Stock merger"
+      }
+    },
+    "casino": {
+      "description": "Casino and gambling transactions",
+      "types": {
+        "casino_win": "Casino win",
+        "casino_loss": "Casino loss",
+        "casino_bet": "Casino bet placed",
+        "casino_jackpot": "Casino jackpot won",
+        "casino_bonus": "Casino bonus received"
+      }
+    },
+    "properties": {
+      "description": "Property-related transactions",
+      "types": {
+        "property_buy": "Property purchased",
+        "property_sell": "Property sold",
+        "property_rent": "Property rent received",
+        "property_rent_paid": "Property rent paid",
+        "property_upgrade": "Property upgraded",
+        "property_downgrade": "Property downgraded",
+        "property_destroy": "Property destroyed",
+        "property_rebuild": "Property rebuilt"
+      }
+    },
+    "companies": {
+      "description": "Company-related transactions",
+      "types": {
+        "company_salary": "Company salary received",
+        "company_bonus": "Company bonus received",
+        "company_stock": "Company stock received",
+        "company_stock_sold": "Company stock sold",
+        "company_dividend": "Company dividend received",
+        "company_buy": "Company purchased",
+        "company_sell": "Company sold",
+        "company_upgrade": "Company upgraded",
+        "company_downgrade": "Company downgraded"
+      }
+    },
+    "education": {
+      "description": "Education-related transactions",
+      "types": {
+        "education_course": "Education course completed",
+        "education_certificate": "Education certificate received",
+        "education_degree": "Education degree received",
+        "education_training": "Education training completed"
+      }
+    },
+    "medical": {
+      "description": "Medical-related transactions",
+      "types": {
+        "medical_treatment": "Medical treatment received",
+        "medical_surgery": "Medical surgery performed",
+        "medical_medication": "Medical medication used",
+        "medical_recovery": "Medical recovery completed"
+      }
+    },
+    "travel": {
+      "description": "Travel-related transactions",
+      "types": {
+        "travel_flight": "Flight taken",
+        "travel_hotel": "Hotel stay",
+        "travel_rental": "Car rental",
+        "travel_ticket": "Travel ticket purchased",
+        "travel_refund": "Travel refund received"
+      }
+    },
+    "events": {
+      "description": "Event-related transactions",
+      "types": {
+        "event_ticket": "Event ticket purchased",
+        "event_refund": "Event refund received",
+        "event_prize": "Event prize won",
+        "event_participation": "Event participation fee"
+      }
+    },
+    "gym": {
+      "description": "Gym-related transactions",
+      "types": {
+        "gym_membership": "Gym membership purchased",
+        "gym_training": "Gym training session",
+        "gym_equipment": "Gym equipment purchased",
+        "gym_refund": "Gym refund received"
+      }
+    },
+    "racing": {
+      "description": "Racing-related transactions",
+      "types": {
+        "racing_entry": "Racing entry fee",
+        "racing_prize": "Racing prize won",
+        "racing_refund": "Racing refund received",
+        "racing_car": "Racing car purchased",
+        "racing_upgrade": "Racing car upgraded"
+      }
+    },
+    "auction": {
+      "description": "Auction-related transactions",
+      "types": {
+        "auction_bid": "Auction bid placed",
+        "auction_win": "Auction won",
+        "auction_lose": "Auction lost",
+        "auction_refund": "Auction refund received",
+        "auction_sell": "Item sold at auction",
+        "auction_fee": "Auction fee paid"
+      }
+    },
+    "bazaar": {
+      "description": "Bazaar-related transactions",
+      "types": {
+        "bazaar_buy": "Item purchased from bazaar",
+        "bazaar_sell": "Item sold at bazaar",
+        "bazaar_list": "Item listed at bazaar",
+        "bazaar_delist": "Item delisted from bazaar",
+        "bazaar_fee": "Bazaar fee paid"
+      }
+    },
+    "market": {
+      "description": "Market-related transactions",
+      "types": {
+        "market_buy": "Item purchased from market",
+        "market_sell": "Item sold at market",
+        "market_list": "Item listed at market",
+        "market_delist": "Item delisted from market",
+        "market_fee": "Market fee paid"
+      }
+    },
+    "points": {
+      "description": "Points-related transactions",
+      "types": {
+        "points_buy": "Points purchased",
+        "points_sell": "Points sold",
+        "points_give": "Points given",
+        "points_receive": "Points received",
+        "points_earn": "Points earned",
+        "points_spend": "Points spent"
+      }
+    },
+    "honor": {
+      "description": "Honor-related transactions",
+      "types": {
+        "honor_earn": "Honor earned",
+        "honor_spend": "Honor spent",
+        "honor_give": "Honor given",
+        "honor_receive": "Honor received"
+      }
+    },
+    "respect": {
+      "description": "Respect-related transactions",
+      "types": {
+        "respect_earn": "Respect earned",
+        "respect_spend": "Respect spent",
+        "respect_give": "Respect given",
+        "respect_receive": "Respect received"
+      }
+    },
+    "energy": {
+      "description": "Energy-related transactions",
+      "types": {
+        "energy_use": "Energy used",
+        "energy_refill": "Energy refilled",
+        "energy_give": "Energy given",
+        "energy_receive": "Energy received"
+      }
+    },
+    "nerve": {
+      "description": "Nerve-related transactions",
+      "types": {
+        "nerve_use": "Nerve used",
+        "nerve_refill": "Nerve refilled",
+        "nerve_give": "Nerve given",
+        "nerve_receive": "Nerve received"
+      }
+    },
+    "happy": {
+      "description": "Happiness-related transactions",
+      "types": {
+        "happy_use": "Happiness used",
+        "happy_refill": "Happiness refilled",
+        "happy_give": "Happiness given",
+        "happy_receive": "Happiness received"
+      }
+    },
+    "life": {
+      "description": "Life-related transactions",
+      "types": {
+        "life_lose": "Life lost",
+        "life_gain": "Life gained",
+        "life_heal": "Life healed",
+        "life_damage": "Life damaged"
+      }
+    },
+    "experience": {
+      "description": "Experience-related transactions",
+      "types": {
+        "exp_gain": "Experience gained",
+        "exp_lose": "Experience lost",
+        "exp_give": "Experience given",
+        "exp_receive": "Experience received"
+      }
+    },
+    "level": {
+      "description": "Level-related transactions",
+      "types": {
+        "level_up": "Level up",
+        "level_down": "Level down",
+        "level_bonus": "Level bonus received"
+      }
+    },
+    "strength": {
+      "description": "Strength-related transactions",
+      "types": {
+        "strength_gain": "Strength gained",
+        "strength_lose": "Strength lost",
+        "strength_give": "Strength given",
+        "strength_receive": "Strength received"
+      }
+    },
+    "defense": {
+      "description": "Defense-related transactions",
+      "types": {
+        "defense_gain": "Defense gained",
+        "defense_lose": "Defense lost",
+        "defense_give": "Defense given",
+        "defense_receive": "Defense received"
+      }
+    },
+    "speed": {
+      "description": "Speed-related transactions",
+      "types": {
+        "speed_gain": "Speed gained",
+        "speed_lose": "Speed lost",
+        "speed_give": "Speed given",
+        "speed_receive": "Speed received"
+      }
+    },
+    "dexterity": {
+      "description": "Dexterity-related transactions",
+      "types": {
+        "dexterity_gain": "Dexterity gained",
+        "dexterity_lose": "Dexterity lost",
+        "dexterity_give": "Dexterity given",
+        "dexterity_receive": "Dexterity received"
+      }
+    },
+    "intelligence": {
+      "description": "Intelligence-related transactions",
+      "types": {
+        "intelligence_gain": "Intelligence gained",
+        "intelligence_lose": "Intelligence lost",
+        "intelligence_give": "Intelligence given",
+        "intelligence_receive": "Intelligence received"
+      }
+    },
+    "manual_labor": {
+      "description": "Manual labor-related transactions",
+      "types": {
+        "manual_labor_gain": "Manual labor gained",
+        "manual_labor_lose": "Manual labor lost",
+        "manual_labor_give": "Manual labor given",
+        "manual_labor_receive": "Manual labor received"
+      }
+    },
+    "endurance": {
+      "description": "Endurance-related transactions",
+      "types": {
+        "endurance_gain": "Endurance gained",
+        "endurance_lose": "Endurance lost",
+        "endurance_give": "Endurance given",
+        "endurance_receive": "Endurance received"
+      }
+    },
+    "weapons": {
+      "description": "Weapon-related transactions",
+      "types": {
+        "weapon_buy": "Weapon purchased",
+        "weapon_sell": "Weapon sold",
+        "weapon_trade": "Weapon traded",
+        "weapon_give": "Weapon given",
+        "weapon_receive": "Weapon received",
+        "weapon_steal": "Weapon stolen",
+        "weapon_steal_fail": "Failed to steal weapon",
+        "weapon_steal_success": "Successfully stole weapon",
+        "weapon_steal_victim": "Weapon stolen from you",
+        "weapon_steal_victim_fail": "Failed theft attempt on your weapon",
+        "weapon_steal_victim_success": "Successfully stolen weapon from you"
+      }
+    },
+    "armor": {
+      "description": "Armor-related transactions",
+      "types": {
+        "armor_buy": "Armor purchased",
+        "armor_sell": "Armor sold",
+        "armor_trade": "Armor traded",
+        "armor_give": "Armor given",
+        "armor_receive": "Armor received",
+        "armor_steal": "Armor stolen",
+        "armor_steal_fail": "Failed to steal armor",
+        "armor_steal_success": "Successfully stole armor",
+        "armor_steal_victim": "Armor stolen from you",
+        "armor_steal_victim_fail": "Failed theft attempt on your armor",
+        "armor_steal_victim_success": "Successfully stolen armor from you"
+      }
+    },
+    "temporary": {
+      "description": "Temporary item-related transactions",
+      "types": {
+        "temp_buy": "Temporary item purchased",
+        "temp_sell": "Temporary item sold",
+        "temp_trade": "Temporary item traded",
+        "temp_give": "Temporary item given",
+        "temp_receive": "Temporary item received",
+        "temp_steal": "Temporary item stolen",
+        "temp_steal_fail": "Failed to steal temporary item",
+        "temp_steal_success": "Successfully stole temporary item",
+        "temp_steal_victim": "Temporary item stolen from you",
+        "temp_steal_victim_fail": "Failed theft attempt on your temporary item",
+        "temp_steal_victim_success": "Successfully stolen temporary item from you"
+      }
+    },
+    "boosters": {
+      "description": "Booster-related transactions",
+      "types": {
+        "booster_buy": "Booster purchased",
+        "booster_sell": "Booster sold",
+        "booster_trade": "Booster traded",
+        "booster_give": "Booster given",
+        "booster_receive": "Booster received",
+        "booster_steal": "Booster stolen",
+        "booster_steal_fail": "Failed to steal booster",
+        "booster_steal_success": "Successfully stole booster",
+        "booster_steal_victim": "Booster stolen from you",
+        "booster_steal_victim_fail": "Failed theft attempt on your booster",
+        "booster_steal_victim_success": "Successfully stolen booster from you"
+      }
+    },
+    "enhancement": {
+      "description": "Enhancement-related transactions",
+      "types": {
+        "enhancement_buy": "Enhancement purchased",
+        "enhancement_sell": "Enhancement sold",
+        "enhancement_trade": "Enhancement traded",
+        "enhancement_give": "Enhancement given",
+        "enhancement_receive": "Enhancement received",
+        "enhancement_steal": "Enhancement stolen",
+        "enhancement_steal_fail": "Failed to steal enhancement",
+        "enhancement_steal_success": "Successfully stole enhancement",
+        "enhancement_steal_victim": "Enhancement stolen from you",
+        "enhancement_steal_victim_fail": "Failed theft attempt on your enhancement",
+        "enhancement_steal_victim_success": "Successfully stolen enhancement from you"
+      }
+    },
+    "special": {
+      "description": "Special item-related transactions",
+      "types": {
+        "special_buy": "Special item purchased",
+        "special_sell": "Special item sold",
+        "special_trade": "Special item traded",
+        "special_give": "Special item given",
+        "special_receive": "Special item received",
+        "special_steal": "Special item stolen",
+        "special_steal_fail": "Failed to steal special item",
+        "special_steal_success": "Successfully stole special item",
+        "special_steal_victim": "Special item stolen from you",
+        "special_steal_victim_fail": "Failed theft attempt on your special item",
+        "special_steal_victim_success": "Successfully stolen special item from you"
+      }
+    },
+    "medical_supplies": {
+      "description": "Medical supplies-related transactions",
+      "types": {
+        "medical_buy": "Medical supplies purchased",
+        "medical_sell": "Medical supplies sold",
+        "medical_trade": "Medical supplies traded",
+        "medical_give": "Medical supplies given",
+        "medical_receive": "Medical supplies received",
+        "medical_steal": "Medical supplies stolen",
+        "medical_steal_fail": "Failed to steal medical supplies",
+        "medical_steal_success": "Successfully stole medical supplies",
+        "medical_steal_victim": "Medical supplies stolen from you",
+        "medical_steal_victim_fail": "Failed theft attempt on your medical supplies",
+        "medical_steal_victim_success": "Successfully stolen medical supplies from you"
+      }
+    },
+    "drugs": {
+      "description": "Drug-related transactions",
+      "types": {
+        "drug_buy": "Drugs purchased",
+        "drug_sell": "Drugs sold",
+        "drug_trade": "Drugs traded",
+        "drug_give": "Drugs given",
+        "drug_receive": "Drugs received",
+        "drug_steal": "Drugs stolen",
+        "drug_steal_fail": "Failed to steal drugs",
+        "drug_steal_success": "Successfully stole drugs",
+        "drug_steal_victim": "Drugs stolen from you",
+        "drug_steal_victim_fail": "Failed theft attempt on your drugs",
+        "drug_steal_victim_success": "Successfully stolen drugs from you"
+      }
+    },
+    "books": {
+      "description": "Book-related transactions",
+      "types": {
+        "book_buy": "Book purchased",
+        "book_sell": "Book sold",
+        "book_trade": "Book traded",
+        "book_give": "Book given",
+        "book_receive": "Book received",
+        "book_steal": "Book stolen",
+        "book_steal_fail": "Failed to steal book",
+        "book_steal_success": "Successfully stole book",
+        "book_steal_victim": "Book stolen from you",
+        "book_steal_victim_fail": "Failed theft attempt on your book",
+        "book_steal_victim_success": "Successfully stolen book from you"
+      }
+    },
+    "plushies": {
+      "description": "Plushie-related transactions",
+      "types": {
+        "plushie_buy": "Plushie purchased",
+        "plushie_sell": "Plushie sold",
+        "plushie_trade": "Plushie traded",
+        "plushie_give": "Plushie given",
+        "plushie_receive": "Plushie received",
+        "plushie_steal": "Plushie stolen",
+        "plushie_steal_fail": "Failed to steal plushie",
+        "plushie_steal_success": "Successfully stole plushie",
+        "plushie_steal_victim": "Plushie stolen from you",
+        "plushie_steal_victim_fail": "Failed theft attempt on your plushie",
+        "plushie_steal_victim_success": "Successfully stolen plushie from you"
+      }
+    },
+    "flowers": {
+      "description": "Flower-related transactions",
+      "types": {
+        "flower_buy": "Flower purchased",
+        "flower_sell": "Flower sold",
+        "flower_trade": "Flower traded",
+        "flower_give": "Flower given",
+        "flower_receive": "Flower received",
+        "flower_steal": "Flower stolen",
+        "flower_steal_fail": "Failed to steal flower",
+        "flower_steal_success": "Successfully stole flower",
+        "flower_steal_victim": "Flower stolen from you",
+        "flower_steal_victim_fail": "Failed theft attempt on your flower",
+        "flower_steal_victim_success": "Successfully stolen flower from you"
+      }
+    },
+    "gems": {
+      "description": "Gem-related transactions",
+      "types": {
+        "gem_buy": "Gem purchased",
+        "gem_sell": "Gem sold",
+        "gem_trade": "Gem traded",
+        "gem_give": "Gem given",
+        "gem_receive": "Gem received",
+        "gem_steal": "Gem stolen",
+        "gem_steal_fail": "Failed to steal gem",
+        "gem_steal_success": "Successfully stole gem",
+        "gem_steal_victim": "Gem stolen from you",
+        "gem_steal_victim_fail": "Failed theft attempt on your gem",
+        "gem_steal_victim_success": "Successfully stolen gem from you"
+      }
+    },
+    "candy": {
+      "description": "Candy-related transactions",
+      "types": {
+        "candy_buy": "Candy purchased",
+        "candy_sell": "Candy sold",
+        "candy_trade": "Candy traded",
+        "candy_give": "Candy given",
+        "candy_receive": "Candy received",
+        "candy_steal": "Candy stolen",
+        "candy_steal_fail": "Failed to steal candy",
+        "candy_steal_success": "Successfully stole candy",
+        "candy_steal_victim": "Candy stolen from you",
+        "candy_steal_victim_fail": "Failed theft attempt on your candy",
+        "candy_steal_victim_success": "Successfully stolen candy from you"
+      }
+    },
+    "alcohol": {
+      "description": "Alcohol-related transactions",
+      "types": {
+        "alcohol_buy": "Alcohol purchased",
+        "alcohol_sell": "Alcohol sold",
+        "alcohol_trade": "Alcohol traded",
+        "alcohol_give": "Alcohol given",
+        "alcohol_receive": "Alcohol received",
+        "alcohol_steal": "Alcohol stolen",
+        "alcohol_steal_fail": "Failed to steal alcohol",
+        "alcohol_steal_success": "Successfully stole alcohol",
+        "alcohol_steal_victim": "Alcohol stolen from you",
+        "alcohol_steal_victim_fail": "Failed theft attempt on your alcohol",
+        "alcohol_steal_victim_success": "Successfully stolen alcohol from you"
+      }
+    },
+    "tobacco": {
+      "description": "Tobacco-related transactions",
+      "types": {
+        "tobacco_buy": "Tobacco purchased",
+        "tobacco_sell": "Tobacco sold",
+        "tobacco_trade": "Tobacco traded",
+        "tobacco_give": "Tobacco given",
+        "tobacco_receive": "Tobacco received",
+        "tobacco_steal": "Tobacco stolen",
+        "tobacco_steal_fail": "Failed to steal tobacco",
+        "tobacco_steal_success": "Successfully stole tobacco",
+        "tobacco_steal_victim": "Tobacco stolen from you",
+        "tobacco_steal_victim_fail": "Failed theft attempt on your tobacco",
+        "tobacco_steal_victim_success": "Successfully stolen tobacco from you"
+      }
+    },
+    "jewelry": {
+      "description": "Jewelry-related transactions",
+      "types": {
+        "jewelry_buy": "Jewelry purchased",
+        "jewelry_sell": "Jewelry sold",
+        "jewelry_trade": "Jewelry traded",
+        "jewelry_give": "Jewelry given",
+        "jewelry_receive": "Jewelry received",
+        "jewelry_steal": "Jewelry stolen",
+        "jewelry_steal_fail": "Failed to steal jewelry",
+        "jewelry_steal_success": "Successfully stole jewelry",
+        "jewelry_steal_victim": "Jewelry stolen from you",
+        "jewelry_steal_victim_fail": "Failed theft attempt on your jewelry",
+        "jewelry_steal_victim_success": "Successfully stolen jewelry from you"
+      }
+    },
+    "art": {
+      "description": "Art-related transactions",
+      "types": {
+        "art_buy": "Art purchased",
+        "art_sell": "Art sold",
+        "art_trade": "Art traded",
+        "art_give": "Art given",
+        "art_receive": "Art received",
+        "art_steal": "Art stolen",
+        "art_steal_fail": "Failed to steal art",
+        "art_steal_success": "Successfully stole art",
+        "art_steal_victim": "Art stolen from you",
+        "art_steal_victim_fail": "Failed theft attempt on your art",
+        "art_steal_victim_success": "Successfully stolen art from you"
+      }
+    },
+    "clothing": {
+      "description": "Clothing-related transactions",
+      "types": {
+        "clothing_buy": "Clothing purchased",
+        "clothing_sell": "Clothing sold",
+        "clothing_trade": "Clothing traded",
+        "clothing_give": "Clothing given",
+        "clothing_receive": "Clothing received",
+        "clothing_steal": "Clothing stolen",
+        "clothing_steal_fail": "Failed to steal clothing",
+        "clothing_steal_success": "Successfully stole clothing",
+        "clothing_steal_victim": "Clothing stolen from you",
+        "clothing_steal_victim_fail": "Failed theft attempt on your clothing",
+        "clothing_steal_victim_success": "Successfully stolen clothing from you"
+      }
+    },
+    "electronics": {
+      "description": "Electronics-related transactions",
+      "types": {
+        "electronics_buy": "Electronics purchased",
+        "electronics_sell": "Electronics sold",
+        "electronics_trade": "Electronics traded",
+        "electronics_give": "Electronics given",
+        "electronics_receive": "Electronics received",
+        "electronics_steal": "Electronics stolen",
+        "electronics_steal_fail": "Failed to steal electronics",
+        "electronics_steal_success": "Successfully stole electronics",
+        "electronics_steal_victim": "Electronics stolen from you",
+        "electronics_steal_victim_fail": "Failed theft attempt on your electronics",
+        "electronics_steal_victim_success": "Successfully stolen electronics from you"
+      }
+    },
+    "sporting_goods": {
+      "description": "Sporting goods-related transactions",
+      "types": {
+        "sporting_buy": "Sporting goods purchased",
+        "sporting_sell": "Sporting goods sold",
+        "sporting_trade": "Sporting goods traded",
+        "sporting_give": "Sporting goods given",
+        "sporting_receive": "Sporting goods received",
+        "sporting_steal": "Sporting goods stolen",
+        "sporting_steal_fail": "Failed to steal sporting goods",
+        "sporting_steal_success": "Successfully stole sporting goods",
+        "sporting_steal_victim": "Sporting goods stolen from you",
+        "sporting_steal_victim_fail": "Failed theft attempt on your sporting goods",
+        "sporting_steal_victim_success": "Successfully stolen sporting goods from you"
+      }
+    },
+    "other": {
+      "description": "Other miscellaneous transactions",
+      "types": {
+        "other_buy": "Other item purchased",
+        "other_sell": "Other item sold",
+        "other_trade": "Other item traded",
+        "other_give": "Other item given",
+        "other_receive": "Other item received",
+        "other_steal": "Other item stolen",
+        "other_steal_fail": "Failed to steal other item",
+        "other_steal_success": "Successfully stole other item",
+        "other_steal_victim": "Other item stolen from you",
+        "other_steal_victim_fail": "Failed theft attempt on your other item",
+        "other_steal_victim_success": "Successfully stolen other item from you"
+      }
+    }
+  },
+  "metadata": {
+    "total_categories": 25,
+    "total_types": 500,
+    "created_date": "2024-12-19",
+    "description": "Comprehensive mapping of Torn log types for balance sheet application",
+    "version": "1.0"
+  }
+} 

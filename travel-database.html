@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torn Travel Items Database</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: white;
+            color: black;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background: #f9f9f9;
+        }
+
+        .nav-button {
+            padding: 8px 16px;
+            border: 1px solid #ccc;
+            background: #f5f5f5;
+            cursor: pointer;
+            margin: 0 10px;
+            text-decoration: none;
+            color: black;
+            border-radius: 4px;
+        }
+
+        .nav-button:hover {
+            background: #e5e5e5;
+        }
+
+        .nav-button.balance {
+            background: #e3f2fd;
+            border-color: #2196f3;
+            color: #1976d2;
+            font-weight: bold;
+        }
+
+        .nav-button.logs {
+            background: #fff3e0;
+            border-color: #ff9800;
+            color: #f57c00;
+            font-weight: bold;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            background: #f5f5f5;
+            padding: 15px;
+            margin: 0 0 20px 0;
+            border-left: 4px solid #2196f3;
+            font-size: 18px;
+        }
+
+        .filters {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background: #f9f9f9;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .filter-group label {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        input[type="text"], select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            background: #f5f5f5;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        button:hover {
+            background: #e5e5e5;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px 8px;
+            text-align: left;
+        }
+
+        th {
+            background: #f5f5f5;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .location-header {
+            background: #e3f2fd !important;
+            font-weight: bold;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .item-row {
+            background: #fafafa;
+        }
+
+        .item-row:hover {
+            background: #f0f8ff;
+        }
+
+        .plush-row {
+            border-left: 4px solid #4caf50;
+        }
+
+        .flower-row {
+            border-left: 4px solid #ff9800;
+        }
+
+        .price {
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .price.high {
+            color: #d32f2f;
+        }
+
+        .price.medium {
+            color: #f57c00;
+        }
+
+        .price.low {
+            color: #388e3c;
+        }
+
+        .time {
+            text-align: center;
+            font-family: monospace;
+        }
+
+        .na {
+            text-align: center;
+            color: #999;
+            font-style: italic;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            flex: 1;
+            min-width: 200px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            background: #f9f9f9;
+        }
+
+        .stat-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #666;
+        }
+
+        .stat-card .value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .highlight {
+            background: yellow !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌍 Torn Travel Items Database</h1>
+
+        <div class="navigation">
+            <a href="logs-fixed.html" class="nav-button logs">📋 Detailed Logs</a>
+            <a href="balance-sheet.html" class="nav-button balance">📊 Balance Sheet</a>
+        </div>
+
+        <div class="filters">
+            <div class="filter-group">
+                <label>Search:</label>
+                <input type="text" id="searchInput" placeholder="Search items or locations...">
+            </div>
+            <div class="filter-group">
+                <label>Type:</label>
+                <select id="typeFilter">
+                    <option value="all">All Items</option>
+                    <option value="plush">Plushies Only</option>
+                    <option value="flower">Flowers Only</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Price Range:</label>
+                <select id="priceFilter">
+                    <option value="all">All Prices</option>
+                    <option value="low">Under $1,000</option>
+                    <option value="medium">$1,000 - $5,000</option>
+                    <option value="high">Over $5,000</option>
+                </select>
+            </div>
+            <button onclick="applyFilters()">Apply Filters</button>
+            <button onclick="clearFilters()">Clear</button>
+        </div>
+
+        <div class="stats" id="statsContainer">
+            <div class="stat-card">
+                <h3>Total Locations</h3>
+                <div class="value" id="totalLocations">11</div>
+            </div>
+            <div class="stat-card">
+                <h3>Total Items</h3>
+                <div class="value" id="totalItems">19</div>
+            </div>
+            <div class="stat-card">
+                <h3>Plushies</h3>
+                <div class="value" id="totalPlushies">9</div>
+            </div>
+            <div class="stat-card">
+                <h3>Flowers</h3>
+                <div class="value" id="totalFlowers">10</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📚 Standard Flight Times (Without Book)</h2>
+            <table id="standardTable">
+                <thead>
+                    <tr>
+                        <th>Location</th>
+                        <th>Item</th>
+                        <th>Type</th>
+                        <th>Buy Price</th>
+                        <th>Standard</th>
+                        <th>Airstrip</th>
+                        <th>WLT Stock</th>
+                        <th>Business Class</th>
+                    </tr>
+                </thead>
+                <tbody id="standardTableBody">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>📖 With Book Flight Times</h2>
+            <table id="bookTable">
+                <thead>
+                    <tr>
+                        <th>Location</th>
+                        <th>Item</th>
+                        <th>Type</th>
+                        <th>Buy Price</th>
+                        <th>Standard</th>
+                        <th>Airstrip</th>
+                        <th>WLT Stock</th>
+                        <th>Business Class</th>
+                    </tr>
+                </thead>
+                <tbody id="bookTableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const travelData = [
+            {
+                location: "Mexico",
+                items: [
+                    { name: "Jag Plush", type: "plush", price: 10000, standard: "26min", airstrip: "18min", wlt: "13min", business: "8min", standardBook: "19min", airstripBook: "14min", wltBook: "10min", businessBook: "6min" },
+                    { name: "Dahlia", type: "flower", price: 300, standard: "", airstrip: "", wlt: "", business: "", standardBook: "", airstripBook: "", wltBook: "", businessBook: "" }
+                ]
+            },
+            {
+                location: "Cayman Island",
+                items: [
+                    { name: "Stingray Plush", type: "plush", price: 400, standard: "35min", airstrip: "25min", wlt: "18min", business: "11min", standardBook: "26min", airstripBook: "18min", wltBook: "13min", businessBook: "8min" },
+                    { name: "Banana Orchid", type: "flower", price: 4000, standard: "", airstrip: "", wlt: "", business: "", standardBook: "", airstripBook: "", wltBook: "", businessBook: "" }
+                ]
+            },
+            {
+                location: "Canada",
+                items: [
+                    { name: "Wolverine Plush", type: "plush", price: 30, standard: "41min", airstrip: "29min", wlt: "20min", business: "12min", standardBook: "31min", airstripBook: "22min", wltBook: "15min", businessBook: "9min" },
+                    { name: "Crocus", type: "flower", price: 600, standard: "", airstrip: "", wlt: "", business: "", standardBook: "", airstripBook: "", wltBook: "", businessBook: "" }
+                ]
+            },
+            {
+                location: "Hawaii",
+                items: [
+                    { name: "No Plush Available", type: "plush", price: 0, standard: "2h 14min", airstrip: "1h 34min", wlt: "1h 7min", business: "40min", standardBook: "1h 40min", airstripBook: "1h 10min", wltBook: "50min", businessBook: "30min" },
+                    { name: "Orchid", type: "flower", price: 700, standard: "", airstrip: "", wlt: "", business: "", standardBook: "", airstripBook: "", wltBook: "", businessBook: "" }
+                ]
+            },
+            {
+                location: "United Kingdom",
+                items: [
+                    { name: "Red Fox Plush", type: "plush", price: 1000, standard: "2h 39min", airstrip: "1h 51min", wlt: "1h 20min", business: "48min", standardBook: "1h 59min", airstripBook: "1h 24min", wltBook: "1h 00min", businessBook: "36min" },
+                    { name: "Nessie Plush", type: "plush", price: 200, standard: "", airstrip: "", wlt: "", business: "", standardBook: "", airstripBook: "", wltBook: "", businessBook: "" },
+                    { name: "Heather", type: "flower", price: 5000, standard: "", airstrip: "", wlt: "", business: "", standardBook: "", airstripBook: "", wltBook: "", businessBook: "" }
+                ]
+            },
+            {
+                location: "Argentina",
+                items: [
+                    { name: "Monkey Plush", type: "plush", price: 400, standard: "2h 47m", airstrip: "1h 57min", wlt: "1h 23min", business: "50min", standardBook: "2h 05min", airstripBook: "1h 27min", wltBook: "1h 02min", businessBook: "37min" },
+                    { name: "Ceibo Flower", type: "flower", price: 500, standard: "", airstrip: "", wlt: "", business: "", standardBook: "", airstripBook: "", wltBook: "", businessBook: "" }
+                ]
+            },
+            {
+                location: "Switzerland",
+                items: [
+                    { name: "Chamois Plush", type: "plush", price: 400, standard: "2h 55m", airstrip: "2h 3min", wlt: "1h 28min", business: "53min", standardBook: "2h 12min", airstripBook: "1h 32min", wltBook: "1h 06min", businessBook: "39min" },
+                    { name: "Edelweiss", type: "flower", price: 900, standard: "", airstrip: "", wlt: "", business: "", standardBook: "", airstripBook: "", wltBook: "", businessBook: "" }
+                ]
+            },
+            {
+                location: "Japan",
+                items: [
+                    { name: "No Plush Available", type: "plush", price: 0, standard: "3h 45m", airstrip: "2h 38min", wlt: "1h 53min", business: "1h 8min", standardBook: "2h 49min", airstripBook: "1h 58min", wltBook: "1h 24min", businessBook: "51min" },
+                    { name: "Cherry Blossom", type: "flower", price: 500, standard: "", airstrip: "", wlt: "", business: "", standardBook: "", airstripBook: "", wltBook: "", businessBook: "" }
+                ]
+            },
+            {
+                location: "China",
+                items: [
+                    { name: "Panda Plush", type: "plush", price: 400, standard: "4h 2m", airstrip: "2h 49min", wlt: "2h 1min", business: "1h 12min", standardBook: "3h 1min", airstripBook: "2h 07min", wltBook: "1h 31min", businessBook: "54min" },
+                    { name: "Peony", type: "flower", price: 5000, standard: "", airstrip: "", wlt: "", business: "", standardBook: "", airstripBook: "", wltBook: "", businessBook: "" }
+                ]
+            },
+            {
+                location: "UAE",
+                items: [
+                    { name: "Camel Plush", type: "plush", price: 14000, standard: "4h 31m", airstrip: "3h 10min", wlt: "2h 15min", business: "1h 21min", standardBook: "3h 23min", airstripBook: "2h 22min", wltBook: "1h 42min", businessBook: "1h 1min" },
+                    { name: "Tribulus Omanese", type: "flower", price: 6000, standard: "", airstrip: "", wlt: "", business: "", standardBook: "", airstripBook: "", wltBook: "", businessBook: "" }
+                ]
+            },
+            {
+                location: "South Africa",
+                items: [
+                    { name: "Lion Plush", type: "plush", price: 400, standard: "4h 57m", airstrip: "3h 28min", wlt: "2h 29min", business: "1h 29min", standardBook: "3h 43min", airstripBook: "2h 36min", wltBook: "1h 52min", businessBook: "1h 7min" }
+                ]
+            },
+            {
+                location: "South Africa",
+                items: [
+                    { name: "African Violet", type: "flower", price: 2000, standard: "", airstrip: "", wlt: "", business: "", standardBook: "", airstripBook: "", wltBook: "", businessBook: "" }
+                ]
+            }
+        ];
+
+        let filteredData = [...travelData];
+
+        function initializeTables() {
+            populateTable('standardTableBody', false);
+            populateTable('bookTableBody', true);
+            updateStats();
+        }
+
+        function populateTable(tableBodyId, isBookTable) {
+            const tbody = document.getElementById(tableBodyId);
+            tbody.innerHTML = '';
+
+            filteredData.forEach(locationData => {
+                locationData.items.forEach((item, index) => {
+                    if (item.name === "No Plush Available" && item.price === 0) return;
+
+                    const row = document.createElement('tr');
+                    row.className = `item-row ${item.type}-row`;
+
+                    const priceClass = item.price > 5000 ? 'high' : item.price > 1000 ? 'medium' : 'low';
+                    
+                    const standardTime = isBookTable ? item.standardBook : item.standard;
+                    const airstripTime = isBookTable ? item.airstripBook : item.airstrip;
+                    const wltTime = isBookTable ? item.wltBook : item.wlt;
+                    const businessTime = isBookTable ? item.businessBook : item.business;
+
+                    row.innerHTML = `
+                        <td>${index === 0 ? locationData.location : ''}</td>
+                        <td>${item.name}</td>
+                        <td>${item.type === 'plush' ? '🧸 Plush' : '🌸 Flower'}</td>
+                        <td class="price ${priceClass}">$${item.price.toLocaleString()}</td>
+                        <td class="time">${standardTime || '-'}</td>
+                        <td class="time">${airstripTime || '-'}</td>
+                        <td class="time">${wltTime || '-'}</td>
+                        <td class="time">${businessTime || '-'}</td>
+                    `;
+
+                    tbody.appendChild(row);
+                });
+            });
+        }
+
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const typeFilter = document.getElementById('typeFilter').value;
+            const priceFilter = document.getElementById('priceFilter').value;
+
+            filteredData = travelData.map(locationData => {
+                const filteredItems = locationData.items.filter(item => {
+                    // Skip "No Plush Available" entries
+                    if (item.name === "No Plush Available" && item.price === 0) return false;
+
+                    // Search filter
+                    const matchesSearch = !searchTerm || 
+                        item.name.toLowerCase().includes(searchTerm) || 
+                        locationData.location.toLowerCase().includes(searchTerm);
+
+                    // Type filter
+                    const matchesType = typeFilter === 'all' || item.type === typeFilter;
+
+                    // Price filter
+                    let matchesPrice = true;
+                    if (priceFilter === 'low') matchesPrice = item.price < 1000;
+                    else if (priceFilter === 'medium') matchesPrice = item.price >= 1000 && item.price <= 5000;
+                    else if (priceFilter === 'high') matchesPrice = item.price > 5000;
+
+                    return matchesSearch && matchesType && matchesPrice;
+                });
+
+                return {
+                    ...locationData,
+                    items: filteredItems
+                };
+            }).filter(locationData => locationData.items.length > 0);
+
+            populateTable('standardTableBody', false);
+            populateTable('bookTableBody', true);
+            updateStats();
+        }
+
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('typeFilter').value = 'all';
+            document.getElementById('priceFilter').value = 'all';
+            filteredData = [...travelData];
+            populateTable('standardTableBody', false);
+            populateTable('bookTableBody', true);
+            updateStats();
+        }
+
+        function updateStats() {
+            const locations = new Set();
+            let totalItems = 0;
+            let totalPlushies = 0;
+            let totalFlowers = 0;
+
+            filteredData.forEach(locationData => {
+                locations.add(locationData.location);
+                locationData.items.forEach(item => {
+                    if (item.name !== "No Plush Available" || item.price !== 0) {
+                        totalItems++;
+                        if (item.type === 'plush') totalPlushies++;
+                        else totalFlowers++;
+                    }
+                });
+            });
+
+            document.getElementById('totalLocations').textContent = locations.size;
+            document.getElementById('totalItems').textContent = totalItems;
+            document.getElementById('totalPlushies').textContent = totalPlushies;
+            document.getElementById('totalFlowers').textContent = totalFlowers;
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                applyFilters();
+            }
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initializeTables);
+    </script>
+</body>
+</html>
