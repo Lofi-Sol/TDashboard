@@ -1,0 +1,562 @@
+{
+  "1": {
+    "stock_id": "1",
+    "name": "Torn & Shanghai Banking",
+    "acronym": "TSB",
+    "current_price": 1138.64,
+    "market_cap": 23360818306565,
+    "total_shares": 20516421614,
+    "investors": 17710,
+    "benefit": {
+      "type": "active",
+      "frequency": 31,
+      "requirement": 3000000,
+      "description": "$50,000,000"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "2": {
+    "stock_id": "2",
+    "name": "Torn City Investments",
+    "acronym": "TCI",
+    "current_price": 1162.88,
+    "market_cap": 21218641995632,
+    "total_shares": 18246630775,
+    "investors": 28156,
+    "benefit": {
+      "type": "passive",
+      "frequency": 7,
+      "requirement": 1500000,
+      "description": "a 10% bank interest bonus"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "3": {
+    "stock_id": "3",
+    "name": "Syscore MFG",
+    "acronym": "SYS",
+    "current_price": 687.59,
+    "market_cap": 4907435552463,
+    "total_shares": 7137153758,
+    "investors": 8235,
+    "benefit": {
+      "type": "passive",
+      "frequency": 7,
+      "requirement": 3000000,
+      "description": "an Advanced firewall"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "4": {
+    "stock_id": "4",
+    "name": "Legal Authorities Group",
+    "acronym": "LAG",
+    "current_price": 455.46,
+    "market_cap": 4056863326495,
+    "total_shares": 8907178076,
+    "investors": 12768,
+    "benefit": {
+      "type": "active",
+      "frequency": 7,
+      "requirement": 750000,
+      "description": "1x Lawyer's Business Card"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "5": {
+    "stock_id": "5",
+    "name": "Insured On Us",
+    "acronym": "IOU",
+    "current_price": 175.87,
+    "market_cap": 12023714192360,
+    "total_shares": 68367056305,
+    "investors": 21067,
+    "benefit": {
+      "type": "active",
+      "frequency": 31,
+      "requirement": 3000000,
+      "description": "$12,000,000"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "6": {
+    "stock_id": "6",
+    "name": "Grain",
+    "acronym": "GRN",
+    "current_price": 309.13,
+    "market_cap": 6508372453442,
+    "total_shares": 21053836423,
+    "investors": 26718,
+    "benefit": {
+      "type": "active",
+      "frequency": 31,
+      "requirement": 500000,
+      "description": "$4,000,000"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "7": {
+    "stock_id": "7",
+    "name": "Torn City Health Service",
+    "acronym": "THS",
+    "current_price": 366.06,
+    "market_cap": 4024388881030,
+    "total_shares": 10993795774,
+    "investors": 38163,
+    "benefit": {
+      "type": "active",
+      "frequency": 7,
+      "requirement": 150000,
+      "description": "1x Box of Medical Supplies"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "8": {
+    "stock_id": "8",
+    "name": "Yazoo",
+    "acronym": "YAZ",
+    "current_price": 52.08,
+    "market_cap": 3736489581549,
+    "total_shares": 71745191658,
+    "investors": 14797,
+    "benefit": {
+      "type": "passive",
+      "frequency": 7,
+      "requirement": 1000000,
+      "description": "Free banner advertising"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "9": {
+    "stock_id": "9",
+    "name": "The Torn City Times",
+    "acronym": "TCT",
+    "current_price": 325.15,
+    "market_cap": 3909001449513,
+    "total_shares": 12022148084,
+    "investors": 30212,
+    "benefit": {
+      "type": "active",
+      "frequency": 31,
+      "requirement": 100000,
+      "description": "$1,000,000"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "10": {
+    "stock_id": "10",
+    "name": "Crude & Co",
+    "acronym": "CNC",
+    "current_price": 834.13,
+    "market_cap": 18701068200111,
+    "total_shares": 22419848465,
+    "investors": 13327,
+    "benefit": {
+      "type": "active",
+      "frequency": 31,
+      "requirement": 7500000,
+      "description": "$80,000,000"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "11": {
+    "stock_id": "11",
+    "name": "Messaging Inc.",
+    "acronym": "MSG",
+    "current_price": 263.4,
+    "market_cap": 605152453527,
+    "total_shares": 2297465655,
+    "investors": 8294,
+    "benefit": {
+      "type": "passive",
+      "frequency": 7,
+      "requirement": 300000,
+      "description": "Free classified advertising"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "12": {
+    "stock_id": "12",
+    "name": "TC Music Industries",
+    "acronym": "TMI",
+    "current_price": 221.49,
+    "market_cap": 15607008505125,
+    "total_shares": 70463716218,
+    "investors": 14778,
+    "benefit": {
+      "type": "active",
+      "frequency": 31,
+      "requirement": 6000000,
+      "description": "$25,000,000"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "13": {
+    "stock_id": "13",
+    "name": "TC Media Productions",
+    "acronym": "TCP",
+    "current_price": 509.63,
+    "market_cap": 3437904408840,
+    "total_shares": 6745883109,
+    "investors": 11330,
+    "benefit": {
+      "type": "passive",
+      "frequency": 7,
+      "requirement": 1000000,
+      "description": "a Company sales boost"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "14": {
+    "stock_id": "14",
+    "name": "I Industries Ltd.",
+    "acronym": "IIL",
+    "current_price": 127.47,
+    "market_cap": 1740151820987,
+    "total_shares": 13651461685,
+    "investors": 16769,
+    "benefit": {
+      "type": "passive",
+      "frequency": 7,
+      "requirement": 1000000,
+      "description": "50% coding time reduction"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "15": {
+    "stock_id": "15",
+    "name": "Feathery Hotels Group",
+    "acronym": "FHG",
+    "current_price": 847.55,
+    "market_cap": 55091547076702,
+    "total_shares": 65000940448,
+    "investors": 30565,
+    "benefit": {
+      "type": "active",
+      "frequency": 7,
+      "requirement": 2000000,
+      "description": "1x Feathery Hotel Coupon"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "16": {
+    "stock_id": "16",
+    "name": "Symbiotic Ltd.",
+    "acronym": "SYM",
+    "current_price": 687.18,
+    "market_cap": 30039649393150,
+    "total_shares": 43714382539,
+    "investors": 44712,
+    "benefit": {
+      "type": "active",
+      "frequency": 7,
+      "requirement": 500000,
+      "description": "1x Drug Pack"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "17": {
+    "stock_id": "17",
+    "name": "Lucky Shot Casino",
+    "acronym": "LSC",
+    "current_price": 565.57,
+    "market_cap": 5356987219145,
+    "total_shares": 9471837649,
+    "investors": 26014,
+    "benefit": {
+      "type": "active",
+      "frequency": 7,
+      "requirement": 500000,
+      "description": "1x Lottery Voucher"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "18": {
+    "stock_id": "18",
+    "name": "Performance Ribaldry",
+    "acronym": "PRN",
+    "current_price": 604.48,
+    "market_cap": 18563899096198,
+    "total_shares": 30710526562,
+    "investors": 27684,
+    "benefit": {
+      "type": "active",
+      "frequency": 7,
+      "requirement": 1000000,
+      "description": "1x Erotic DVD"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "19": {
+    "stock_id": "19",
+    "name": "Eaglewood Mercenary",
+    "acronym": "EWM",
+    "current_price": 276.48,
+    "market_cap": 4185317692662,
+    "total_shares": 15137867812,
+    "investors": 15432,
+    "benefit": {
+      "type": "active",
+      "frequency": 7,
+      "requirement": 1000000,
+      "description": "1x Box of Grenades"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "20": {
+    "stock_id": "20",
+    "name": "Torn City Motors",
+    "acronym": "TCM",
+    "current_price": 285.35,
+    "market_cap": 2596693634406,
+    "total_shares": 9100030259,
+    "investors": 11835,
+    "benefit": {
+      "type": "passive",
+      "frequency": 7,
+      "requirement": 1000000,
+      "description": "10% racing skill gain boost"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "21": {
+    "stock_id": "21",
+    "name": "Empty Lunchbox Traders",
+    "acronym": "ELT",
+    "current_price": 319.45,
+    "market_cap": 2141685554224,
+    "total_shares": 6704290356,
+    "investors": 5912,
+    "benefit": {
+      "type": "passive",
+      "frequency": 7,
+      "requirement": 5000000,
+      "description": "10% home upgrade discount"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "22": {
+    "stock_id": "22",
+    "name": "Home Retail Group",
+    "acronym": "HRG",
+    "current_price": 266.53,
+    "market_cap": 24084972980702,
+    "total_shares": 90364960720,
+    "investors": 15177,
+    "benefit": {
+      "type": "active",
+      "frequency": 31,
+      "requirement": 10000000,
+      "description": "1x Random Property"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "23": {
+    "stock_id": "23",
+    "name": "Tell Group Plc.",
+    "acronym": "TGP",
+    "current_price": 143.32,
+    "market_cap": 3184255981431,
+    "total_shares": 22217806178,
+    "investors": 12562,
+    "benefit": {
+      "type": "passive",
+      "frequency": 7,
+      "requirement": 2500000,
+      "description": "a Company advertising boost"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "24": {
+    "stock_id": "24",
+    "name": "Munster Beverage Corp.",
+    "acronym": "MUN",
+    "current_price": 553,
+    "market_cap": 27363363900418,
+    "total_shares": 49481670706,
+    "investors": 12441,
+    "benefit": {
+      "type": "active",
+      "frequency": 7,
+      "requirement": 5000000,
+      "description": "1x Six-Pack of Energy Drink"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "25": {
+    "stock_id": "25",
+    "name": "West Side University",
+    "acronym": "WSU",
+    "current_price": 99.75,
+    "market_cap": 3881750721450,
+    "total_shares": 38914794200,
+    "investors": 46268,
+    "benefit": {
+      "type": "passive",
+      "frequency": 7,
+      "requirement": 1000000,
+      "description": "a 10% education course time reduction"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "26": {
+    "stock_id": "26",
+    "name": "International School TC",
+    "acronym": "IST",
+    "current_price": 516.65,
+    "market_cap": 907330431099,
+    "total_shares": 1756180066,
+    "investors": 14757,
+    "benefit": {
+      "type": "passive",
+      "frequency": 7,
+      "requirement": 100000,
+      "description": "Free education courses"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "27": {
+    "stock_id": "27",
+    "name": "Big Al's Gun Shop",
+    "acronym": "BAG",
+    "current_price": 484.69,
+    "market_cap": 5782723169324,
+    "total_shares": 11930766406,
+    "investors": 9978,
+    "benefit": {
+      "type": "active",
+      "frequency": 7,
+      "requirement": 3000000,
+      "description": "1x Ammunition Pack"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "28": {
+    "stock_id": "28",
+    "name": "Evil Ducks Candy Corp",
+    "acronym": "EVL",
+    "current_price": 637.34,
+    "market_cap": 4095101759347,
+    "total_shares": 6425301659,
+    "investors": 16956,
+    "benefit": {
+      "type": "active",
+      "frequency": 7,
+      "requirement": 100000,
+      "description": "1000 happiness"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "29": {
+    "stock_id": "29",
+    "name": "Mc Smoogle Corp",
+    "acronym": "MCS",
+    "current_price": 759.55,
+    "market_cap": 28519893350328,
+    "total_shares": 37548408071,
+    "investors": 27726,
+    "benefit": {
+      "type": "active",
+      "frequency": 7,
+      "requirement": 350000,
+      "description": "100 energy"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "30": {
+    "stock_id": "30",
+    "name": "Wind Lines Travel",
+    "acronym": "WLT",
+    "current_price": 776.96,
+    "market_cap": 13647078299096,
+    "total_shares": 17564711567,
+    "investors": 10986,
+    "benefit": {
+      "type": "passive",
+      "frequency": 7,
+      "requirement": 9000000,
+      "description": "Private jet access"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "31": {
+    "stock_id": "31",
+    "name": "Torn City Clothing",
+    "acronym": "TCC",
+    "current_price": 518.68,
+    "market_cap": 21060901792693,
+    "total_shares": 40604807960,
+    "investors": 10314,
+    "benefit": {
+      "type": "active",
+      "frequency": 31,
+      "requirement": 7500000,
+      "description": "1x Clothing Cache"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "32": {
+    "stock_id": "32",
+    "name": "Alcoholics Synonymous",
+    "acronym": "ASS",
+    "current_price": 349.42,
+    "market_cap": 5062062541998,
+    "total_shares": 14487042934,
+    "investors": 12948,
+    "benefit": {
+      "type": "active",
+      "frequency": 7,
+      "requirement": 1000000,
+      "description": "1x Six-Pack of Alcohol"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "33": {
+    "stock_id": "33",
+    "name": "Herbal Releaf Co.",
+    "acronym": "CBD",
+    "current_price": 389.51,
+    "market_cap": 7603978095674,
+    "total_shares": 19521907257,
+    "investors": 16961,
+    "benefit": {
+      "type": "active",
+      "frequency": 7,
+      "requirement": 350000,
+      "description": "50 nerve"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "34": {
+    "stock_id": "34",
+    "name": "Lo Squalo Waste",
+    "acronym": "LOS",
+    "current_price": 108.96,
+    "market_cap": 3337607289869,
+    "total_shares": 30631491280,
+    "investors": 7429,
+    "benefit": {
+      "type": "passive",
+      "frequency": 7,
+      "requirement": 7500000,
+      "description": "25% boost to mission credits and money earned"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  },
+  "35": {
+    "stock_id": "35",
+    "name": "PointLess",
+    "acronym": "PTS",
+    "current_price": 73.38,
+    "market_cap": 13857424290657,
+    "total_shares": 188844702789,
+    "investors": 18681,
+    "benefit": {
+      "type": "active",
+      "frequency": 7,
+      "requirement": 10000000,
+      "description": "100 points"
+    },
+    "timestamp": "2025-07-20T03:11:48.720Z"
+  }
+}
