@@ -1,4 +1,4 @@
-// Load environment variables
+// Alternative ranked wars collector with multiple endpoint attempts
 require('dotenv').config();
 
 const { MongoClient } = require('mongodb');
@@ -34,7 +34,7 @@ function makeRequest(url) {
     });
 }
 
-// Fetch ranked wars data from Torn API
+// Try different API endpoints for ranked wars data
 async function fetchRankedWarsData() {
     console.log('Fetching ranked wars data from Torn City API...');
     
@@ -42,25 +42,52 @@ async function fetchRankedWarsData() {
         throw new Error('TORN_API_KEY environment variable is required');
     }
     
-    const url = `https://api.torn.com/torn/?selections=rankedwars&key=${TORN_API_KEY}`;
+    // Try different endpoints
+    const endpoints = [
+        {
+            name: 'Ranked Wars (v2)',
+            url: `https://api.torn.com/v2/?selections=rankedwars&key=${TORN_API_KEY}`
+        },
+        {
+            name: 'Ranked Wars (v1)',
+            url: `https://api.torn.com/torn/?selections=rankedwars&key=${TORN_API_KEY}`
+        },
+        {
+            name: 'Faction Wars',
+            url: `https://api.torn.com/v2/faction/?selections=wars&key=${TORN_API_KEY}`
+        }
+    ];
     
-    try {
-        const data = await makeRequest(url);
-        
-        if (data.error) {
-            throw new Error(`API Error: ${data.error.error}`);
+    for (const endpoint of endpoints) {
+        try {
+            console.log(`Trying ${endpoint.name}...`);
+            const data = await makeRequest(endpoint.url);
+            
+            if (data.error) {
+                console.log(`❌ ${endpoint.name}: ${data.error.error}`);
+                continue;
+            }
+            
+            // Check for ranked wars data
+            if (data.rankedwars) {
+                console.log(`✅ Success with ${endpoint.name}! Found ${Object.keys(data.rankedwars).length} wars.`);
+                return data.rankedwars;
+            }
+            
+            // Check for faction wars data
+            if (data.wars) {
+                console.log(`✅ Success with ${endpoint.name}! Found ${Object.keys(data.wars).length} wars.`);
+                return data.wars;
+            }
+            
+            console.log(`⚠️ ${endpoint.name}: No war data found in response`);
+            
+        } catch (error) {
+            console.log(`❌ ${endpoint.name}: ${error.message}`);
         }
-        
-        if (!data.rankedwars) {
-            throw new Error('No ranked wars data found in API response');
-        }
-        
-        console.log(`Successfully fetched ranked wars data. Found ${Object.keys(data.rankedwars).length} wars.`);
-        return data.rankedwars;
-    } catch (error) {
-        console.error('Error fetching ranked wars data:', error.message);
-        throw error;
     }
+    
+    throw new Error('All API endpoints failed. Please check your API key access level.');
 }
 
 // Store ranked wars data in MongoDB with duplicate prevention
@@ -85,7 +112,7 @@ async function storeRankedWarsData(rankedWarsData) {
                 war_id: parseInt(warId),
                 ...warData,
                 last_updated: timestamp,
-                created_at: timestamp // Will be updated if document exists
+                created_at: timestamp
             };
             
             // Check if this war already exists in the database
@@ -160,7 +187,7 @@ async function saveLocalBackup(rankedWarsData) {
 
 // Main function
 async function main() {
-    console.log('🚀 Starting ranked wars data collection...');
+    console.log('🚀 Starting ranked wars data collection (v2)...');
     console.log(`⏰ Timestamp: ${new Date().toISOString()}`);
     
     try {
