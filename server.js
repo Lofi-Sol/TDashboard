@@ -963,6 +963,106 @@ app.get('/api/logs/stats', async (req, res) => {
     }
 });
 
+// Get restructured logs
+app.get('/api/logs/restructured', async (req, res) => {
+    try {
+        if (!db) {
+            return res.status(500).json({ success: false, error: 'Database not connected' });
+        }
+
+        const { limit = 100, event_type, event_category, from, to } = req.query;
+        const collection = db.collection('user_logs_restructured');
+        
+        // Build filter
+        const filter = {};
+        
+        if (event_type) {
+            filter['event.type'] = event_type;
+        }
+        
+        if (event_category) {
+            filter['event.category'] = event_category;
+        }
+        
+        if (from || to) {
+            filter['event.timestamp'] = {};
+            if (from) filter['event.timestamp'].$gte = parseInt(from);
+            if (to) filter['event.timestamp'].$lte = parseInt(to);
+        }
+
+        const logs = await collection
+            .find(filter)
+            .sort({ 'event.timestamp': -1 })
+            .limit(parseInt(limit))
+            .toArray();
+
+        res.json({
+            success: true,
+            logs: logs,
+            totalLogs: logs.length,
+            totalInDatabase: await collection.countDocuments()
+        });
+    } catch (error) {
+        console.error('Error fetching restructured logs:', error);
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+});
+
+// Get restructured logs statistics
+app.get('/api/logs/restructured/stats', async (req, res) => {
+    try {
+        if (!db) {
+            return res.status(500).json({ success: false, error: 'Database not connected' });
+        }
+
+        const collection = db.collection('user_logs_restructured');
+        
+        // Get basic stats
+        const totalLogs = await collection.countDocuments();
+        const latestLog = await collection.find({}).sort({ 'event.timestamp': -1 }).limit(1).toArray();
+        const earliestLog = await collection.find({}).sort({ 'event.timestamp': 1 }).limit(1).toArray();
+        
+        // Get logs by event category
+        const categoryStats = await collection.aggregate([
+            { $group: { _id: '$event.category', count: { $sum: 1 } } },
+            { $sort: { count: -1 } }
+        ]).toArray();
+        
+        // Get logs by event type
+        const typeStats = await collection.aggregate([
+            { $group: { _id: '$event.type', count: { $sum: 1 } } },
+            { $sort: { count: -1 } }
+        ]).toArray();
+        
+        // Get logs by day of week
+        const dayStats = await collection.aggregate([
+            { $group: { _id: '$metadata.processed_time.day_of_week', count: { $sum: 1 } } },
+            { $sort: { count: -1 } }
+        ]).toArray();
+
+        res.json({
+            success: true,
+            stats: {
+                totalLogs,
+                latestLog: latestLog[0] || null,
+                earliestLog: earliestLog[0] || null,
+                categoryStats,
+                typeStats,
+                dayStats
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching restructured logs stats:', error);
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+});
+
 // Start server
 async function startServer() {
     try {
