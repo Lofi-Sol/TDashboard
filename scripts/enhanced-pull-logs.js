@@ -111,9 +111,30 @@ function enhanceLogData(log, { locationMap, itemMap, stockMap }) {
         }
     }
     
-    // Enhance item logs
+    // Enhance item logs (single item)
     if (log.data && log.data.item && itemMap[log.data.item]) {
         enhancedLog.data.itemName = itemMap[log.data.item];
+    }
+    
+    // Enhance item market logs (items array)
+    if (log.data && log.data.items && Array.isArray(log.data.items)) {
+        enhancedLog.data.items = log.data.items.map(item => ({
+            ...item,
+            itemName: itemMap[item.id] || `Unknown Item (${item.id})`
+        }));
+    }
+    
+    // Enhance crime logs with item names
+    if (log.category === 'Crimes' && log.data && log.data.items_gained) {
+        const enhancedItemsGained = {};
+        Object.keys(log.data.items_gained).forEach(itemId => {
+            const itemName = itemMap[itemId] || `Unknown Item (${itemId})`;
+            enhancedItemsGained[itemId] = {
+                quantity: log.data.items_gained[itemId],
+                itemName: itemName
+            };
+        });
+        enhancedLog.data.items_gained = enhancedItemsGained;
     }
     
     // Enhance stock logs

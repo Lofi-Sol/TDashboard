@@ -46,13 +46,33 @@ async function testEnhancedLogs() {
                     }
                 }
                 
-                if (log.data && log.data.itemName) {
-                    console.log(`   Item: ${log.data.itemName} (ID: ${log.data.item})`);
-                }
-                
-                if (log.category === 'Stocks' && log.data && log.data.stockName) {
-                    console.log(`   Stock: ${log.data.stockName} (ID: ${log.data.stock})`);
-                }
+                            if (log.data && log.data.itemName) {
+                console.log(`   Item: ${log.data.itemName} (ID: ${log.data.item})`);
+            }
+            
+            // Show enhanced item market logs
+            if (log.data && log.data.items && Array.isArray(log.data.items)) {
+                log.data.items.forEach((item, idx) => {
+                    console.log(`   Item ${idx + 1}: ${item.itemName || `Unknown Item (${item.id})`} (ID: ${item.id}, Qty: ${item.qty})`);
+                });
+            }
+            
+            // Show enhanced crime logs
+            if (log.category === 'Crimes' && log.data && log.data.items_gained) {
+                console.log(`   Crime: ${log.data.crime_action || 'Unknown crime'}`);
+                Object.keys(log.data.items_gained).forEach(itemId => {
+                    const itemData = log.data.items_gained[itemId];
+                    if (itemData.itemName) {
+                        console.log(`   Gained: ${itemData.itemName} (ID: ${itemId}, Qty: ${itemData.quantity})`);
+                    } else {
+                        console.log(`   Gained: Unknown Item (ID: ${itemId}, Qty: ${itemData.quantity})`);
+                    }
+                });
+            }
+            
+            if (log.category === 'Stocks' && log.data && log.data.stockName) {
+                console.log(`   Stock: ${log.data.stockName} (ID: ${log.data.stock})`);
+            }
             });
             
             // Get logs by category
@@ -110,6 +130,47 @@ async function testEnhancedLogs() {
                     console.log(`  ${index + 1}. ${log.data.stockName} (ID: ${log.data.stock})`);
                     console.log(`     Amount: ${log.data.amount || 'N/A'}, Worth: $${log.data.worth || 'N/A'}`);
                     console.log(`     Time: ${log.centralTime}`);
+                });
+            }
+            
+            // Get enhanced item market logs
+            const itemMarketLogs = await collection
+                .find({ 'data.items.itemName': { $exists: true } })
+                .sort({ timestamp: -1 })
+                .limit(5)
+                .toArray();
+            
+            if (itemMarketLogs.length > 0) {
+                console.log('\n🛒 Enhanced item market logs:');
+                itemMarketLogs.forEach((log, index) => {
+                    console.log(`  ${index + 1}. ${log.title} - ${log.centralTime}`);
+                    log.data.items.forEach((item, idx) => {
+                        console.log(`     Item: ${item.itemName} (ID: ${item.id}, Qty: ${item.qty})`);
+                    });
+                    if (log.data.cost_total) {
+                        console.log(`     Total: $${log.data.cost_total}, Fee: $${log.data.fee || 0}`);
+                    }
+                    if (log.data.price) {
+                        console.log(`     Price: $${log.data.price}`);
+                    }
+                });
+            }
+            
+            // Get enhanced crime logs
+            const crimeLogs = await collection
+                .find({ 'data.items_gained.itemName': { $exists: true } })
+                .sort({ timestamp: -1 })
+                .limit(5)
+                .toArray();
+            
+            if (crimeLogs.length > 0) {
+                console.log('\n🦹 Enhanced crime logs:');
+                crimeLogs.forEach((log, index) => {
+                    console.log(`  ${index + 1}. ${log.data.crime_action || 'Unknown crime'} - ${log.centralTime}`);
+                    Object.keys(log.data.items_gained).forEach(itemId => {
+                        const itemData = log.data.items_gained[itemId];
+                        console.log(`     Gained: ${itemData.itemName} (ID: ${itemId}, Qty: ${itemData.quantity})`);
+                    });
                 });
             }
             
