@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Colosseum - Torn City Ranked War Betting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .colosseum-header {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .colosseum-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .colosseum-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #fecaca 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .colosseum-subtitle {
+            font-size: 1rem;
+            color: #fecaca;
+            margin-top: 0.25rem;
+            font-weight: 400;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .stat-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #fecaca;
+            margin-top: 0.25rem;
+        }
+
+        /* Navigation */
+        .colosseum-nav {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(220, 38, 38, 0.3);
+            padding: 0 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0;
+        }
+
+        .nav-tab {
+            padding: 1.25rem 2rem;
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-tab:hover {
+            color: #fecaca;
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        .nav-tab.active {
+            color: #ffffff;
+            background: rgba(220, 38, 38, 0.2);
+            border-bottom-color: #dc2626;
+        }
+
+        .nav-tab.how-to-bet {
+            color: #fecaca;
+            background: rgba(220, 38, 38, 0.15);
+            border-bottom-color: #dc2626;
+        }
+
+        .nav-tab.how-to-bet:hover {
+            background: rgba(220, 38, 38, 0.25);
+        }
+
+        /* Main Content */
+        .colosseum-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: calc(100vh - 200px);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Coming Soon Watermark */
+        .coming-soon-watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 3rem;
+            font-weight: 800;
+            color: rgba(220, 38, 38, 0.1);
+            z-index: 50;
+            pointer-events: none;
+            text-align: center;
+            white-space: nowrap;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .coming-soon-watermark::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, transparent 50%, rgba(220, 38, 38, 0.05) 100%);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        /* Content Cards */
+        .content-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(51, 65, 85, 0.6) 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(220, 38, 38, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #dc2626 0%, #b91c1b 50%, #991b1b 100%);
+        }
+
+        .card-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-icon {
+            width: 2rem;
+            height: 2rem;
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1b 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .card-content {
+            color: #cbd5e1;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        /* How to Bet Section */
+        .betting-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .betting-step {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1b 100%);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 1rem 0 0.75rem 0;
+        }
+
+        .step-description {
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        /* Ranked Wars Section */
+        .wars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .war-card {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .war-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.2);
+            border-color: rgba(220, 38, 38, 0.5);
+        }
+
+        .war-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .war-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .war-status {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .status-upcoming {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .war-details {
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+
+        .war-bets {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .bet-option {
+            flex: 1;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid rgba(220, 38, 38, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .bet-option:hover {
+            background: rgba(220, 38, 38, 0.1);
+            border-color: rgba(220, 38, 38, 0.4);
+        }
+
+        .bet-odds {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #dc2626;
+            margin-bottom: 0.5rem;
+        }
+
+        .bet-label {
+            font-size: 0.875rem;
+            color: #cbd5e1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .colosseum-header {
+                padding: 1rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .colosseum-title {
+                font-size: 2rem;
+            }
+
+            .header-stats {
+                gap: 1rem;
+            }
+
+            .stat-item {
+                padding: 0.5rem 1rem;
+            }
+
+            .colosseum-nav {
+                padding: 0 1rem;
+            }
+
+            .nav-content {
+                overflow-x: auto;
+                gap: 0;
+            }
+
+            .nav-tab {
+                padding: 1rem 1.5rem;
+                white-space: nowrap;
+            }
+
+            .colosseum-main {
+                padding: 1rem;
+            }
+
+            .wars-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .betting-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .coming-soon-watermark {
+                font-size: 2rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(220, 38, 38, 0.3);
+            border-radius: 50%;
+            border-top-color: #dc2626;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Glow Effects */
+        .glow-effect {
+            position: relative;
+        }
+
+        .glow-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1) 0%, transparent 50%, rgba(220, 38, 38, 0.1) 100%);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .glow-effect:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="colosseum-header">
+        <div class="header-content">
+            <div>
+                <h1 class="colosseum-title">The Colosseum</h1>
+                <p class="colosseum-subtitle">Torn City Ranked War Betting Market</p>
+            </div>
+            <div class="header-stats">
+                <div class="stat-item">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Active Wars</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">$0</div>
+                    <div class="stat-label">Total Volume</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Total Bets</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="colosseum-nav">
+        <div class="nav-content">
+            <button class="nav-tab how-to-bet active" onclick="showTab('how-to-bet')">
+                🎯 How to Bet
+            </button>
+            <button class="nav-tab" onclick="showTab('ranked-wars')">
+                ⚔️ Ranked Wars
+            </button>
+            <button class="nav-tab" onclick="showTab('past-wars')">
+                📜 Past Wars
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="colosseum-main">
+        <!-- How to Bet Tab -->
+        <div id="how-to-bet" class="tab-content active">
+            <div class="content-card">
+                <h2 class="card-title">
+                    <span class="card-icon">🎯</span>
+                    How to Bet on Ranked Wars
+                </h2>
+                <p class="card-content">
+                    Welcome to The Colosseum! Here's how to participate in Torn City's first Ranked War betting market. 
+                    Bet on faction outcomes, earn rewards, and become a legendary war predictor.
+                </p>
+            </div>
+
+            <div class="betting-steps">
+                <div class="betting-step glow-effect">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Connect Your Account</h3>
+                    <p class="step-description">
+                        Link your Torn City account to verify your identity and enable betting. 
+                        Your account must be at least 30 days old to participate.
+                    </p>
+                </div>
+
+                <div class="betting-step glow-effect">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Browse Active Wars</h3>
+                    <p class="step-description">
+                        View current and upcoming ranked wars between factions. 
+                        Each war has different betting options and odds based on faction strength.
+                    </p>
+                </div>
+
+                <div class="betting-step glow-effect">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Place Your Bets</h3>
+                    <p class="step-description">
+                        Choose your prediction and stake your money. You can bet on faction wins, 
+                        war duration, total damage, and other outcomes.
+                    </p>
+                </div>
+
+                <div class="betting-step glow-effect">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Watch & Collect</h3>
+                    <p class="step-description">
+                        Monitor the war progress in real-time. If your prediction is correct, 
+                        you'll receive your winnings plus any applicable bonuses.
+                    </p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="card-title">
+                    <span class="card-icon">💰</span>
+                    Betting Rules & Rewards
+                </h2>
+                <div class="card-content">
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: #dc2626;">•</span>
+                            <strong>Minimum Bet:</strong> $1,000,000 Torn City dollars
+                        </li>
+                        <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: #dc2626;">•</span>
+                            <strong>Maximum Bet:</strong> $100,000,000 per war outcome
+                        </li>
+                        <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: #dc2626;">•</span>
+                            <strong>House Fee:</strong> 2% on all winning bets
+                        </li>
+                        <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: #dc2626;">•</span>
+                            <strong>Streak Bonuses:</strong> Earn extra rewards for consecutive correct predictions
+                        </li>
+                        <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: #dc2626;">•</span>
+                            <strong>Leaderboards:</strong> Compete for monthly and all-time betting rankings
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ranked Wars Tab -->
+        <div id="ranked-wars" class="tab-content">
+            <div class="content-card">
+                <h2 class="card-title">
+                    <span class="card-icon">⚔️</span>
+                    Active Ranked Wars
+                </h2>
+                <p class="card-content">
+                    Current and upcoming ranked wars available for betting. Odds are calculated based on 
+                    faction strength, recent performance, and betting volume.
+                </p>
+            </div>
+
+            <div class="wars-grid">
+                <div class="war-card glow-effect">
+                    <div class="war-header">
+                        <h3 class="war-title">The Brotherhood vs Shadow Syndicate</h3>
+                        <span class="war-status status-upcoming">Upcoming</span>
+                    </div>
+                    <div class="war-details">
+                        <p>⏰ Starts: 2 hours from now</p>
+                        <p>🏆 Prize Pool: $50,000,000</p>
+                        <p>📊 Total Bets: $12,450,000</p>
+                    </div>
+                    <div class="war-bets">
+                        <div class="bet-option">
+                            <div class="bet-odds">2.15</div>
+                            <div class="bet-label">Brotherhood Win</div>
+                        </div>
+                        <div class="bet-option">
+                            <div class="bet-odds">1.85</div>
+                            <div class="bet-label">Shadow Win</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="war-card glow-effect">
+                    <div class="war-header">
+                        <h3 class="war-title">Phoenix Rising vs Iron Legion</h3>
+                        <span class="war-status status-active">Active</span>
+                    </div>
+                    <div class="war-details">
+                        <p>⏰ Started: 45 minutes ago</p>
+                        <p>🏆 Prize Pool: $75,000,000</p>
+                        <p>📊 Total Bets: $28,900,000</p>
+                    </div>
+                    <div class="war-bets">
+                        <div class="bet-option">
+                            <div class="bet-odds">1.65</div>
+                            <div class="bet-label">Phoenix Win</div>
+                        </div>
+                        <div class="bet-option">
+                            <div class="bet-odds">2.35</div>
+                            <div class="bet-label">Iron Win</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Past Wars Tab -->
+        <div id="past-wars" class="tab-content">
+            <div class="content-card">
+                <h2 class="card-title">
+                    <span class="card-icon">📜</span>
+                    Past Ranked Wars
+                </h2>
+                <p class="card-content">
+                    Historical ranked war results and betting outcomes. Analyze past performance 
+                    to improve your future betting strategies.
+                </p>
+            </div>
+
+            <div class="wars-grid">
+                <div class="war-card glow-effect">
+                    <div class="war-header">
+                        <h3 class="war-title">Crimson Order vs Silver Serpents</h3>
+                        <span class="war-status" style="background: rgba(107, 114, 128, 0.2); color: #9ca3af; border: 1px solid rgba(107, 114, 128, 0.3);">Completed</span>
+                    </div>
+                    <div class="war-details">
+                        <p>🏆 Winner: Crimson Order</p>
+                        <p>⏱️ Duration: 3h 22m</p>
+                        <p>💰 Total Volume: $45,200,000</p>
+                        <p>📈 Winning Odds: 1.95</p>
+                    </div>
+                </div>
+
+                <div class="war-card glow-effect">
+                    <div class="war-header">
+                        <h3 class="war-title">Golden Dragons vs Night Wolves</h3>
+                        <span class="war-status" style="background: rgba(107, 114, 128, 0.2); color: #9ca3af; border: 1px solid rgba(107, 114, 128, 0.3);">Completed</span>
+                    </div>
+                    <div class="war-details">
+                        <p>🏆 Winner: Night Wolves</p>
+                        <p>⏱️ Duration: 2h 15m</p>
+                        <p>💰 Total Volume: $38,700,000</p>
+                        <p>📈 Winning Odds: 3.20</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Coming Soon Watermark -->
+    <div class="coming-soon-watermark">
+        COMING SOON<br>
+        <span style="font-size: 1.5rem; color: rgba(220, 38, 38, 0.08);">Ranked War Betting Market</span>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all nav tabs
+            const navTabs = document.querySelectorAll('.nav-tab');
+            navTabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab content
+            const selectedTab = document.getElementById(tabName);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
+
+            // Add active class to clicked nav tab
+            const clickedTab = event.target;
+            clickedTab.classList.add('active');
+
+            // Special styling for "How to Bet" tab
+            if (tabName === 'how-to-bet') {
+                clickedTab.classList.add('how-to-bet');
+            } else {
+                clickedTab.classList.remove('how-to-bet');
+            }
+        }
+
+        // Add hover effects to bet options
+        document.addEventListener('DOMContentLoaded', function() {
+            const betOptions = document.querySelectorAll('.bet-option');
+            betOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Add click animation
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+
+            // Add loading animation to stats
+            const statValues = document.querySelectorAll('.stat-value');
+            statValues.forEach(stat => {
+                stat.innerHTML = '<span class="loading-spinner"></span>';
+            });
+
+            // Simulate loading stats
+            setTimeout(() => {
+                statValues[0].textContent = '3';
+                statValues[1].textContent = '$156.7M';
+                statValues[2].textContent = '1,247';
+            }, 2000);
+        });
+
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
