@@ -887,15 +887,19 @@ app.get('/api/logs', async (req, res) => {
             .limit(parseInt(limit))
             .toArray();
 
-        // Convert to Torn API format
+        // Convert to Torn API format with enhanced data
         const logsObject = {};
         logs.forEach(log => {
             logsObject[log.logId] = {
                 logId: log.logId.toString(),
                 timestamp: log.timestamp.toString(),
+                centralTime: log.centralTime || null,
                 data: log.data || {},
                 title: log.title || '',
-                category: log.category || ''
+                category: log.category || '',
+                dayOfWeek: log.dayOfWeek || '',
+                month: log.month || '',
+                year: log.year || null
             };
         });
 

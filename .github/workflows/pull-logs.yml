@@ -27,7 +27,7 @@ jobs:
       env:
         TORN_API_KEY: ${{ secrets.TORN_API_KEY }}
         MONGODB_URI: ${{ secrets.MONGODB_URI }}
-      run: node scripts/pull-logs.js
+      run: node scripts/enhanced-pull-logs.js
       
     - name: Commit and push if changes
       run: |
