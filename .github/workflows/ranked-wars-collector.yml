@@ -1,0 +1,47 @@
+name: Torn City Ranked Wars Collector
+
+on:
+  schedule:
+    # Run once daily at 8 AM UTC
+    - cron: '0 8 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  collect-ranked-wars:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Show environment info
+      run: |
+        echo "Node version: $(node --version)"
+        echo "NPM version: $(npm --version)"
+        echo "Current directory: $(pwd)"
+        echo "Files in Betting/: $(ls -la Betting/)"
+        echo "MongoDB URI set: ${{ secrets.MONGODB_URI != '' }}"
+        echo "Torn API Key set: ${{ secrets.TORN_API_KEY != '' }}"
+        
+    - name: Collect ranked wars data
+      env:
+        MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        TORN_API_KEY: ${{ secrets.TORN_API_KEY }}
+      run: node Betting/ranked-wars-collector.js
+      
+    - name: Commit and push data files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add data/ranked-wars-*.json
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update ranked wars data - $(date -u +'%Y-%m-%d %H:%M UTC')"
+        git push 

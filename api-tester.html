@@ -290,7 +290,7 @@
         <div class="api-key-section">
             <div class="input-group">
                 <label for="apiKey">API Key:</label>
-                <input type="text" id="apiKey" placeholder="Enter your Torn API key">
+                <input type="text" id="apiKey" placeholder="Enter your Torn API key" value="5VOBlIw6b2vP9W9n">
             </div>
             <div class="input-group">
                 <label for="userId">User ID (optional):</label>
@@ -304,6 +304,7 @@
             <div class="tab" data-tab="company">Company</div>
             <div class="tab" data-tab="faction">Faction</div>
             <div class="tab" data-tab="market">Market</div>
+            <div class="tab" data-tab="torn">Torn</div>
             <div class="tab" data-tab="other">Other</div>
         </div>
 
@@ -1464,6 +1465,575 @@
             </div>
         </div>
 
+        <!-- Torn Tab -->
+        <div class="tab-content" id="torn">
+            <div class="endpoints-grid">
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=rankedwars</span>
+                    </div>
+                    <div class="endpoint-description">Get ranked wars information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-rankedwars')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-rankedwars-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=bank</span>
+                    </div>
+                    <div class="endpoint-description">Get bank information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-bank')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-bank-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=education</span>
+                    </div>
+                    <div class="endpoint-description">Get education information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-education')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-education-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=honors</span>
+                    </div>
+                    <div class="endpoint-description">Get honors information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-honors')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-honors-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=items</span>
+                    </div>
+                    <div class="endpoint-description">Get items information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-items')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-items-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=medals</span>
+                    </div>
+                    <div class="endpoint-description">Get medals information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-medals')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-medals-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=pawnshop</span>
+                    </div>
+                    <div class="endpoint-description">Get pawnshop information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-pawnshop')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-pawnshop-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=properties</span>
+                    </div>
+                    <div class="endpoint-description">Get properties information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-properties')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-properties-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=stats</span>
+                    </div>
+                    <div class="endpoint-description">Get stats information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-stats')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-stats-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=stocks</span>
+                    </div>
+                    <div class="endpoint-description">Get stocks information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-stocks')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-stocks-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=attacklog</span>
+                    </div>
+                    <div class="endpoint-description">Get attack log information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-attacklog')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-attacklog-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=bounties</span>
+                    </div>
+                    <div class="endpoint-description">Get bounties information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-bounties')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-bounties-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=calendar</span>
+                    </div>
+                    <div class="endpoint-description">Get calendar information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-calendar')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-calendar-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=cards</span>
+                    </div>
+                    <div class="endpoint-description">Get cards information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-cards')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-cards-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=chainreport</span>
+                    </div>
+                    <div class="endpoint-description">Get chain report information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-chainreport')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-chainreport-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=cityshops</span>
+                    </div>
+                    <div class="endpoint-description">Get city shops information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-cityshops')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-cityshops-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=companies</span>
+                    </div>
+                    <div class="endpoint-description">Get companies information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-companies')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-companies-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=competition</span>
+                    </div>
+                    <div class="endpoint-description">Get competition information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-competition')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-competition-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=crimes</span>
+                    </div>
+                    <div class="endpoint-description">Get crimes information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-crimes')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-crimes-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=dirtybombs</span>
+                    </div>
+                    <div class="endpoint-description">Get dirty bombs information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-dirtybombs')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-dirtybombs-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=factionhof</span>
+                    </div>
+                    <div class="endpoint-description">Get faction hall of fame information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-factionhof')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-factionhof-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=factiontree</span>
+                    </div>
+                    <div class="endpoint-description">Get faction tree information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-factiontree')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-factiontree-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=gyms</span>
+                    </div>
+                    <div class="endpoint-description">Get gyms information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-gyms')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-gyms-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=hof</span>
+                    </div>
+                    <div class="endpoint-description">Get hall of fame information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-hof')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-hof-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=itemammo</span>
+                    </div>
+                    <div class="endpoint-description">Get item ammo information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-itemammo')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-itemammo-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=itemdetails</span>
+                    </div>
+                    <div class="endpoint-description">Get item details information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-itemdetails')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-itemdetails-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=itemmods</span>
+                    </div>
+                    <div class="endpoint-description">Get item mods information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-itemmods')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-itemmods-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=itemstats</span>
+                    </div>
+                    <div class="endpoint-description">Get item stats information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-itemstats')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-itemstats-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=logcategories</span>
+                    </div>
+                    <div class="endpoint-description">Get log categories information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-logcategories')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-logcategories-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=logtypes</span>
+                    </div>
+                    <div class="endpoint-description">Get log types information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-logtypes')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-logtypes-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=lookup</span>
+                    </div>
+                    <div class="endpoint-description">Get lookup information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-lookup')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-lookup-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=organisedcrimes</span>
+                    </div>
+                    <div class="endpoint-description">Get organised crimes information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-organisedcrimes')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-organisedcrimes-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=organizedcrimes</span>
+                    </div>
+                    <div class="endpoint-description">Get organized crimes information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-organizedcrimes')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-organizedcrimes-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=pokertables</span>
+                    </div>
+                    <div class="endpoint-description">Get poker tables information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-pokertables')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-pokertables-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=rackets</span>
+                    </div>
+                    <div class="endpoint-description">Get rackets information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-rackets')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-rackets-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=raidreport</span>
+                    </div>
+                    <div class="endpoint-description">Get raid report information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-raidreport')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-raidreport-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=raids</span>
+                    </div>
+                    <div class="endpoint-description">Get raids information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-raids')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-raids-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=rankedwarreport</span>
+                    </div>
+                    <div class="endpoint-description">Get ranked war report information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-rankedwarreport')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-rankedwarreport-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=rockpaperscissors</span>
+                    </div>
+                    <div class="endpoint-description">Get rock paper scissors information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-rockpaperscissors')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-rockpaperscissors-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=searchforcash</span>
+                    </div>
+                    <div class="endpoint-description">Get search for cash information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-searchforcash')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-searchforcash-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=shoplifting</span>
+                    </div>
+                    <div class="endpoint-description">Get shoplifting information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-shoplifting')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-shoplifting-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=subcrimes</span>
+                    </div>
+                    <div class="endpoint-description">Get sub crimes information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-subcrimes')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-subcrimes-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=territory</span>
+                    </div>
+                    <div class="endpoint-description">Get territory information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-territory')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-territory-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=territorynames</span>
+                    </div>
+                    <div class="endpoint-description">Get territory names information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-territorynames')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-territorynames-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=territorywarreport</span>
+                    </div>
+                    <div class="endpoint-description">Get territory war report information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-territorywarreport')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-territorywarreport-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=territorywars</span>
+                    </div>
+                    <div class="endpoint-description">Get territory wars information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-territorywars')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-territorywars-response"></div>
+                </div>
+
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge">GET</span>
+                        <span class="endpoint-url">/torn/?selections=timestamp</span>
+                    </div>
+                    <div class="endpoint-description">Get timestamp information</div>
+                    <div class="param-group">
+                        <button class="test-button" onclick="testEndpoint('torn-timestamp')">Test</button>
+                    </div>
+                    <div class="response-section" id="torn-timestamp-response"></div>
+                </div>
+            </div>
+        </div>
+
         <!-- Other Tab -->
         <div class="tab-content" id="other">
             <div class="endpoints-grid">
@@ -2077,6 +2647,242 @@
                 
                 case 'medals':
                     url = 'https://api.torn.com/v2/medals';
+                    break;
+
+                // Torn API Endpoints
+                case 'torn-rankedwars':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'rankedwars' };
+                    break;
+                
+                case 'torn-bank':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'bank' };
+                    break;
+                
+                case 'torn-education':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'education' };
+                    break;
+                
+                case 'torn-honors':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'honors' };
+                    break;
+                
+                case 'torn-items':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'items' };
+                    break;
+                
+                case 'torn-medals':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'medals' };
+                    break;
+                
+                case 'torn-pawnshop':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'pawnshop' };
+                    break;
+                
+                case 'torn-properties':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'properties' };
+                    break;
+                
+                case 'torn-stats':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'stats' };
+                    break;
+                
+                case 'torn-stocks':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'stocks' };
+                    break;
+                
+                case 'torn-attacklog':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'attacklog' };
+                    break;
+                
+                case 'torn-bounties':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'bounties' };
+                    break;
+                
+                case 'torn-calendar':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'calendar' };
+                    break;
+                
+                case 'torn-cards':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'cards' };
+                    break;
+                
+                case 'torn-chainreport':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'chainreport' };
+                    break;
+                
+                case 'torn-cityshops':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'cityshops' };
+                    break;
+                
+                case 'torn-companies':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'companies' };
+                    break;
+                
+                case 'torn-competition':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'competition' };
+                    break;
+                
+                case 'torn-crimes':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'crimes' };
+                    break;
+                
+                case 'torn-dirtybombs':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'dirtybombs' };
+                    break;
+                
+                case 'torn-factionhof':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'factionhof' };
+                    break;
+                
+                case 'torn-factiontree':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'factiontree' };
+                    break;
+                
+                case 'torn-gyms':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'gyms' };
+                    break;
+                
+                case 'torn-hof':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'hof' };
+                    break;
+                
+                case 'torn-itemammo':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'itemammo' };
+                    break;
+                
+                case 'torn-itemdetails':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'itemdetails' };
+                    break;
+                
+                case 'torn-itemmods':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'itemmods' };
+                    break;
+                
+                case 'torn-itemstats':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'itemstats' };
+                    break;
+                
+                case 'torn-logcategories':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'logcategories' };
+                    break;
+                
+                case 'torn-logtypes':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'logtypes' };
+                    break;
+                
+                case 'torn-lookup':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'lookup' };
+                    break;
+                
+                case 'torn-organisedcrimes':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'organisedcrimes' };
+                    break;
+                
+                case 'torn-organizedcrimes':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'organizedcrimes' };
+                    break;
+                
+                case 'torn-pokertables':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'pokertables' };
+                    break;
+                
+                case 'torn-rackets':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'rackets' };
+                    break;
+                
+                case 'torn-raidreport':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'raidreport' };
+                    break;
+                
+                case 'torn-raids':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'raids' };
+                    break;
+                
+                case 'torn-rankedwarreport':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'rankedwarreport' };
+                    break;
+                
+                case 'torn-rockpaperscissors':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'rockpaperscissors' };
+                    break;
+                
+                case 'torn-searchforcash':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'searchforcash' };
+                    break;
+                
+                case 'torn-shoplifting':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'shoplifting' };
+                    break;
+                
+                case 'torn-subcrimes':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'subcrimes' };
+                    break;
+                
+                case 'torn-territory':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'territory' };
+                    break;
+                
+                case 'torn-territorynames':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'territorynames' };
+                    break;
+                
+                case 'torn-territorywarreport':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'territorywarreport' };
+                    break;
+                
+                case 'torn-territorywars':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'territorywars' };
+                    break;
+                
+                case 'torn-timestamp':
+                    url = 'https://api.torn.com/torn/';
+                    params = { selections: 'timestamp' };
                     break;
             }
 

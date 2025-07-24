@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Colosseum - Ranked War Betting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+        }
+        body {
+            font-family: 'Inter', 'DM Sans', Arial, sans-serif;
+            background: #fafbfc;
+            color: #232526;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .center-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+        }
+        .center-box h2 {
+            font-size: 1.35rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            letter-spacing: -0.2px;
+            font-family: 'DM Sans', 'Inter', Arial, sans-serif;
+        }
+        .api-input {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+        .api-input input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1.2px solid #e3e6ea;
+            border-radius: 8px;
+            font-family: 'Inter', 'DM Sans', Arial, sans-serif;
+            font-size: 15px;
+            background: #f6f8fa;
+            color: #232526;
+            transition: all 0.2s cubic-bezier(.4,0,.2,1);
+        }
+        .api-input input:focus {
+            outline: none;
+            border-color: #232526;
+            background: #fff;
+            box-shadow: 0 0 0 2px rgba(35,37,38,0.08);
+        }
+        .api-input button {
+            padding: 12px 28px;
+            background: linear-gradient(90deg, #232526 0%, #414345 100%);
+            color: #fff;
+            border: none;
+            border-radius: 22px;
+            font-family: 'DM Sans', 'Inter', Arial, sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(.4,0,.2,1);
+            box-shadow: 0 2px 8px rgba(35,37,38,0.07);
+            letter-spacing: 0.01em;
+            position: relative;
+        }
+        .api-input button:hover, .api-input button:focus {
+            background: linear-gradient(90deg, #414345 0%, #232526 100%);
+            box-shadow: 0 6px 18px rgba(35,37,38,0.13);
+            transform: translateY(-1px) scale(1.04);
+        }
+        .error-message {
+            color: #e63946;
+            font-size: 0.98rem;
+            margin-top: 18px;
+            min-height: 22px;
+            font-family: 'Inter', 'DM Sans', Arial, sans-serif;
+            letter-spacing: -0.2px;
+        }
+        .success-message {
+            color: #16a34a;
+            font-size: 1.05rem;
+            margin-top: 22px;
+            font-family: 'Inter', 'DM Sans', Arial, sans-serif;
+            letter-spacing: -0.2px;
+        }
+        
+        /* Dashboard Styles */
+        .dashboard {
+            width: 100vw;
+            height: 100vh;
+            background: #fafbfc;
+            display: flex;
+            flex-direction: column;
+        }
+        .dashboard-header {
+            display: flex;
+            gap: 0;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(35,37,38,0.04);
+            border-bottom: 1px solid #ececec;
+            padding: 0 0 0 0;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .dashboard-tabs {
+            display: flex;
+            gap: 0;
+        }
+        
+        .logout-btn {
+            padding: 8px 16px;
+            margin-right: 20px;
+            background: #f3f4f6;
+            color: #6b7280;
+            border: 1px solid #e3e6ea;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(.4,0,.2,1);
+            font-family: 'DM Sans', 'Inter', Arial, sans-serif;
+        }
+        
+        .logout-btn:hover {
+            background: #e5e7eb;
+            color: #374151;
+            border-color: #d1d5db;
+        }
+        .dashboard-tab {
+            padding: 18px 36px;
+            font-size: 1rem;
+            font-family: 'DM Sans', 'Inter', Arial, sans-serif;
+            font-weight: 500;
+            color: #232526;
+            background: none;
+            border: none;
+            border-bottom: 2.5px solid transparent;
+            cursor: pointer;
+            transition: all 0.18s cubic-bezier(.4,0,.2,1);
+        }
+        .dashboard-tab.active {
+            border-bottom: 2.5px solid #232526;
+            color: #232526;
+            background: #f6f8fa;
+        }
+        .dashboard-tab:not(.active):hover {
+            background: #f6f8fa;
+        }
+        .dashboard-content {
+            flex: 1;
+            padding: 40px 32px 0 32px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .in-progress {
+            text-align: center;
+            color: #888;
+            font-size: 1.2rem;
+            margin-top: 80px;
+            font-family: 'Inter', 'DM Sans', Arial, sans-serif;
+        }
+        
+        /* Colosseum Watermark */
+        .colosseum-watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 3rem;
+            font-weight: 700;
+            color: rgba(35, 37, 38, 0.1);
+            font-family: 'DM Sans', 'Inter', Arial, sans-serif;
+            text-align: center;
+            pointer-events: none;
+            z-index: 1000;
+            white-space: nowrap;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .colosseum-watermark .subtitle {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-top: 8px;
+            opacity: 0.8;
+        }
+        
+        /* Raw Logs Styles */
+        .logs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(35,37,38,0.04);
+            overflow: hidden;
+        }
+        .logs-table th, .logs-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.97rem;
+            text-align: left;
+        }
+        .logs-table th {
+            background: #f6f8fa;
+            font-weight: 600;
+        }
+        .logs-table tr:last-child td {
+            border-bottom: none;
+        }
+        .item-name {
+            color: #232526;
+            font-weight: 500;
+        }
+        
+        /* Loading Styles */
+        .inventory-loading {
+            text-align: center;
+            color: #888;
+            font-size: 1.1rem;
+            margin-top: 40px;
+            font-family: 'Inter', 'DM Sans', Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- API Key Entry -->
+    <div id="api-entry" class="center-box">
+        <h2>The Colosseum</h2>
+        <div class="api-input">
+            <input type="text" id="apiKey" placeholder="Enter your Torn API key" maxlength="16">
+            <button onclick="connectAPI()">Connect</button>
+        </div>
+        <div id="error-message" class="error-message"></div>
+        <div id="success-message" class="success-message"></div>
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="https://www.torn.com/preferences.php#tab=api?step=addNewKey&title=Testing&user=basic,profile" target="_blank" style="color: #232526; text-decoration: none; font-size: 0.9rem; opacity: 0.7; transition: opacity 0.2s;">
+                Need an API key? Create a public key here
+            </a>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard" style="display:none;">
+        <div class="dashboard-header">
+            <div class="dashboard-tabs">
+                <button class="dashboard-tab active" data-tab="colosseum">Colosseum</button>
+                <button class="dashboard-tab" data-tab="rawlogs">Raw Logs</button>
+            </div>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+        <div class="dashboard-content">
+            <div class="tab-content" id="tab-colosseum">
+                <div class="colosseum-watermark">
+                    <div>Ranked War Betting</div>
+                    <div class="subtitle">Coming Soon</div>
+                </div>
+                <h2 style="font-size:1.2rem;font-weight:600;margin-bottom:18px;">Colosseum</h2>
+                <div class="in-progress">Page in progress</div>
+            </div>
+            <div class="tab-content" id="tab-rawlogs" style="display:none;">
+                <h2 style="font-size:1.2rem;font-weight:600;margin-bottom:18px;">Raw Logs</h2>
+                <div id="logs-loading">Loading logs...</div>
+                <table class="logs-table" id="logs-table" style="display:none;">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logs-tbody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let apiKey = '';
+        let itemLookup = {};
+
+        // API Key Functions
+        async function connectAPI() {
+            const apiKeyInput = document.getElementById('apiKey');
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+            
+            apiKey = apiKeyInput.value.trim();
+            
+            if (!apiKey) {
+                errorMessage.textContent = 'Please enter your API key.';
+                return;
+            }
+            
+            errorMessage.textContent = '';
+            successMessage.textContent = 'Connecting...';
+            
+            try {
+                const response = await fetch(`https://api.torn.com/user/?selections=profile&key=${apiKey}`);
+                const data = await response.json();
+                
+                if (data.error) {
+                    errorMessage.textContent = 'Invalid API key. Please check and try again.';
+                    successMessage.textContent = '';
+                } else {
+                    // Check player age
+                    const playerAge = data.age;
+                    
+                    if (playerAge < 200) {
+                        errorMessage.textContent = `Access denied. Your account must be at least 200 days old. Current age: ${playerAge} days.`;
+                        successMessage.textContent = '';
+                        return;
+                    }
+                    
+                    successMessage.textContent = `Welcome to The Colosseum, ${data.name}! (Age: ${playerAge} days)`;
+                    localStorage.setItem('tornApiKey', apiKey);
+                    
+                    // Load item details for logs
+                    await loadItemDetails();
+                    
+                    // Show welcome message for longer before transitioning
+                    setTimeout(() => {
+                        successMessage.textContent = `Loading The Colosseum...`;
+                    }, 2000);
+                    
+                    // Show dashboard after a longer delay for proper welcome
+                    setTimeout(() => {
+                        document.getElementById('api-entry').style.display = 'none';
+                        document.getElementById('dashboard').style.display = 'flex';
+                    }, 3500);
+                }
+            } catch (error) {
+                errorMessage.textContent = 'Failed to connect. Please check your internet connection.';
+                successMessage.textContent = '';
+            }
+        }
+
+        // Load item details from itemdetails.json
+        async function loadItemDetails() {
+            try {
+                const res = await fetch('itemdetails.json');
+                const itemDetails = await res.json();
+                itemLookup = itemDetails;
+            } catch (e) {
+                itemLookup = {};
+            }
+        }
+
+        // Tab switching
+        document.querySelectorAll('.dashboard-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.dashboard-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                showTab(this.getAttribute('data-tab'));
+            });
+        });
+
+        function showTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(tc => tc.style.display = 'none');
+            document.getElementById('tab-' + tab).style.display = 'block';
+            
+            if (tab === 'rawlogs') {
+                loadRawLogs();
+            }
+        }
+
+        // Load Raw Logs
+        async function loadRawLogs() {
+            const logsLoading = document.getElementById('logs-loading');
+            const logsTable = document.getElementById('logs-table');
+            const logsTbody = document.getElementById('logs-tbody');
+            
+            logsLoading.style.display = 'block';
+            logsTable.style.display = 'none';
+            logsTbody.innerHTML = '';
+            
+            try {
+                const url = `https://api.torn.com/user/?selections=log&key=${apiKey}&comment=TryItPage`;
+                const res = await fetch(url);
+                const data = await res.json();
+                
+                if (data.log) {
+                    const logs = Object.values(data.log).sort((a, b) => b.timestamp - a.timestamp);
+                    
+                    for (const log of logs) {
+                        let details = '';
+                        if (log.data) {
+                            if (log.data.item) {
+                                const itemId = log.data.item;
+                                const itemName = itemLookup[itemId] || `Item #${itemId}`;
+                                details += `<span class='item-name'>${itemName}</span>`;
+                            } else if (log.data.items_gained) {
+                                const items = log.data.items_gained;
+                                details += 'Gained: ' + Object.entries(items).map(([id, qty]) => {
+                                    const name = itemLookup[id] || `Item #${id}`;
+                                    return `${qty} × <span class='item-name'>${name}</span>`;
+                                }).join(', ');
+                            } else if (log.data.money) {
+                                details += `Money: $${log.data.money.toLocaleString()}`;
+                            } else if (log.data.stock) {
+                                details += `Stock: #${log.data.stock}, Amount: ${log.data.amount}`;
+                            } else if (log.data.sender) {
+                                details += `Sender: ${log.data.sender}, Amount: $${log.data.money ? log.data.money.toLocaleString() : ''}`;
+                            } else {
+                                details += Object.entries(log.data).map(([k, v]) => `${k}: ${v}`).join(', ');
+                            }
+                        }
+                        
+                        const date = new Date(log.timestamp * 1000);
+                        const row = `<tr>
+                            <td>${date.toLocaleString()}</td>
+                            <td>${log.title}</td>
+                            <td>${log.category}</td>
+                            <td>${details}</td>
+                        </tr>`;
+                        logsTbody.innerHTML += row;
+                    }
+                    
+                    logsLoading.style.display = 'none';
+                    logsTable.style.display = '';
+                } else {
+                    logsLoading.textContent = 'No logs found.';
+                }
+            } catch (e) {
+                logsLoading.textContent = 'Failed to load logs.';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('tornApiKey');
+            apiKey = '';
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('api-entry').style.display = 'flex';
+            document.getElementById('apiKey').value = '';
+            document.getElementById('error-message').textContent = '';
+            document.getElementById('success-message').textContent = '';
+        }
+
+        // Event Listeners
+        document.getElementById('apiKey').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                connectAPI();
+            }
+        });
+
+        // Check for saved API key on load
+        window.addEventListener('load', function() {
+            const savedApiKey = localStorage.getItem('tornApiKey');
+            if (savedApiKey) {
+                document.getElementById('apiKey').value = savedApiKey;
+                connectAPI();
+            }
+        });
+    </script>
+</body>
+</html> 
