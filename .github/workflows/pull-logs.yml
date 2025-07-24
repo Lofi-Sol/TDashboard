@@ -1,0 +1,38 @@
+name: Pull Torn City Logs
+
+on:
+  schedule:
+    # Run at 0, 20, and 40 minutes past every hour
+    - cron: '0,20,40 * * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  pull-logs:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Pull Torn City Logs
+      env:
+        TORN_API_KEY: ${{ secrets.TORN_API_KEY }}
+        MONGODB_URI: ${{ secrets.MONGODB_URI }}
+      run: node scripts/pull-logs.js
+      
+    - name: Commit and push if changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add -A
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update Torn City logs [skip ci]"
+        git push 
