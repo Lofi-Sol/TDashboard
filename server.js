@@ -1063,11 +1063,6 @@ app.get('/api/logs/restructured/stats', async (req, res) => {
     }
 });
 
-// Serve The Colosseum
-app.get('/colosseum', (req, res) => {
-    res.sendFile(path.join(__dirname, 'colosseum/index.html'));
-});
-
 // Start server
 async function startServer() {
     try {

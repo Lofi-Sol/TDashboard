@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MongoDB Dashboard Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.8;
+            font-size: 1rem;
+        }
+
+        .controls {
+            padding: 20px;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+
+        .status {
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-weight: 500;
+            margin-left: auto;
+        }
+
+        .status.loading {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status.success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .data-section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .stock-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+        }
+
+        .stock-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .stock-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .stock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .stock-name {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 1.1rem;
+        }
+
+        .stock-acronym {
+            background: #3b82f6;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .stock-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #059669;
+            margin-bottom: 8px;
+        }
+
+        .stock-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            font-size: 0.85rem;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .detail-label {
+            color: #64748b;
+        }
+
+        .detail-value {
+            font-weight: 500;
+            color: #1e293b;
+        }
+
+        .price-change {
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .price-change.positive {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .price-change.negative {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+        }
+
+        .error {
+            background: #fee2e2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 0.9rem;
+        }
+
+        td {
+            font-size: 0.9rem;
+        }
+
+        tr:hover {
+            background: #f8fafc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>MongoDB Dashboard Test</h1>
+            <p>Testing Torn City Stock Data from MongoDB</p>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-primary" onclick="loadLatestData()">Load Latest Data</button>
+            <button class="btn btn-secondary" onclick="loadStats()">Load Stats</button>
+            <button class="btn btn-secondary" onclick="loadAllStocks()">Load All Stocks</button>
+            <div id="status" class="status"></div>
+        </div>
+
+        <div class="content">
+            <div id="stats" class="stats-grid" style="display: none;"></div>
+            
+            <div id="latest-data" class="data-section" style="display: none;">
+                <h2 class="section-title">Latest Stock Data</h2>
+                <div id="latest-stocks" class="stock-grid"></div>
+            </div>
+
+            <div id="all-stocks" class="data-section" style="display: none;">
+                <h2 class="section-title">All Stocks</h2>
+                <div class="table-container">
+                    <table id="stocks-table">
+                        <thead>
+                            <tr>
+                                <th>Stock Name</th>
+                                <th>Acronym</th>
+                                <th>Current Price</th>
+                                <th>Yesterday First</th>
+                                <th>Change</th>
+                                <th>Time Block</th>
+                                <th>Last Updated</th>
+                            </tr>
+                        </thead>
+                        <tbody id="stocks-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3000';
+
+        function showStatus(message, type = 'loading') {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+        }
+
+        function hideStatus() {
+            const status = document.getElementById('status');
+            status.style.display = 'none';
+        }
+
+        function showLoading() {
+            showStatus('Loading...', 'loading');
+        }
+
+        function showError(message) {
+            showStatus(message, 'error');
+        }
+
+        function showSuccess(message) {
+            showStatus(message, 'success');
+            setTimeout(hideStatus, 2000);
+        }
+
+        async function loadLatestData() {
+            try {
+                showLoading();
+                
+                const response = await fetch(`${API_BASE}/api/stock-data/latest`);
+                const result = await response.json();
+                
+                if (!result.success) {
+                    throw new Error(result.error || 'Failed to load data');
+                }
+
+                displayLatestData(result.data);
+                showSuccess(`Loaded ${result.count} stocks`);
+                
+            } catch (error) {
+                console.error('Error loading latest data:', error);
+                showError(`Error: ${error.message}`);
+            }
+        }
+
+        async function loadStats() {
+            try {
+                showLoading();
+                
+                const response = await fetch(`${API_BASE}/api/stats`);
+                const result = await response.json();
+                
+                if (!result.success) {
+                    throw new Error(result.error || 'Failed to load stats');
+                }
+
+                displayStats(result.data);
+                showSuccess('Stats loaded successfully');
+                
+            } catch (error) {
+                console.error('Error loading stats:', error);
+                showError(`Error: ${error.message}`);
+            }
+        }
+
+        async function loadAllStocks() {
+            try {
+                showLoading();
+                
+                const response = await fetch(`${API_BASE}/api/stocks`);
+                const result = await response.json();
+                
+                if (!result.success) {
+                    throw new Error(result.error || 'Failed to load stocks');
+                }
+
+                displayAllStocks(result.data);
+                showSuccess(`Loaded ${result.data.length} stocks`);
+                
+            } catch (error) {
+                console.error('Error loading all stocks:', error);
+                showError(`Error: ${error.message}`);
+            }
+        }
+
+        function displayStats(stats) {
+            const statsContainer = document.getElementById('stats');
+            statsContainer.style.display = 'grid';
+            
+            statsContainer.innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-value">${stats.totalDocuments}</div>
+                    <div class="stat-label">Total Documents</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.uniqueStocks}</div>
+                    <div class="stat-label">Unique Stocks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.timeBlocks}</div>
+                    <div class="stat-label">Time Blocks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.latestTimestamp}</div>
+                    <div class="stat-label">Latest Update</div>
+                </div>
+            `;
+        }
+
+        function displayLatestData(stocks) {
+            const container = document.getElementById('latest-data');
+            const stocksGrid = document.getElementById('latest-stocks');
+            
+            container.style.display = 'block';
+            
+            stocksGrid.innerHTML = stocks.map(stock => {
+                const priceChange = stock.yesterday_first_price ? 
+                    stock.current_price - stock.yesterday_first_price : 0;
+                const changePercent = stock.yesterday_first_price ? 
+                    ((priceChange / stock.yesterday_first_price) * 100).toFixed(2) : 0;
+                
+                return `
+                    <div class="stock-card">
+                        <div class="stock-header">
+                            <div class="stock-name">${stock.name}</div>
+                            <div class="stock-acronym">${stock.acronym}</div>
+                        </div>
+                        <div class="stock-price">$${stock.current_price.toLocaleString()}</div>
+                        ${stock.yesterday_first_price ? `
+                            <div class="price-change ${priceChange >= 0 ? 'positive' : 'negative'}">
+                                ${priceChange >= 0 ? '+' : ''}$${priceChange.toFixed(2)} (${changePercent}%)
+                            </div>
+                        ` : ''}
+                        <div class="stock-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Time Block:</span>
+                                <span class="detail-value">${stock.time_block}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Day:</span>
+                                <span class="detail-value">${stock.day_of_week}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Central Time:</span>
+                                <span class="detail-value">${stock.central_time}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Type:</span>
+                                <span class="detail-value">${stock.collection_type}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function displayAllStocks(stocks) {
+            const container = document.getElementById('all-stocks');
+            const tableBody = document.getElementById('stocks-table-body');
+            
+            container.style.display = 'block';
+            
+            tableBody.innerHTML = stocks.map(stock => {
+                const priceChange = stock.yesterday_first_price ? 
+                    stock.current_price - stock.yesterday_first_price : 0;
+                const changePercent = stock.yesterday_first_price ? 
+                    ((priceChange / stock.yesterday_first_price) * 100).toFixed(2) : 0;
+                
+                return `
+                    <tr>
+                        <td>${stock.name}</td>
+                        <td><span class="stock-acronym">${stock.acronym}</span></td>
+                        <td>$${stock.current_price.toLocaleString()}</td>
+                        <td>${stock.yesterday_first_price ? '$' + stock.yesterday_first_price.toLocaleString() : 'N/A'}</td>
+                        <td class="price-change ${priceChange >= 0 ? 'positive' : 'negative'}">
+                            ${priceChange >= 0 ? '+' : ''}$${priceChange.toFixed(2)} (${changePercent}%)
+                        </td>
+                        <td>${stock.time_block}</td>
+                        <td>${new Date(stock.timestamp).toLocaleString()}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Auto-load latest data on page load
+        window.addEventListener('load', () => {
+            loadLatestData();
+        });
+    </script>
+</body>
+</html> 

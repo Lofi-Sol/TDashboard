@@ -47,18 +47,18 @@ In your GitHub repository, go to **Settings > Secrets and variables > Actions** 
 ### 3. Local Development Setup
 
 1. Install dependencies:
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 
 2. Create a `.env` file in the root directory:
-   ```env
+```env
    MONGODB_URI=mongodb+srv://oowol003:TornData2341@torndata.vxouoj6.mongodb.net/?retryWrites=true&w=majority&appName=TornData
-   TORN_API_KEY=your_torn_api_key_here
-   ```
+TORN_API_KEY=your_torn_api_key_here
+```
 
 3. Test the data collection script:
-   ```bash
+```bash
    node scripts/collect-stock-data.js
    ```
 

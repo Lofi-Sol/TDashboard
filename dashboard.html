@@ -7,6 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <style>
         html, body {
             height: 100%;
@@ -166,6 +169,244 @@
         .item-name {
             color: #232526;
             font-weight: 500;
+        }
+        
+        /* Colosseum Watermark */
+        .colosseum-watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 3rem;
+            font-weight: 700;
+            color: rgba(35, 37, 38, 0.1);
+            font-family: 'DM Sans', 'Inter', Arial, sans-serif;
+            text-align: center;
+            pointer-events: none;
+            z-index: 1000;
+            white-space: nowrap;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .colosseum-watermark .subtitle {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-top: 8px;
+            opacity: 0.8;
+        }
+        
+        /* Stock Graph Modal */
+        .stock-graph-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            z-index: 2000;
+            backdrop-filter: blur(8px);
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .stock-graph-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 20px;
+            padding: 32px;
+            width: 90%;
+            max-width: 1200px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { 
+                opacity: 0; 
+                transform: translate(-50%, -60%);
+            }
+            to { 
+                opacity: 1; 
+                transform: translate(-50%, -50%);
+            }
+        }
+        
+        .stock-graph-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f1f5f9;
+            position: relative;
+        }
+        
+        .stock-graph-header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, #22c55e, #3b82f6);
+            border-radius: 1px;
+        }
+        
+        .stock-graph-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1e293b;
+            font-family: 'DM Sans', 'Inter', Arial, sans-serif;
+            background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stock-graph-close {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border: none;
+            font-size: 1.5rem;
+            color: #64748b;
+            cursor: pointer;
+            padding: 0;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            transition: all 0.2s cubic-bezier(.4,0,.2,1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stock-graph-close::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            transition: left 0.5s;
+        }
+        
+        .stock-graph-close:hover::before {
+            left: 100%;
+        }
+        
+        .stock-graph-close:hover {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
+        
+        .stock-graph-controls {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .stock-graph-view-tabs {
+            display: flex;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 12px;
+            padding: 6px;
+            border: 1px solid #e2e8f0;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+        }
+        
+        .stock-graph-view-tab {
+            padding: 10px 20px;
+            background: transparent;
+            border: none;
+            color: #64748b;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s cubic-bezier(.4,0,.2,1);
+            font-family: 'DM Sans', 'Inter', Arial, sans-serif;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stock-graph-view-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .stock-graph-view-tab:hover::before {
+            left: 100%;
+        }
+        
+        .stock-graph-view-tab.active {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+            transform: translateY(-1px);
+        }
+        
+        .stock-graph-view-tab:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.8);
+            color: #1e293b;
+            transform: translateY(-1px);
+        }
+        
+        .stock-graph-chart-container {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stock-graph-chart-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
+        }
+        
+        .stock-graph-chart-wrapper {
+            position: relative;
+            height: 450px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .stock-graph-loading {
+            text-align: center;
+            padding: 40px;
+            color: #6b7280;
+            font-family: 'Inter', 'DM Sans', Arial, sans-serif;
         }
         /* Items grid */
         .inventory-loading {
@@ -555,6 +796,66 @@
             box-shadow: 0 4px 8px rgba(5, 150, 105, 0.3);
         }
 
+        .inventory-toggle-btn {
+            background: linear-gradient(135deg, #059669, #047857);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(5, 150, 105, 0.2);
+            margin-left: 8px;
+        }
+
+        .inventory-toggle-btn:hover {
+            background: linear-gradient(135deg, #047857, #059669);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(5, 150, 105, 0.3);
+        }
+
+        .inventory-toggle-btn.active {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            box-shadow: 0 2px 4px rgba(220, 38, 38, 0.2);
+        }
+
+        .inventory-toggle-btn.active:hover {
+            background: linear-gradient(135deg, #b91c1c, #dc2626);
+            box-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
+        }
+
+        .transactions-toggle-btn {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+            margin-left: 8px;
+        }
+
+        .transactions-toggle-btn:hover {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+        }
+
+        .transactions-toggle-btn.active {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            box-shadow: 0 2px 4px rgba(220, 38, 38, 0.2);
+        }
+
+        .transactions-toggle-btn.active:hover {
+            background: linear-gradient(135deg, #b91c1c, #dc2626);
+            box-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
+        }
+
         .faction-line-2 {
             display: flex;
             flex-wrap: wrap;
@@ -575,7 +876,481 @@
             margin-top: 20px;
         }
 
-        /* Stocks Table Styles */
+        /* Stocks Card Styles */
+        .stocks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .stock-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(35,37,38,0.04);
+            border: 1px solid #f3f4f6;
+            overflow: hidden;
+            transition: all 0.2s cubic-bezier(.4,0,.2,1);
+            position: relative;
+        }
+
+        .stock-card:hover {
+            box-shadow: 0 4px 16px rgba(35,37,38,0.08);
+            transform: translateY(-2px);
+        }
+
+        .stock-card.owned {
+            border-left: 4px solid #059669;
+        }
+
+        .stock-card.owned.positive-pnl {
+            border-left-color: #059669;
+        }
+
+        .stock-card.owned.negative-pnl {
+            border-left-color: #dc2626;
+        }
+
+        .stock-card-header {
+            padding: 16px 16px 12px 16px;
+            border-bottom: 1px solid #f3f4f6;
+            background: #fafbfc;
+        }
+
+        .stock-card-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .stock-card-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .stocks-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .stock-card-info {
+                gap: 8px;
+            }
+            
+            .stock-card-image {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .stock-card-header {
+                padding: 12px 12px 8px 12px;
+            }
+            
+            .stock-card-body {
+                padding: 8px 12px 12px 12px;
+            }
+        }
+
+        .stock-card-image {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .stock-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 6px;
+        }
+
+        .stock-card-image.fallback {
+            background: #232526;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .stock-card-name {
+            font-weight: 600;
+            color: #232526;
+            font-size: 1rem;
+            line-height: 1.3;
+        }
+
+        .stock-card-acronym {
+            font-size: 0.85rem;
+            color: #6b7280;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .stock-card-price {
+            font-weight: 700;
+            color: #059669;
+            font-size: 1.1rem;
+            text-align: right;
+        }
+
+        .stock-card-body {
+            padding: 12px 16px 16px 16px;
+        }
+
+        .stock-card-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .stock-card-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .stock-card-label {
+            font-size: 0.85rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .stock-card-value {
+            font-size: 0.9rem;
+            color: #232526;
+            font-weight: 600;
+        }
+
+        .stock-card-value.positive {
+            color: #059669;
+        }
+
+        .stock-card-value.negative {
+            color: #dc2626;
+        }
+
+        .stock-card-shares {
+            background: #f3f4f6;
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            color: #374151;
+            font-weight: 600;
+        }
+
+        .stock-card-pnl {
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .stock-card-pnl.positive {
+            color: #059669;
+        }
+
+        .stock-card-pnl.negative {
+            color: #dc2626;
+        }
+
+        .stock-card-pnl-percent {
+            font-size: 0.8rem;
+            margin-top: 1px;
+            opacity: 0.8;
+        }
+
+        .stock-card-benefit {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #f3f4f6;
+        }
+
+        .stock-card-benefit-type {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .stock-card-benefit-type.active {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .stock-card-benefit-type.passive {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .stock-card-benefit-desc {
+            font-size: 0.8rem;
+            color: #232526;
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+
+        .stock-card-benefit-req {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+        
+        .stock-card-actions {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e3e6ea;
+        }
+        
+        .stock-history-btn {
+            width: 100%;
+            padding: 8px 12px;
+            background: linear-gradient(90deg, #232526 0%, #414345 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(.4,0,.2,1);
+            font-family: 'DM Sans', 'Inter', Arial, sans-serif;
+        }
+        
+        .stock-history-btn:hover {
+            background: linear-gradient(90deg, #414345 0%, #232526 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(35,37,38,0.15);
+        }
+
+        .stocks-filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stocks-filter-btn {
+            padding: 8px 16px;
+            border: 1px solid #e3e6ea;
+            border-radius: 6px;
+            background: #fff;
+            color: #374151;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(.4,0,.2,1);
+        }
+
+        .stocks-filter-btn:hover {
+            background: #f6f8fa;
+            border-color: #232526;
+        }
+
+        .stocks-filter-btn.active {
+            background: #232526;
+            color: #fff;
+            border-color: #232526;
+        }
+
+        /* Bookie Styles */
+        .bookie-filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .bookie-filter-btn {
+            padding: 8px 16px;
+            border: 1px solid #e3e6ea;
+            border-radius: 6px;
+            background: #fff;
+            color: #374151;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(.4,0,.2,1);
+        }
+
+        .bookie-filter-btn:hover {
+            background: #f6f8fa;
+            border-color: #232526;
+        }
+
+        .bookie-filter-btn.active {
+            background: #232526;
+            color: #fff;
+            border-color: #232526;
+        }
+
+        .bookie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .bookie-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(35,37,38,0.04);
+            border: 1px solid #f3f4f6;
+            overflow: hidden;
+            transition: all 0.2s cubic-bezier(.4,0,.2,1);
+            position: relative;
+        }
+
+        .bookie-card:hover {
+            box-shadow: 0 4px 16px rgba(35,37,38,0.08);
+            transform: translateY(-2px);
+        }
+
+        .bookie-card.active {
+            border-left: 4px solid #059669;
+        }
+
+        .bookie-card.won {
+            border-left: 4px solid #059669;
+        }
+
+        .bookie-card.lost {
+            border-left: 4px solid #dc2626;
+        }
+
+        .bookie-card-header {
+            padding: 16px 16px 12px 16px;
+            border-bottom: 1px solid #f3f4f6;
+            background: #fafbfc;
+        }
+
+        .bookie-card-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .bookie-card-name {
+            font-weight: 600;
+            color: #232526;
+            font-size: 1rem;
+            line-height: 1.3;
+        }
+
+        .bookie-card-status {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .bookie-card-status.active {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .bookie-card-status.won {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .bookie-card-status.lost {
+            background: #fef2f2;
+            color: #991b1b;
+        }
+
+        .bookie-card-status.live {
+            background: #dc2626;
+            color: #ffffff;
+            animation: pulse 2s infinite;
+        }
+
+        .bookie-card-status.upcoming {
+            background: #059669;
+            color: #ffffff;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        .bookie-card-body {
+            padding: 12px 16px 16px 16px;
+        }
+
+        .bookie-card-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .bookie-card-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .bookie-card-label {
+            font-size: 0.85rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .bookie-card-value {
+            font-size: 0.9rem;
+            color: #232526;
+            font-weight: 600;
+        }
+
+        .bookie-card-value.positive {
+            color: #059669;
+        }
+
+        .bookie-card-value.negative {
+            color: #dc2626;
+        }
+
+        .bookie-card-amount {
+            background: #f3f4f6;
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            color: #374151;
+            font-weight: 600;
+        }
+
+        .bookie-card-payout {
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .bookie-card-payout.positive {
+            color: #059669;
+        }
+
+        .bookie-card-payout.negative {
+            color: #dc2626;
+        }
+
+        .bookie-card-description {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #f3f4f6;
+            font-size: 0.85rem;
+            color: #6b7280;
+            line-height: 1.4;
+        }
+
+        /* Legacy table styles for fallback */
         .stocks-table {
             width: 100%;
             border-collapse: collapse;
@@ -1489,6 +2264,853 @@
             color: #dc2626;
             font-weight: 500;
         }
+
+        /* Faction Inventory Styles */
+        .faction-inventory-section {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(35,37,38,0.04);
+            margin-bottom: 20px;
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+        }
+
+        .inventory-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: #f9fafb;
+            border-bottom: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .inventory-header:hover {
+            background: #f3f4f6;
+        }
+
+        .inventory-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+        }
+
+        .inventory-toggle-icon {
+            font-size: 12px;
+            color: #6b7280;
+            transition: transform 0.2s ease;
+        }
+
+        .inventory-toggle-icon.collapsed {
+            transform: rotate(-90deg);
+        }
+
+        .inventory-body {
+            padding: 20px;
+        }
+
+        .inventory-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 8px;
+        }
+
+        .inventory-tab {
+            padding: 8px 16px;
+            background: none;
+            border: none;
+            border-radius: 6px;
+            font-family: 'DM Sans', 'Inter', Arial, sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .inventory-tab.active {
+            background: #f3f4f6;
+            color: #232526;
+        }
+
+        .inventory-tab:hover:not(.active) {
+            background: #f9fafb;
+            color: #374151;
+        }
+
+        .inventory-content {
+            position: relative;
+        }
+
+        .inventory-tab-content {
+            display: none;
+        }
+
+        .inventory-tab-content.active {
+            display: block;
+        }
+
+        .inventory-summary {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 16px;
+            padding: 12px;
+            background: #f9fafb;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .inventory-total {
+            font-size: 0.9rem;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .inventory-total span {
+            color: #059669;
+            font-weight: 600;
+        }
+
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .inventory-item {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .inventory-item:hover {
+            border-color: #d1d5db;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .inventory-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .inventory-item-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #232526;
+            line-height: 1.3;
+        }
+
+        .inventory-item-quantity {
+            background: #059669;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .inventory-item-type {
+            font-size: 0.8rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .inventory-item-id {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            margin-top: 4px;
+        }
+
+        /* Floating Inventory Panel */
+
+        .floating-inventory-panel {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            height: 100vh;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            box-shadow: -8px 0 32px rgba(0, 0, 0, 0.12);
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid #e2e8f0;
+        }
+
+        .floating-inventory-panel.open {
+            right: 0;
+        }
+
+        .inventory-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 28px 20px 28px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .inventory-panel-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0;
+        }
+
+        .inventory-panel-close {
+            background: #f1f5f9;
+            border: none;
+            font-size: 1.2rem;
+            color: #64748b;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .inventory-panel-close:hover {
+            background: #e2e8f0;
+            color: #475569;
+            transform: scale(1.05);
+        }
+
+        .inventory-panel-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px 28px;
+        }
+
+        .inventory-panel-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .inventory-panel-content::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 3px;
+        }
+
+        .inventory-panel-content::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+
+        .inventory-panel-content::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Redesigned inventory tabs */
+        .floating-inventory-panel .inventory-tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 24px;
+            background: #ffffff;
+            padding: 6px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e2e8f0;
+        }
+
+        .floating-inventory-panel .inventory-tab {
+            flex: 1;
+            padding: 10px 12px;
+            background: none;
+            border: none;
+            border-radius: 8px;
+            font-family: 'DM Sans', 'Inter', Arial, sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .floating-inventory-panel .inventory-tab.active {
+            background: linear-gradient(135deg, #059669, #047857);
+            color: #ffffff;
+            box-shadow: 0 2px 8px rgba(5, 150, 105, 0.3);
+        }
+
+        .floating-inventory-panel .inventory-tab:hover:not(.active) {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        /* Redesigned inventory summary */
+        .floating-inventory-panel .inventory-summary {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 16px 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .floating-inventory-panel .inventory-total {
+            font-size: 0.9rem;
+            color: #475569;
+            font-weight: 600;
+        }
+
+        .floating-inventory-panel .inventory-total span {
+            color: #059669;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        /* Compact inventory grid */
+        .floating-inventory-panel .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .floating-inventory-panel .inventory-item {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 10px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .floating-inventory-panel .inventory-item:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .floating-inventory-panel .inventory-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+            gap: 8px;
+        }
+
+        .floating-inventory-panel .inventory-item-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #1e293b;
+            line-height: 1.2;
+            flex: 1;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .floating-inventory-panel .inventory-item-quantity {
+            color: #059669;
+            font-size: 0.85rem;
+            font-weight: 700;
+            min-width: 30px;
+            text-align: right;
+            flex-shrink: 0;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .floating-inventory-panel .inventory-item-type {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .floating-inventory-panel .inventory-item-id {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        /* Floating Transactions Panel */
+        .floating-transactions-panel {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            height: 100vh;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            box-shadow: -8px 0 32px rgba(0, 0, 0, 0.12);
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid #e2e8f0;
+        }
+
+        .floating-transactions-panel.open {
+            right: 0;
+        }
+
+        .transactions-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 28px 20px 28px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .transactions-panel-close {
+            background: #f1f5f9;
+            border: none;
+            font-size: 1.2rem;
+            color: #64748b;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .transactions-panel-close:hover {
+            background: #e2e8f0;
+            color: #475569;
+            transform: scale(1.05);
+        }
+
+        .transactions-panel-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px 28px;
+        }
+
+        .transactions-panel-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .transactions-panel-content::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 3px;
+        }
+
+        .transactions-panel-content::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+
+        .transactions-panel-content::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Transactions Summary */
+        .transactions-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+            padding: 16px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .summary-item {
+            text-align: center;
+        }
+
+        .summary-label {
+            display: block;
+            font-size: 0.8rem;
+            color: #64748b;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .summary-value {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .summary-value.positive {
+            color: #059669;
+        }
+
+        .summary-value.negative {
+            color: #dc2626;
+        }
+
+        .summary-value.warning {
+            color: #f59e0b;
+        }
+
+        .summary-value.danger {
+            color: #dc2626;
+        }
+
+        /* Faction Transactions Styles */
+        .faction-transactions-section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(35,37,38,0.04);
+            margin-bottom: 20px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .transactions-filters {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 8px;
+        }
+
+        .transaction-filter-btn {
+            padding: 8px 16px;
+            background: none;
+            border: none;
+            border-radius: 6px;
+            font-family: 'DM Sans', 'Inter', Arial, sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .transaction-filter-btn.active {
+            background: #f3f4f6;
+            color: #232526;
+        }
+
+        .transaction-filter-btn:hover:not(.active) {
+            background: #f9fafb;
+            color: #374151;
+        }
+
+        .transactions-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 12px 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            background: #fff;
+            transition: all 0.2s ease;
+        }
+
+        .transaction-item:hover {
+            border-color: #d1d5db;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .transaction-item.deposit {
+            border-left: 4px solid #059669;
+        }
+
+        .transaction-item.withdrawal {
+            border-left: 4px solid #dc2626;
+        }
+
+        .transaction-item.transfer {
+            border-left: 4px solid #3b82f6;
+        }
+
+        .transaction-item.high-value {
+            border: 2px solid #f59e0b;
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+        }
+
+        .transaction-item.suspicious {
+            border: 2px solid #dc2626;
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            animation: pulse 2s infinite;
+        }
+
+        .transaction-item.recent {
+            border: 2px solid #059669;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+        }
+
+        .transaction-flags {
+            display: flex;
+            gap: 4px;
+            margin-top: 4px;
+        }
+
+        .transaction-flag {
+            padding: 2px 6px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .transaction-flag.high-value {
+            background: #f59e0b;
+        }
+
+        .transaction-flag.suspicious {
+            background: #dc2626;
+        }
+
+        .transaction-flag.recent {
+            background: #059669;
+        }
+
+        .transaction-flag.self-transfer {
+            background: #8b5cf6;
+        }
+
+        .transaction-flag.rapid {
+            background: #ef4444;
+        }
+
+        /* Transactions Legend */
+        .transactions-legend {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+        }
+
+        .legend-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .legend-flag {
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: white;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .legend-flag.high-value {
+            background: #f59e0b;
+        }
+
+        .legend-flag.suspicious {
+            background: #dc2626;
+        }
+
+        .legend-flag.recent {
+            background: #059669;
+        }
+
+        .legend-flag.self-transfer {
+            background: #8b5cf6;
+        }
+
+        .legend-flag.rapid {
+            background: #ef4444;
+        }
+
+        .legend-desc {
+            font-size: 0.7rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .transaction-content {
+            flex: 1;
+            margin-right: 16px;
+        }
+
+        .transaction-news {
+            font-size: 0.9rem;
+            color: #232526;
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+
+        .transaction-news a {
+            color: #059669;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .transaction-news a:hover {
+            text-decoration: underline;
+        }
+
+        .transaction-time {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+
+        .transaction-amount {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #059669;
+            text-align: right;
+            min-width: 80px;
+        }
+
+        .transaction-amount.negative {
+            color: #dc2626;
+        }
+
+        /* Payout Text Modal */
+        .payout-text-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .payout-text-content {
+            background: #fff;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            padding: 24px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .payout-text-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #6b7280;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .payout-text-close:hover {
+            background: #f3f4f6;
+            color: #232526;
+        }
+
+        .payout-text-header {
+            margin-bottom: 16px;
+        }
+
+        .payout-text-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #232526;
+            text-align: center;
+        }
+
+        .payout-text-body {
+            flex: 1;
+            margin-bottom: 16px;
+        }
+
+        #payout-text-area {
+            width: 100%;
+            height: 300px;
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            resize: vertical;
+            background: #f9fafb;
+            color: #232526;
+        }
+
+        .payout-text-actions {
+            display: flex;
+            justify-content: center;
+        }
+
+        .copy-btn {
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #232526 0%, #414345 100%);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-family: 'DM Sans', 'Inter', Arial, sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(.4,0,.2,1);
+            box-shadow: 0 2px 4px rgba(35,37,38,0.1);
+        }
+
+        .copy-btn:hover {
+            background: linear-gradient(90deg, #414345 0%, #232526 100%);
+            box-shadow: 0 4px 8px rgba(35,37,38,0.15);
+            transform: translateY(-1px);
+        }
     </style>
 </head>
 <body>
@@ -1502,9 +3124,140 @@
         <div class="success-message" id="successMsg"></div>
     </div>
     <div id="dashboard" class="dashboard" style="display:none;">
+
+        
+        <!-- Floating Inventory Panel -->
+        <div class="floating-inventory-panel" id="floating-inventory-panel">
+        
+        <!-- Floating Transactions Panel -->
+        <div class="floating-transactions-panel" id="floating-transactions-panel">
+            <div class="transactions-panel-header">
+                <h3 style="font-size:1.2rem;font-weight:600;color:#232526;margin:0;">💰 Faction Transactions</h3>
+                <button class="transactions-panel-close" onclick="toggleTransactions()">×</button>
+            </div>
+            <div class="transactions-panel-content">
+                <div id="faction-transactions-loading" class="inventory-loading">Loading transactions...</div>
+                <div id="faction-transactions-content" style="display:none;">
+                    <div class="transactions-summary">
+                        <div class="summary-item">
+                            <span class="summary-label">Total Inflow:</span>
+                            <span class="summary-value positive" id="total-inflow">$0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Total Outflow:</span>
+                            <span class="summary-value negative" id="total-outflow">$0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Net Flow:</span>
+                            <span class="summary-value" id="net-flow">$0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Large Transactions:</span>
+                            <span class="summary-value warning" id="large-transactions">0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Suspicious Activity:</span>
+                            <span class="summary-value danger" id="suspicious-activity">0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Recent Activity:</span>
+                            <span class="summary-value" id="recent-activity">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="transactions-legend">
+                        <div class="legend-title">Tags:</div>
+                        <div class="legend-items">
+                            <div class="legend-item">
+                                <span class="legend-flag high-value">HIGH VALUE</span>
+                                <span class="legend-desc">$10M+</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-flag suspicious">SUSPICIOUS</span>
+                                <span class="legend-desc">Unusual</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-flag recent">RECENT</span>
+                                <span class="legend-desc">24h</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-flag self-transfer">SELF</span>
+                                <span class="legend-desc">Same person</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-flag rapid">RAPID</span>
+                                <span class="legend-desc">5min</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="transactions-filters">
+                        <button class="transaction-filter-btn active" onclick="filterTransactions('all')">All</button>
+                        <button class="transaction-filter-btn" onclick="filterTransactions('deposits')">Deposits</button>
+                        <button class="transaction-filter-btn" onclick="filterTransactions('withdrawals')">Withdrawals</button>
+                        <button class="transaction-filter-btn" onclick="filterTransactions('transfers')">Transfers</button>
+                    </div>
+                    
+                    <div class="transactions-list" id="transactions-list"></div>
+                </div>
+            </div>
+        </div>
+            <div class="inventory-panel-header">
+                <h3 style="font-size:1.2rem;font-weight:600;color:#232526;margin:0;">📦 Faction Inventory</h3>
+                <button class="inventory-panel-close" onclick="toggleInventory()">×</button>
+            </div>
+            <div class="inventory-panel-content">
+                <div id="faction-inventory-loading" class="inventory-loading">Loading inventory data...</div>
+                <div id="faction-inventory-data" style="display:none;">
+                    <div class="inventory-tabs">
+                        <button class="inventory-tab active" onclick="switchInventoryTab('medical')">🏥 Medical</button>
+                        <button class="inventory-tab" onclick="switchInventoryTab('boosters')">💊 Boosters</button>
+                        <button class="inventory-tab" onclick="switchInventoryTab('drugs')">🌿 Drugs</button>
+                        <button class="inventory-tab" onclick="switchInventoryTab('caches')">📦 Caches</button>
+                    </div>
+                    
+                    <div class="inventory-content">
+                        <div id="inventory-medical" class="inventory-tab-content active">
+                            <div class="inventory-summary">
+                                <span class="inventory-total">Total Items: <span id="medical-total">0</span></span>
+                                <span class="inventory-total">Total Quantity: <span id="medical-quantity">0</span></span>
+                            </div>
+                            <div class="inventory-grid" id="medical-grid"></div>
+                        </div>
+                        
+                        <div id="inventory-boosters" class="inventory-tab-content">
+                            <div class="inventory-summary">
+                                <span class="inventory-total">Total Items: <span id="boosters-total">0</span></span>
+                                <span class="inventory-total">Total Quantity: <span id="boosters-quantity">0</span></span>
+                            </div>
+                            <div class="inventory-grid" id="boosters-grid"></div>
+                        </div>
+                        
+                        <div id="inventory-drugs" class="inventory-tab-content">
+                            <div class="inventory-summary">
+                                <span class="inventory-total">Total Items: <span id="drugs-total">0</span></span>
+                                <span class="inventory-total">Total Quantity: <span id="drugs-quantity">0</span></span>
+                            </div>
+                            <div class="inventory-grid" id="drugs-grid"></div>
+                        </div>
+                        
+                        <div id="inventory-caches" class="inventory-tab-content">
+                            <div class="inventory-summary">
+                                <span class="inventory-total">Total Items: <span id="caches-total">0</span></span>
+                                <span class="inventory-total">Total Quantity: <span id="caches-quantity">0</span></span>
+                            </div>
+                            <div class="inventory-grid" id="caches-grid"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <div class="dashboard-header">
             <button class="dashboard-tab active" data-tab="activities">Activities</button>
             <button class="dashboard-tab" data-tab="stocks">Stocks</button>
+            <button class="dashboard-tab" data-tab="bookie">Bookie</button>
+            <button class="dashboard-tab" data-tab="colosseum">Colosseum</button>
             <button class="dashboard-tab" data-tab="rawlogs">Raw Logs</button>
             <button class="dashboard-tab" data-tab="company">Company</button>
             <button class="dashboard-tab" data-tab="faction">Faction</button>
@@ -1530,7 +3283,26 @@
                 <h2 style="font-size:1.2rem;font-weight:600;margin-bottom:18px;">Stock Market</h2>
                 <div id="stocks-loading" class="inventory-loading">Loading stock market data...</div>
                 <div id="stocks-content" style="display:none;">
+                    <div class="stocks-filters">
+                        <button class="stocks-filter-btn active" onclick="filterStocks('all')">All Stocks</button>
+                        <button class="stocks-filter-btn" onclick="filterStocks('owned')">My Stocks</button>
+                        <button class="stocks-filter-btn" onclick="filterStocks('positive')">Profitable</button>
+                        <button class="stocks-filter-btn" onclick="filterStocks('negative')">Losing</button>
+                    </div>
                     <div id="stocks-container"></div>
+                </div>
+            </div>
+            <div class="tab-content" id="tab-bookie" style="display:none;">
+                <h2 style="font-size:1.2rem;font-weight:600;margin-bottom:18px;">Bookie</h2>
+                <div id="bookie-loading" class="inventory-loading">Loading bookie data...</div>
+                <div id="bookie-content" style="display:none;">
+                    <div class="bookie-filters">
+                        <button class="bookie-filter-btn active" onclick="filterBookie('all')">All Bets</button>
+                        <button class="bookie-filter-btn" onclick="filterBookie('active')">Active</button>
+                        <button class="bookie-filter-btn" onclick="filterBookie('won')">Won</button>
+                        <button class="bookie-filter-btn" onclick="filterBookie('lost')">Lost</button>
+                    </div>
+                    <div id="bookie-container"></div>
                 </div>
             </div>
             <div class="tab-content" id="tab-rawlogs" style="display:none;">
@@ -1564,6 +3336,8 @@
                                 <span id="faction-tag" style="font-size:1rem;color:#6b7280;margin-right:8px;"></span>
                                 <span id="faction-name" style="font-size:1.4rem;font-weight:600;color:#232526;"></span>
                                 <button id="war-mode-toggle" class="war-mode-btn" onclick="toggleWarMode()">⚔️ War Mode</button>
+                                <button id="inventory-toggle-btn" class="inventory-toggle-btn" onclick="toggleInventory()">📦 Inventory</button>
+                                <button id="transactions-toggle-btn" class="transactions-toggle-btn" onclick="toggleTransactions()">💰 Transactions</button>
                             </div>
                             <div class="faction-line-2">
                                 <span class="faction-stat">ID: <span id="faction-id"></span></span>
@@ -1591,8 +3365,6 @@
                         </div>
                     </div>
                     
-
-                    
                     <div class="faction-members-section">
                         <div class="faction-balance-summary" id="faction-balance-summary" style="display:none;">
                             <div class="balance-header">
@@ -1613,6 +3385,10 @@
                                 </div>
                             </div>
                         </div>
+                        
+
+                        
+
                         
                         <h3 style="font-size:1.1rem;font-weight:600;margin-bottom:16px;color:#232526;">Members</h3>
                         <div id="faction-members-loading" class="inventory-loading">Loading members...</div>
@@ -1635,6 +3411,14 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="tab-content" id="tab-colosseum" style="display:none;">
+                <div class="colosseum-watermark">
+                    <div>Ranked War Betting</div>
+                    <div class="subtitle">Coming Soon</div>
+                </div>
+                <h2 style="font-size:1.2rem;font-weight:600;margin-bottom:18px;">Colosseum</h2>
+                <div class="in-progress">Page in progress</div>
             </div>
         </div>
     </div>
@@ -1732,7 +3516,7 @@
                 <div class="payout-results-header">
                     <div class="payout-results-title">Member Payouts</div>
                     <button class="export-btn" onclick="exportPayoutTable()">
-                        📊 Export CSV
+                        📋 Copy Summary
                     </button>
                 </div>
                 <table class="payout-table">
@@ -1750,6 +3534,33 @@
             </div>
         </div>
     </div>
+
+    <!-- Stock Graph Modal -->
+    <div id="stock-graph-modal" class="stock-graph-modal">
+        <div class="stock-graph-content">
+            <div class="stock-graph-header">
+                <div class="stock-graph-title" id="stock-graph-title">Stock Price History</div>
+                <button class="stock-graph-close" onclick="closeStockGraph()">×</button>
+            </div>
+            
+            <div class="stock-graph-controls">
+                <div class="stock-graph-view-tabs">
+                    <button class="stock-graph-view-tab active" onclick="setStockGraphView('day')">Today</button>
+                    <button class="stock-graph-view-tab" onclick="setStockGraphView('week')">This Week</button>
+                    <button class="stock-graph-view-tab" onclick="setStockGraphView('month')">This Month</button>
+                    <button class="stock-graph-view-tab" onclick="setStockGraphView('all')">All Time</button>
+                </div>
+            </div>
+            
+            <div class="stock-graph-chart-container">
+                <div id="stock-graph-loading" class="stock-graph-loading">Loading historical data...</div>
+                <div id="stock-graph-chart-wrapper" class="stock-graph-chart-wrapper" style="display:none;">
+                    <canvas id="stock-graph-chart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Minimal item lookup for demo (expand as needed)
         const itemLookup = {
@@ -1822,11 +3633,32 @@
         function showTab(tab) {
             document.querySelectorAll('.tab-content').forEach(tc => tc.style.display = 'none');
             document.getElementById('tab-' + tab).style.display = 'block';
+            
+            // Handle inventory and transactions panel visibility
+            const inventoryPanel = document.getElementById('floating-inventory-panel');
+            const inventoryBtn = document.getElementById('inventory-toggle-btn');
+            const transactionsPanel = document.getElementById('floating-transactions-panel');
+            const transactionsBtn = document.getElementById('transactions-toggle-btn');
+            
+            if (tab !== 'faction') {
+                // Hide panels when switching away from faction tab
+                inventoryPanel.classList.remove('open');
+                transactionsPanel.classList.remove('open');
+                if (inventoryBtn) {
+                    inventoryBtn.classList.remove('active');
+                }
+                if (transactionsBtn) {
+                    transactionsBtn.classList.remove('active');
+                }
+            }
+            
             if (tab === 'rawlogs') {
                 loadRawLogs();
             }
             if (tab === 'stocks') {
                 loadStocks();
+        } else if (tab === 'bookie') {
+            loadBookie();
             }
             if (tab === 'activities') {
                 loadTravelBar();
@@ -1900,6 +3732,12 @@
                     // Load members table
                     loadFactionMembers(members);
                     
+                    // Load faction inventory
+                    loadFactionInventory();
+                    
+                    // Load faction transactions
+                    loadFactionTransactions();
+                    
                     factionLoading.style.display = 'none';
                     factionBasicInfo.style.display = 'block';
                 } else {
@@ -1920,6 +3758,390 @@
         let factionBalanceData = null;
         let itemPrices = {};
         let userFactionId = null;
+        let factionInventoryData = {};
+        let factionTransactionsData = [];
+        let currentTransactionFilter = 'all';
+
+        // Toggle Inventory Section
+        function toggleInventory() {
+            const inventoryPanel = document.getElementById('floating-inventory-panel');
+            const inventoryBtn = document.getElementById('inventory-toggle-btn');
+            const transactionsPanel = document.getElementById('floating-transactions-panel');
+            const transactionsBtn = document.getElementById('transactions-toggle-btn');
+            
+            // Close transactions panel if open
+            transactionsPanel.classList.remove('open');
+            transactionsBtn.classList.remove('active');
+            
+            if (inventoryPanel.classList.contains('open')) {
+                inventoryPanel.classList.remove('open');
+                inventoryBtn.classList.remove('active');
+            } else {
+                inventoryPanel.classList.add('open');
+                inventoryBtn.classList.add('active');
+            }
+        }
+
+        // Toggle Transactions Section
+        function toggleTransactions() {
+            const transactionsPanel = document.getElementById('floating-transactions-panel');
+            const transactionsBtn = document.getElementById('transactions-toggle-btn');
+            const inventoryPanel = document.getElementById('floating-inventory-panel');
+            const inventoryBtn = document.getElementById('inventory-toggle-btn');
+            
+            // Close inventory panel if open
+            inventoryPanel.classList.remove('open');
+            inventoryBtn.classList.remove('active');
+            
+            if (transactionsPanel.classList.contains('open')) {
+                transactionsPanel.classList.remove('open');
+                transactionsBtn.classList.remove('active');
+            } else {
+                transactionsPanel.classList.add('open');
+                transactionsBtn.classList.add('active');
+            }
+        }
+
+        // Load Faction Transactions
+        async function loadFactionTransactions() {
+            const transactionsLoading = document.getElementById('faction-transactions-loading');
+            const transactionsContent = document.getElementById('faction-transactions-content');
+            
+            transactionsLoading.style.display = 'block';
+            transactionsContent.style.display = 'none';
+            
+            try {
+                const response = await fetch(`https://api.torn.com/faction/?selections=fundsnews&key=${apiKey}`);
+                const data = await response.json();
+                
+                if (data.fundsnews) {
+                    // Convert object to array and sort by timestamp
+                    factionTransactionsData = Object.entries(data.fundsnews)
+                        .map(([id, transaction]) => ({
+                            id,
+                            news: transaction.news,
+                            timestamp: transaction.timestamp
+                        }))
+                        .sort((a, b) => b.timestamp - a.timestamp); // Most recent first
+                    
+                    // Render transactions
+                    renderTransactions();
+                    
+                    transactionsLoading.style.display = 'none';
+                    transactionsContent.style.display = 'block';
+                } else {
+                    transactionsLoading.textContent = 'No transaction data found.';
+                }
+            } catch (error) {
+                transactionsLoading.textContent = 'Failed to load transaction data.';
+                console.error('Error loading transaction data:', error);
+            }
+        }
+
+        // Filter Transactions
+        function filterTransactions(filterType) {
+            currentTransactionFilter = filterType;
+            
+            // Update filter buttons
+            document.querySelectorAll('.transaction-filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Re-render transactions
+            renderTransactions();
+        }
+
+        // Render Transactions
+        function renderTransactions() {
+            const transactionsList = document.getElementById('transactions-list');
+            transactionsList.innerHTML = '';
+            
+            let filteredTransactions = factionTransactionsData;
+            
+            // Apply filter
+            if (currentTransactionFilter !== 'all') {
+                filteredTransactions = factionTransactionsData.filter(transaction => {
+                    const news = transaction.news.toLowerCase();
+                    switch (currentTransactionFilter) {
+                        case 'deposits':
+                            return news.includes('deposited');
+                        case 'withdrawals':
+                            return news.includes('withdrew') || news.includes('decreased');
+                        case 'transfers':
+                            return news.includes('was given') || news.includes('increased') || news.includes('decreased');
+                        default:
+                            return true;
+                    }
+                });
+            }
+            
+            // Anomaly Detection Variables
+            let totalInflow = 0;
+            let totalOutflow = 0;
+            let largeTransactions = 0;
+            let suspiciousActivity = 0;
+            let recentActivity = 0;
+            const largeThreshold = 10000000; // $10M threshold
+            const recentThreshold = 24 * 60 * 60; // 24 hours in seconds
+            const now = Math.floor(Date.now() / 1000);
+            
+            // Analyze all transactions for anomalies
+            const anomalyData = factionTransactionsData.map(transaction => {
+                const amountMatch = transaction.news.match(/\$([0-9,]+)/);
+                const amount = amountMatch ? parseInt(amountMatch[1].replace(/,/g, '')) : 0;
+                const news = transaction.news.toLowerCase();
+                const timeDiff = now - transaction.timestamp;
+                
+                // Calculate flow
+                if (news.includes('deposited') || news.includes('increased')) {
+                    totalInflow += amount;
+                } else if (news.includes('withdrew') || news.includes('decreased')) {
+                    totalOutflow += amount;
+                }
+                
+                // Detect anomalies
+                const anomalies = [];
+                
+                // High value transaction detection
+                if (amount > largeThreshold) {
+                    anomalies.push('high-value');
+                    largeTransactions++;
+                }
+                
+                // Recent activity detection
+                if (timeDiff < recentThreshold) {
+                    anomalies.push('recent');
+                    recentActivity++;
+                }
+                
+                // Suspicious activity detection
+                let suspicious = false;
+                
+                // Self-transfer detection
+                const selfTransferMatch = news.match(/([^>]+) was given \$[0-9,]+ by \1/);
+                if (selfTransferMatch) {
+                    anomalies.push('self-transfer');
+                    suspicious = true;
+                }
+                
+                // Rapid transaction detection (multiple transactions in short time)
+                const rapidTransactions = factionTransactionsData.filter(t => 
+                    Math.abs(t.timestamp - transaction.timestamp) < 300 && // 5 minutes
+                    t.id !== transaction.id
+                );
+                if (rapidTransactions.length > 2) {
+                    anomalies.push('rapid');
+                    suspicious = true;
+                }
+                
+                // Unusual withdrawal patterns
+                if (news.includes('withdrew') && amount > 50000000) { // $50M+ withdrawals
+                    anomalies.push('suspicious');
+                    suspicious = true;
+                }
+                
+                // Multiple large deposits from same person
+                const playerMatch = news.match(/([^>]+) deposited/);
+                if (playerMatch) {
+                    const player = playerMatch[1];
+                    const playerDeposits = factionTransactionsData.filter(t => 
+                        t.news.includes(player) && 
+                        t.news.includes('deposited') &&
+                        t.id !== transaction.id
+                    );
+                    if (playerDeposits.length > 3) {
+                        anomalies.push('suspicious');
+                        suspicious = true;
+                    }
+                }
+                
+                if (suspicious) suspiciousActivity++;
+                
+                return {
+                    ...transaction,
+                    amount,
+                    anomalies,
+                    isLarge: amount > largeThreshold,
+                    isRecent: timeDiff < recentThreshold,
+                    isSuspicious: suspicious
+                };
+            });
+            
+            const netFlow = totalInflow - totalOutflow;
+            
+            // Update summary
+            document.getElementById('total-inflow').textContent = `$${totalInflow.toLocaleString()}`;
+            document.getElementById('total-outflow').textContent = `$${totalOutflow.toLocaleString()}`;
+            document.getElementById('net-flow').textContent = `$${netFlow.toLocaleString()}`;
+            document.getElementById('net-flow').className = `summary-value ${netFlow >= 0 ? 'positive' : 'negative'}`;
+            document.getElementById('large-transactions').textContent = largeTransactions;
+            document.getElementById('suspicious-activity').textContent = suspiciousActivity;
+            document.getElementById('recent-activity').textContent = recentActivity;
+            
+            // Render filtered transactions with anomaly indicators
+            const filteredAnomalyData = anomalyData.filter(transaction => {
+                const news = transaction.news.toLowerCase();
+                switch (currentTransactionFilter) {
+                    case 'deposits':
+                        return news.includes('deposited');
+                    case 'withdrawals':
+                        return news.includes('withdrew') || news.includes('decreased');
+                    case 'transfers':
+                        return news.includes('was given') || news.includes('increased') || news.includes('decreased');
+                    default:
+                        return true;
+                }
+            });
+            
+            filteredAnomalyData.forEach(transaction => {
+                const transactionDiv = document.createElement('div');
+                transactionDiv.className = 'transaction-item';
+                
+                // Add anomaly classes
+                if (transaction.isLarge) transactionDiv.classList.add('high-value');
+                if (transaction.isSuspicious) transactionDiv.classList.add('suspicious');
+                if (transaction.isRecent) transactionDiv.classList.add('recent');
+                
+                // Determine transaction type for styling
+                const news = transaction.news.toLowerCase();
+                if (news.includes('deposited')) {
+                    transactionDiv.classList.add('deposit');
+                } else if (news.includes('withdrew') || news.includes('decreased')) {
+                    transactionDiv.classList.add('withdrawal');
+                } else if (news.includes('was given') || news.includes('increased')) {
+                    transactionDiv.classList.add('transfer');
+                }
+                
+                // Extract amount from news text
+                const amountMatch = transaction.news.match(/\$([0-9,]+)/);
+                const amount = amountMatch ? amountMatch[1] : '';
+                const isNegative = transaction.news.includes('decreased') || transaction.news.includes('withdrew');
+                
+                // Format timestamp
+                const date = new Date(transaction.timestamp * 1000);
+                const timeString = date.toLocaleString();
+                
+                // Create anomaly flags with readable names
+                const flagLabels = {
+                    'high-value': 'HIGH VALUE',
+                    'suspicious': 'SUSPICIOUS',
+                    'recent': 'RECENT',
+                    'self-transfer': 'SELF TRANSFER',
+                    'rapid': 'RAPID'
+                };
+                
+                const flags = transaction.anomalies.map(anomaly => 
+                    `<span class="transaction-flag ${anomaly}">${flagLabels[anomaly] || anomaly.toUpperCase()}</span>`
+                ).join('');
+                
+                transactionDiv.innerHTML = `
+                    <div class="transaction-content">
+                        <div class="transaction-news">${transaction.news}</div>
+                        <div class="transaction-time">${timeString}</div>
+                        ${flags ? `<div class="transaction-flags">${flags}</div>` : ''}
+                    </div>
+                    ${amount ? `<div class="transaction-amount ${isNegative ? 'negative' : ''}">$${amount}</div>` : ''}
+                `;
+                
+                transactionsList.appendChild(transactionDiv);
+            });
+        }
+
+        // Load Faction Inventory
+        async function loadFactionInventory() {
+            const inventoryLoading = document.getElementById('faction-inventory-loading');
+            const inventoryData = document.getElementById('faction-inventory-data');
+            
+            // Show loading state
+            inventoryLoading.style.display = 'block';
+            inventoryData.style.display = 'none';
+            
+            try {
+                // Load all inventory types
+                const [medicalResponse, boostersResponse, drugsResponse, cachesResponse] = await Promise.all([
+                    fetch(`https://api.torn.com/v2/faction/medical?key=${apiKey}`),
+                    fetch(`https://api.torn.com/v2/faction/boosters?key=${apiKey}`),
+                    fetch(`https://api.torn.com/v2/faction/drugs?key=${apiKey}`),
+                    fetch(`https://api.torn.com/v2/faction/caches?key=${apiKey}`)
+                ]);
+                
+                const medicalData = await medicalResponse.json();
+                const boostersData = await boostersResponse.json();
+                const drugsData = await drugsResponse.json();
+                const cachesData = await cachesResponse.json();
+                
+                // Store inventory data globally
+                factionInventoryData = {
+                    medical: medicalData.medical || [],
+                    boosters: boostersData.boosters || [],
+                    drugs: drugsData.drugs || [],
+                    caches: cachesData.caches || []
+                };
+                
+                // Render inventory
+                renderInventoryTab('medical');
+                
+                inventoryLoading.style.display = 'none';
+                inventoryData.style.display = 'block';
+                
+            } catch (error) {
+                inventoryLoading.textContent = 'Failed to load inventory data.';
+                console.error('Error loading inventory data:', error);
+            }
+        }
+
+        // Switch Inventory Tab
+        function switchInventoryTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.inventory-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`[onclick="switchInventoryTab('${tabName}')"]`).classList.add('active');
+            
+            // Update tab content
+            document.querySelectorAll('.inventory-tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(`inventory-${tabName}`).classList.add('active');
+            
+            // Render the selected tab
+            renderInventoryTab(tabName);
+        }
+
+        // Render Inventory Tab
+        function renderInventoryTab(tabName) {
+            const items = factionInventoryData[tabName] || [];
+            const grid = document.getElementById(`${tabName}-grid`);
+            const totalItems = document.getElementById(`${tabName}-total`);
+            const totalQuantity = document.getElementById(`${tabName}-quantity`);
+            
+            // Calculate totals
+            const totalQuantitySum = items.reduce((sum, item) => sum + item.quantity, 0);
+            
+            // Update summary
+            totalItems.textContent = items.length;
+            totalQuantity.textContent = totalQuantitySum.toLocaleString();
+            
+            // Render items
+            grid.innerHTML = '';
+            
+            items.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'inventory-item';
+                
+                itemDiv.innerHTML = `
+                    <div class="inventory-item-header">
+                        <div class="inventory-item-name">${item.name}</div>
+                        <div class="inventory-item-quantity">${item.quantity.toLocaleString()}</div>
+                    </div>
+                    <div class="inventory-item-type">${item.type}</div>
+                    <div class="inventory-item-id">ID: ${item.ID}</div>
+                `;
+                
+                grid.appendChild(itemDiv);
+            });
+        }
 
         // Load Faction Members and Balance
         async function loadFactionMembers(members) {
@@ -2369,7 +4591,7 @@
                         <span class="reward-total-label">Cache Value:</span>
                         <span class="reward-total-value">$${calculateRewardValue(faction.rewards).toLocaleString()}</span>
                         ${userFactionId && faction.id === userFactionId ? `
-                            <button class="payout-calculator-btn" onclick="showPayoutCalculator(${faction.id}, ${calculateRewardValue(faction.rewards)}, ${JSON.stringify(faction.members).replace(/"/g, '&quot;')})">
+                            <button class="payout-calculator-btn" onclick="showPayoutCalculator(${faction.id}, ${report.id}, ${calculateRewardValue(faction.rewards)}, ${JSON.stringify(faction.members).replace(/"/g, '&quot;')})">
                                 💰 Calculate Payout
                             </button>
                         ` : ''}
@@ -2453,13 +4675,14 @@
         // Global variables for payout calculator
         let currentPayoutData = {
             factionId: null,
+            warId: null,
             totalCacheValue: 0,
             members: [],
             totalAttacks: 0
         };
 
         // Show Payout Calculator
-        function showPayoutCalculator(factionId, cacheValue, membersData) {
+        function showPayoutCalculator(factionId, warId, cacheValue, membersData) {
             const modal = document.getElementById('payout-modal');
             
             // Parse members data if it's a string
@@ -2483,6 +4706,7 @@
             // Store current data
             currentPayoutData = {
                 factionId: factionId,
+                warId: warId,
                 totalCacheValue: cacheValue,
                 members: userFactionMembers,
                 totalAttacks: totalAttacks
@@ -2529,12 +4753,12 @@
                     break;
                 case 'leader-bonus':
                     factionPercentage.value = 20;
-                    specialMemberName.value = 'Leader';
+                    specialMemberName.value = '';
                     specialMemberPercentage.value = 10;
                     break;
                 case 'top-attackers':
                     factionPercentage.value = 20;
-                    specialMemberName.value = 'Top 3 Attackers';
+                    specialMemberName.value = '';
                     specialMemberPercentage.value = 15;
                     break;
                 case 'custom':
@@ -2649,9 +4873,9 @@
             });
         }
 
-        // Export Payout Table to CSV
+        // Show Payout Text Popup
         function exportPayoutTable() {
-            const { totalCacheValue: estimatedCacheValue, totalAttacks } = currentPayoutData;
+            const { totalCacheValue: estimatedCacheValue, totalAttacks, warId } = currentPayoutData;
             const actualCacheValue = parseFloat(document.getElementById('actual-cache-value').value) || 0;
             const totalCacheValue = actualCacheValue > 0 ? actualCacheValue : estimatedCacheValue;
             const factionPercentage = parseFloat(document.getElementById('faction-percentage').value) || 0;
@@ -2662,50 +4886,99 @@
             const tbody = document.getElementById('payout-tbody');
             const rows = tbody.querySelectorAll('tr');
             
-            // Create CSV content
-            let csvContent = 'data:text/csv;charset=utf-8,';
+            // Calculate amounts
+            const factionShareAmount = Math.round(totalCacheValue * (factionPercentage / 100));
+            const memberShareAmount = Math.round(totalCacheValue * ((100 - factionPercentage) / 100));
+            const specialMemberAmount = Math.round(memberShareAmount * (specialMemberPercentage / 100));
+            const remainingAmount = memberShareAmount - specialMemberAmount;
+            const perAttackAmount = totalAttacks > 0 ? remainingAmount / totalAttacks : 0;
             
-            // Add header information
-            csvContent += 'War Payout Breakdown\n';
-            csvContent += `Total Cache Value,$${totalCacheValue.toLocaleString()}\n`;
-            csvContent += `Faction Share,${factionPercentage}%\n`;
-            csvContent += `Special Member,${specialMemberName || 'None'}\n`;
-            csvContent += `Special Member Share,${specialMemberPercentage}%\n`;
-            csvContent += `Total Attacks,${totalAttacks.toLocaleString()}\n`;
-            csvContent += '\n';
+            // Build formatted text
+            let formattedText = `https://www.torn.com/war.php?step=rankreport&rankID=${warId}\n`;
+            formattedText += `Cache sold: $${totalCacheValue.toLocaleString()}\n`;
+            formattedText += `Faction Tax ${factionPercentage}%: $${factionShareAmount.toLocaleString()}\n`;
             
-            // Add table headers
-            csvContent += 'Name,Level,Attacks,Attack Share (%),Payout,Special Member\n';
+            if (specialMemberName && specialMemberPercentage > 0) {
+                formattedText += `${specialMemberName}: ${specialMemberPercentage}% - $${specialMemberAmount.toLocaleString()}\n`;
+            }
             
-            // Add member data
+            formattedText += `Remainder / ${totalAttacks} attacks = $${perAttackAmount.toFixed(2)} per attack\n\n`;
+            
+            // Add member breakdown
             rows.forEach(row => {
                 const cells = row.querySelectorAll('td');
-                const name = cells[0].textContent.replace(/,/g, ';'); // Escape commas
-                const level = cells[1].textContent;
-                const attacks = cells[2].textContent;
-                const attackShare = cells[3].textContent;
-                const payout = cells[4].textContent.replace(/[$,]/g, ''); // Remove $ and commas
-                const isSpecial = row.classList.contains('special-member') ? 'Yes' : 'No';
+                const name = cells[0].textContent;
+                const attacks = parseInt(cells[2].textContent) || 0;
+                const payout = parseFloat(cells[4].textContent.replace(/[$,]/g, '')) || 0;
                 
-                csvContent += `${name},${level},${attacks},${attackShare},${payout},${isSpecial}\n`;
+                if (attacks > 0) {
+                    formattedText += `${name}: ${attacks} attacks - $${payout.toLocaleString()}\n`;
+                }
             });
             
-            // Add summary
-            csvContent += '\n';
-            csvContent += 'Summary\n';
-            csvContent += `Faction Share Amount,$${Math.round(totalCacheValue * (factionPercentage / 100)).toLocaleString()}\n`;
-            csvContent += `Member Share Amount,$${Math.round(totalCacheValue * ((100 - factionPercentage) / 100)).toLocaleString()}\n`;
+            formattedText += `\nFaction Tax ${factionPercentage}% will provide xanax(during war time), weapons and med items`;
             
-            // Create download link
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement('a');
-            link.setAttribute('href', encodedUri);
-            link.setAttribute('download', `war_payout_${currentPayoutData.factionId}_${new Date().toISOString().split('T')[0]}.csv`);
-            document.body.appendChild(link);
+            // Show popup with formatted text
+            showPayoutTextPopup(formattedText);
+        }
+
+        // Show Payout Text Popup
+        function showPayoutTextPopup(text) {
+            // Create modal if it doesn't exist
+            let modal = document.getElementById('payout-text-modal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'payout-text-modal';
+                modal.className = 'payout-text-modal';
+                modal.innerHTML = `
+                    <div class="payout-text-content">
+                        <button class="payout-text-close" onclick="closePayoutTextPopup()">×</button>
+                        <div class="payout-text-header">
+                            <div class="payout-text-title">War Payout Summary</div>
+                        </div>
+                        <div class="payout-text-body">
+                            <textarea id="payout-text-area" readonly></textarea>
+                        </div>
+                        <div class="payout-text-actions">
+                            <button class="copy-btn" onclick="copyPayoutText()">📋 Copy Text</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            }
             
-            // Trigger download
-            link.click();
-            document.body.removeChild(link);
+            // Set text content
+            document.getElementById('payout-text-area').value = text;
+            
+            // Show modal
+            modal.style.display = 'flex';
+        }
+
+        // Close Payout Text Popup
+        function closePayoutTextPopup() {
+            const modal = document.getElementById('payout-text-modal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Copy Payout Text
+        function copyPayoutText() {
+            const textArea = document.getElementById('payout-text-area');
+            textArea.select();
+            textArea.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand('copy');
+            
+            // Show feedback
+            const copyBtn = document.querySelector('.copy-btn');
+            const originalText = copyBtn.textContent;
+            copyBtn.textContent = '✅ Copied!';
+            copyBtn.style.background = '#059669';
+            
+            setTimeout(() => {
+                copyBtn.textContent = originalText;
+                copyBtn.style.background = '';
+            }, 2000);
         }
 
         // Close War Report Modal
@@ -2851,6 +5124,342 @@
             { name: "Butterfly Knife", quantity: 5 }
             // ... add more as needed ...
         ];
+        // Load Bookie Data
+        async function loadBookie() {
+            const bookieLoading = document.getElementById('bookie-loading');
+            const bookieContent = document.getElementById('bookie-content');
+            const bookieContainer = document.getElementById('bookie-container');
+
+            bookieLoading.style.display = 'block';
+            bookieContent.style.display = 'none';
+            bookieContainer.innerHTML = '';
+
+            try {
+                // Fetch real sports betting data from Odds API
+                const response = await fetch('/api/odds?region=uk&market=h2h');
+                const result = await response.json();
+                
+                if (result.success) {
+                    const sportsData = result.data;
+                    renderBookieCards(sportsData);
+                    
+                    // Show API usage info
+                    console.log(`Odds API - Remaining requests: ${result.remaining_requests}, Used: ${result.used_requests}`);
+                } else {
+                    throw new Error(result.error || 'Failed to fetch odds data');
+                }
+                
+                bookieLoading.style.display = 'none';
+                bookieContent.style.display = 'block';
+            } catch (error) {
+                console.error('Error loading bookie:', error);
+                bookieLoading.textContent = 'Failed to load sports betting data. Using mock data instead.';
+                
+                // Fallback to mock data
+                const mockBookieData = generateMockBookieData();
+                renderBookieCards(mockBookieData);
+                
+                bookieLoading.style.display = 'none';
+                bookieContent.style.display = 'block';
+            }
+        }
+
+        // Generate mock bookie data
+        function generateMockBookieData() {
+            return [
+                {
+                    id: 1,
+                    name: "Will I win the lottery?",
+                    description: "Bet on whether you'll win the lottery in the next 24 hours",
+                    amount: 1000000,
+                    odds: 2.5,
+                    potential_payout: 2500000,
+                    status: "active",
+                    placed_at: new Date(Date.now() - 3600000).toISOString(),
+                    expires_at: new Date(Date.now() + 82800000).toISOString()
+                },
+                {
+                    id: 2,
+                    name: "Stock market crash",
+                    description: "Bet on whether the stock market will crash by more than 10% in the next week",
+                    amount: 500000,
+                    odds: 8.0,
+                    potential_payout: 4000000,
+                    status: "won",
+                    placed_at: new Date(Date.now() - 86400000).toISOString(),
+                    resolved_at: new Date(Date.now() - 3600000).toISOString(),
+                    actual_payout: 4000000
+                },
+                {
+                    id: 3,
+                    name: "Faction war victory",
+                    description: "Bet on whether your faction will win the next war",
+                    amount: 250000,
+                    odds: 1.8,
+                    potential_payout: 450000,
+                    status: "lost",
+                    placed_at: new Date(Date.now() - 172800000).toISOString(),
+                    resolved_at: new Date(Date.now() - 86400000).toISOString(),
+                    actual_payout: 0
+                },
+                {
+                    id: 4,
+                    name: "Company profit increase",
+                    description: "Bet on whether your company will increase profits by 20% this month",
+                    amount: 750000,
+                    odds: 3.2,
+                    potential_payout: 2400000,
+                    status: "active",
+                    placed_at: new Date(Date.now() - 7200000).toISOString(),
+                    expires_at: new Date(Date.now() + 2592000000).toISOString()
+                },
+                {
+                    id: 5,
+                    name: "Travel destination success",
+                    description: "Bet on whether you'll successfully reach your travel destination",
+                    amount: 300000,
+                    odds: 1.5,
+                    potential_payout: 450000,
+                    status: "won",
+                    placed_at: new Date(Date.now() - 43200000).toISOString(),
+                    resolved_at: new Date(Date.now() - 1800000).toISOString(),
+                    actual_payout: 450000
+                }
+            ];
+        }
+
+        // Render Bookie Cards
+        function renderBookieCards(bookieData) {
+            const bookieContainer = document.getElementById('bookie-container');
+            bookieContainer.innerHTML = '';
+
+            // Check if this is real Odds API data or mock data
+            const isOddsApiData = bookieData.length > 0 && bookieData[0].hasOwnProperty('sport_key');
+            
+            if (isOddsApiData) {
+                // Handle real Odds API data
+                renderOddsApiCards(bookieData);
+            } else {
+                // Handle mock data
+                renderMockBookieCards(bookieData);
+            }
+        }
+
+        // Render real Odds API data
+        function renderOddsApiCards(oddsData) {
+            const bookieContainer = document.getElementById('bookie-container');
+            
+            // Sort by start time (upcoming games first)
+            const sortedData = oddsData.sort((a, b) => {
+                return new Date(a.commence_time) - new Date(b.commence_time);
+            });
+
+            const grid = document.createElement('div');
+            grid.className = 'bookie-grid';
+
+            sortedData.forEach(game => {
+                const card = document.createElement('div');
+                card.className = 'bookie-card active';
+
+                // Get the best odds for each team
+                const homeTeam = game.home_team;
+                const awayTeam = game.away_team;
+                const sportTitle = game.sport_title;
+                
+                // Find the best odds from available bookmakers
+                let bestHomeOdds = null;
+                let bestAwayOdds = null;
+                let bestBookmaker = null;
+
+                if (game.bookmakers && game.bookmakers.length > 0) {
+                    game.bookmakers.forEach(bookmaker => {
+                        if (bookmaker.markets && bookmaker.markets.length > 0) {
+                            const h2hMarket = bookmaker.markets.find(market => market.key === 'h2h');
+                            if (h2hMarket && h2hMarket.outcomes) {
+                                const homeOutcome = h2hMarket.outcomes.find(outcome => outcome.name === homeTeam);
+                                const awayOutcome = h2hMarket.outcomes.find(outcome => outcome.name === awayTeam);
+                                
+                                if (homeOutcome && awayOutcome) {
+                                    if (!bestHomeOdds || homeOutcome.price > bestHomeOdds.price) {
+                                        bestHomeOdds = homeOutcome;
+                                        bestAwayOdds = awayOutcome;
+                                        bestBookmaker = bookmaker.title;
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                const startTime = new Date(game.commence_time);
+                const isLive = game.commence_time && new Date() > startTime;
+
+                card.innerHTML = `
+                    <div class="bookie-card-header">
+                        <div class="bookie-card-title">
+                            <div class="bookie-card-name">${homeTeam} vs ${awayTeam}</div>
+                            <div class="bookie-card-status ${isLive ? 'live' : 'upcoming'}">${isLive ? 'Live' : 'Upcoming'}</div>
+                        </div>
+                        <div style="font-size: 0.8rem; color: #6b7280; margin-top: 4px;">${sportTitle}</div>
+                    </div>
+                    <div class="bookie-card-body">
+                        <div class="bookie-card-row">
+                            <span class="bookie-card-label">Start Time:</span>
+                            <span class="bookie-card-value">${startTime.toLocaleString()}</span>
+                        </div>
+                        ${bestHomeOdds && bestAwayOdds ? `
+                            <div class="bookie-card-row">
+                                <span class="bookie-card-label">${homeTeam}:</span>
+                                <span class="bookie-card-amount">${bestHomeOdds.price > 0 ? '+' : ''}${bestHomeOdds.price}</span>
+                            </div>
+                            <div class="bookie-card-row">
+                                <span class="bookie-card-label">${awayTeam}:</span>
+                                <span class="bookie-card-amount">${bestAwayOdds.price > 0 ? '+' : ''}${bestAwayOdds.price}</span>
+                            </div>
+                            <div class="bookie-card-row">
+                                <span class="bookie-card-label">Bookmaker:</span>
+                                <span class="bookie-card-value">${bestBookmaker}</span>
+                            </div>
+                        ` : `
+                            <div class="bookie-card-row">
+                                <span class="bookie-card-label">Odds:</span>
+                                <span class="bookie-card-value">Not available</span>
+                            </div>
+                        `}
+                        
+                        <div class="bookie-card-description">
+                            ${game.sport_title} match between ${homeTeam} and ${awayTeam}. 
+                            ${isLive ? 'Game is currently live.' : `Game starts at ${startTime.toLocaleTimeString()}.`}
+                        </div>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+
+            bookieContainer.appendChild(grid);
+            
+            // Store data for filtering
+            window.bookieData = sortedData;
+        }
+
+        // Render mock bookie data (fallback)
+        function renderMockBookieCards(bookieData) {
+            const bookieContainer = document.getElementById('bookie-container');
+            
+            // Sort bookie data: active bets first, then by potential payout
+            const sortedData = bookieData.sort((a, b) => {
+                if (a.status === 'active' && b.status !== 'active') return -1;
+                if (a.status !== 'active' && b.status === 'active') return 1;
+                return b.potential_payout - a.potential_payout;
+            });
+
+            const grid = document.createElement('div');
+            grid.className = 'bookie-grid';
+
+            sortedData.forEach(bet => {
+                const card = document.createElement('div');
+                card.className = `bookie-card ${bet.status}`;
+
+                const isWon = bet.status === 'won';
+                const isLost = bet.status === 'lost';
+                const isActive = bet.status === 'active';
+
+                card.innerHTML = `
+                    <div class="bookie-card-header">
+                        <div class="bookie-card-title">
+                            <div class="bookie-card-name">${bet.name}</div>
+                            <div class="bookie-card-status ${bet.status}">${bet.status}</div>
+                        </div>
+                        <div style="font-size: 0.8rem; color: #6b7280; margin-top: 4px;">Mock Bet</div>
+                    </div>
+                    <div class="bookie-card-body">
+                        <div class="bookie-card-row">
+                            <span class="bookie-card-label">Bet Amount:</span>
+                            <span class="bookie-card-amount">$${bet.amount.toLocaleString()}</span>
+                        </div>
+                        <div class="bookie-card-row">
+                            <span class="bookie-card-label">Odds:</span>
+                            <span class="bookie-card-value">${bet.odds}x</span>
+                        </div>
+                        <div class="bookie-card-row">
+                            <span class="bookie-card-label">Potential Payout:</span>
+                            <span class="bookie-card-value">$${bet.potential_payout.toLocaleString()}</span>
+                        </div>
+                        ${isActive ? `
+                            <div class="bookie-card-row">
+                                <span class="bookie-card-label">Placed:</span>
+                                <span class="bookie-card-value">${new Date(bet.placed_at).toLocaleString()}</span>
+                            </div>
+                            <div class="bookie-card-row">
+                                <span class="bookie-card-label">Expires:</span>
+                                <span class="bookie-card-value">${new Date(bet.expires_at).toLocaleString()}</span>
+                            </div>
+                        ` : `
+                            <div class="bookie-card-row">
+                                <span class="bookie-card-label">Result:</span>
+                                <div class="bookie-card-payout ${isWon ? 'positive' : 'negative'}">
+                                    ${isWon ? '+' : ''}$${bet.actual_payout.toLocaleString()}
+                                </div>
+                            </div>
+                        `}
+                        
+                        <div class="bookie-card-description">
+                            ${bet.description}
+                        </div>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+
+            bookieContainer.appendChild(grid);
+            
+            // Store data for filtering
+            window.bookieData = sortedData;
+        }
+
+        // Filter bookie bets
+        function filterBookie(filterType) {
+            if (!window.bookieData) return;
+            
+            // Update filter button states
+            document.querySelectorAll('.bookie-filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            const bookieContainer = document.getElementById('bookie-container');
+            const grid = bookieContainer.querySelector('.bookie-grid');
+            
+            if (!grid) return;
+            
+            // Filter cards based on type
+            const cards = grid.querySelectorAll('.bookie-card');
+            cards.forEach(card => {
+                let show = true;
+                
+                switch (filterType) {
+                    case 'active':
+                        // For Odds API data, show all upcoming games
+                        show = card.classList.contains('active');
+                        break;
+                    case 'won':
+                        show = card.classList.contains('won');
+                        break;
+                    case 'lost':
+                        show = card.classList.contains('lost');
+                        break;
+                    case 'all':
+                    default:
+                        show = true;
+                        break;
+                }
+                
+                card.style.display = show ? 'block' : 'none';
+            });
+        }
+
         // Load Stocks Data
         async function loadStocks() {
             const stocksLoading = document.getElementById('stocks-loading');
@@ -2951,39 +5560,13 @@
             };
         }
 
-        // Render Stocks Table
+        // Render Stocks Cards
         function renderStocksTable(stocks, userStocks) {
             const stocksContainer = document.getElementById('stocks-container');
             stocksContainer.innerHTML = '';
             
-            const table = document.createElement('table');
-            table.className = 'stocks-table';
-            
-            // Create header
-            const thead = document.createElement('thead');
-            thead.innerHTML = `
-                <tr>
-                    <th class="sortable" data-sort="name">Stock ↕</th>
-                    <th class="sortable" data-sort="price">Price ↕</th>
-                    <th class="sortable" data-sort="price1yMin">1y Min ↕</th>
-                    <th class="sortable" data-sort="price1yDiff">1y Diff ↕</th>
-                    <th class="sortable" data-sort="myShares">My Shares ↕</th>
-                    <th class="sortable" data-sort="avgPrice">Avg Price ↕</th>
-                    <th class="sortable" data-sort="totalValue">Total Value ↕</th>
-                    <th class="sortable" data-sort="profitLoss">P&L ↕</th>
-                    <th class="sortable" data-sort="marketCap">Market Cap ↕</th>
-                    <th class="sortable" data-sort="shares">Shares ↕</th>
-                    <th class="sortable" data-sort="investors">Investors ↕</th>
-                    <th class="sortable" data-sort="benefitType">Benefit ↕</th>
-                    <th class="sortable" data-sort="frequency">Frequency ↕</th>
-                </tr>
-            `;
-            table.appendChild(thead);
-            
-            // Create body
-            const tbody = document.createElement('tbody');
-            
-            Object.values(stocks).forEach(stock => {
+            // Convert stocks object to array and sort by ownership and P&L
+            const stocksArray = Object.values(stocks).map(stock => {
                 // Generate mock price change data for demonstration
                 const priceChanges = generateMockPriceChanges(stock.current_price, stock.name);
                 
@@ -2997,7 +5580,8 @@
                     avgPrice: 0,
                     totalValue: 0,
                     profitLoss: 0,
-                    profitLossPercent: 0
+                    profitLossPercent: 0,
+                    isOwned: false
                 };
                 
                 if (userStock) {
@@ -3019,56 +5603,175 @@
                         avgPrice: avgPrice,
                         totalValue: totalValue,
                         profitLoss: profitLoss,
-                        profitLossPercent: profitLossPercent
+                        profitLossPercent: profitLossPercent,
+                        isOwned: true
                     };
                 }
                 
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>
-                        <div class="stock-info">
-                            <div class="stock-name">${stock.name}</div>
-                            <div class="stock-acronym">${stock.acronym}</div>
-                        </div>
-                    </td>
-                    <td class="stock-price">$${stock.current_price.toLocaleString()}</td>
-                    <td class="stock-price-min">$${priceChanges.yearMin.toLocaleString()}</td>
-                    <td class="stock-price-change ${priceDiff >= 0 ? 'positive' : 'negative'}">
-                        ${priceDiff >= 0 ? '+' : ''}${priceDiff.toFixed(2)}%
-                    </td>
-                    <td class="stock-portfolio-shares">${portfolioData.shares.toLocaleString()}</td>
-                    <td class="stock-portfolio-avg">$${portfolioData.avgPrice.toFixed(2)}</td>
-                    <td class="stock-portfolio-value">$${portfolioData.totalValue.toLocaleString()}</td>
-                    <td class="stock-portfolio-pnl ${portfolioData.profitLoss >= 0 ? 'positive' : 'negative'}">
-                        ${portfolioData.profitLoss >= 0 ? '+' : ''}$${portfolioData.profitLoss.toLocaleString()}
-                        <div class="pnl-percent">${portfolioData.profitLossPercent >= 0 ? '+' : ''}${portfolioData.profitLossPercent.toFixed(2)}%</div>
-                    </td>
-                    <td class="stock-market-cap">$${stock.market_cap.toLocaleString()}</td>
-                    <td class="stock-shares">${stock.total_shares.toLocaleString()}</td>
-                    <td class="stock-investors">${stock.investors.toLocaleString()}</td>
-                    <td class="stock-benefit">
-                        <div class="benefit-info">
-                            <div class="benefit-type ${stock.benefit.type}">${stock.benefit.type}</div>
-                            <div class="benefit-desc">${stock.benefit.description}</div>
-                            <div class="benefit-req">Requires: ${stock.benefit.requirement.toLocaleString()} shares</div>
-                        </div>
-                    </td>
-                    <td class="stock-frequency">
-                        <div class="frequency-info">
-                            <div class="frequency-days">${stock.benefit.frequency} days</div>
-                            <div class="frequency-desc">${getFrequencyDescription(stock.benefit.frequency)}</div>
-                        </div>
-                    </td>
-                `;
-                tbody.appendChild(row);
+                return {
+                    ...stock,
+                    priceChanges,
+                    priceDiff,
+                    portfolioData
+                };
             });
             
-            table.appendChild(tbody);
-            stocksContainer.appendChild(table);
+            // Sort stocks: owned stocks first, then by P&L (positive first), then by name
+            stocksArray.sort((a, b) => {
+                // First priority: owned stocks
+                if (a.portfolioData.isOwned && !b.portfolioData.isOwned) return -1;
+                if (!a.portfolioData.isOwned && b.portfolioData.isOwned) return 1;
+                
+                // Second priority: if both owned, sort by P&L (positive first)
+                if (a.portfolioData.isOwned && b.portfolioData.isOwned) {
+                    if (a.portfolioData.profitLoss >= 0 && b.portfolioData.profitLoss < 0) return -1;
+                    if (a.portfolioData.profitLoss < 0 && b.portfolioData.profitLoss >= 0) return 1;
+                    // If both same sign, sort by absolute P&L value (highest first)
+                    return Math.abs(b.portfolioData.profitLoss) - Math.abs(a.portfolioData.profitLoss);
+                }
+                
+                // Third priority: alphabetical by name
+                return a.name.localeCompare(b.name);
+            });
             
-            // Add sorting functionality
-            addStocksSorting(table, stocks, userStocks);
+            // Create cards grid
+            const grid = document.createElement('div');
+            grid.className = 'stocks-grid';
+            
+            stocksArray.forEach(stock => {
+                const card = document.createElement('div');
+                const isOwned = stock.portfolioData.isOwned;
+                const isPositive = stock.portfolioData.profitLoss >= 0;
+                
+                card.className = `stock-card ${isOwned ? 'owned' : ''} ${isOwned ? (isPositive ? 'positive-pnl' : 'negative-pnl') : ''}`;
+                
+                // Check if stock image exists
+                const stockImagePath = `data/Stock Image/${stock.acronym}.svg`;
+                const hasImage = [
+                    'YAZ', 'PTS', 'WSU', 'LOS', 'IIL', 'TGP', 'IOU', 'TMI', 'MSG', 'HRG', 
+                    'EWM', 'TCM', 'GRN', 'ELT', 'TCT', 'ASS', 'THS', 'CBD', 'LAG', 'BAG', 
+                    'TCP', 'IST', 'TCC', 'MUN', 'LSC', 'PRN', 'EVL', 'SYM', 'SYS', 'MCS', 
+                    'WLT', 'CNC', 'FHG', 'TSB', 'TCI'
+                ].includes(stock.acronym);
+
+                card.innerHTML = `
+                    <div class="stock-card-header">
+                        <div class="stock-card-title">
+                            <div class="stock-card-info">
+                                <div class="stock-card-image ${hasImage ? '' : 'fallback'}">
+                                    ${hasImage ? `<img src="${stockImagePath}" alt="${stock.acronym}" onerror="this.parentElement.classList.add('fallback'); this.parentElement.textContent='${stock.acronym}'; this.remove();">` : stock.acronym}
+                                </div>
+                                <div>
+                                    <div class="stock-card-name">${stock.name}</div>
+                                    <div class="stock-card-acronym">${stock.acronym}</div>
+                                </div>
+                            </div>
+                            <div class="stock-card-price">$${stock.current_price.toLocaleString()}</div>
+                        </div>
+                    </div>
+                    <div class="stock-card-body">
+                        ${isOwned ? `
+                            <div class="stock-card-row">
+                                <span class="stock-card-label">My Shares:</span>
+                                <span class="stock-card-shares">${stock.portfolioData.shares.toLocaleString()}</span>
+                            </div>
+                            <div class="stock-card-row">
+                                <span class="stock-card-label">Avg Price:</span>
+                                <span class="stock-card-value">$${stock.portfolioData.avgPrice.toFixed(2)}</span>
+                            </div>
+                            <div class="stock-card-row">
+                                <span class="stock-card-label">Total Value:</span>
+                                <span class="stock-card-value">$${stock.portfolioData.totalValue.toLocaleString()}</span>
+                            </div>
+                            <div class="stock-card-row">
+                                <span class="stock-card-label">P&L:</span>
+                                <div class="stock-card-pnl ${isPositive ? 'positive' : 'negative'}">
+                                    ${isPositive ? '+' : ''}$${stock.portfolioData.profitLoss.toLocaleString()}
+                                    <div class="stock-card-pnl-percent">${isPositive ? '+' : ''}${stock.portfolioData.profitLossPercent.toFixed(2)}%</div>
+                                </div>
+                            </div>
+                        ` : `
+                            <div class="stock-card-row">
+                                <span class="stock-card-label">Market Cap:</span>
+                                <span class="stock-card-value">$${stock.market_cap.toLocaleString()}</span>
+                            </div>
+                            <div class="stock-card-row">
+                                <span class="stock-card-label">Total Shares:</span>
+                                <span class="stock-card-value">${stock.total_shares.toLocaleString()}</span>
+                            </div>
+                            <div class="stock-card-row">
+                                <span class="stock-card-label">Investors:</span>
+                                <span class="stock-card-value">${stock.investors.toLocaleString()}</span>
+                            </div>
+                            <div class="stock-card-row">
+                                <span class="stock-card-label">1Y Min:</span>
+                                <span class="stock-card-value">$${stock.priceChanges.yearMin.toLocaleString()}</span>
+                            </div>
+                        `}
+                        
+                        <div class="stock-card-benefit">
+                            <div class="stock-card-benefit-type ${stock.benefit.type}">${stock.benefit.type}</div>
+                            <div class="stock-card-benefit-desc">${stock.benefit.description}</div>
+                            <div class="stock-card-benefit-req">Requires: ${stock.benefit.requirement.toLocaleString()} shares</div>
+                        </div>
+                        
+                        <div class="stock-card-actions">
+                            <button class="stock-history-btn" onclick="openStockGraph('${stock.name}', '${stock.acronym}')">
+                                📈 View History
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+            
+            stocksContainer.appendChild(grid);
+            
+            // Store data for filtering
+            window.stocksData = { stocks: stocksArray, userStocks };
         }
+        // Filter stocks function
+        function filterStocks(filterType) {
+            if (!window.stocksData) return;
+            
+            // Update filter button states
+            document.querySelectorAll('.stocks-filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            const { stocks: stocksArray, userStocks } = window.stocksData;
+            const stocksContainer = document.getElementById('stocks-container');
+            const grid = stocksContainer.querySelector('.stocks-grid');
+            
+            if (!grid) return;
+            
+            // Filter cards based on type
+            const cards = grid.querySelectorAll('.stock-card');
+            cards.forEach(card => {
+                let show = true;
+                
+                switch (filterType) {
+                    case 'owned':
+                        show = card.classList.contains('owned');
+                        break;
+                    case 'positive':
+                        show = card.classList.contains('positive-pnl');
+                        break;
+                    case 'negative':
+                        show = card.classList.contains('negative-pnl');
+                        break;
+                    case 'all':
+                    default:
+                        show = true;
+                        break;
+                }
+                
+                card.style.display = show ? 'block' : 'none';
+            });
+        }
+
         // Add sorting functionality to stocks table
         function addStocksSorting(table, stocksData, userStocks) {
             let currentSort = { column: null, direction: 'asc' };
@@ -3559,6 +6262,334 @@
         setExpensePeriod('daily');
         // Update income/expense on load
         updateIncomeExpense();
+
+        // Stock Graph Functions
+        let currentStockChart = null;
+        let currentStockData = null;
+        let currentStockView = 'day';
+        let currentStockName = '';
+        let currentStockAcronym = '';
+
+        // Register Chart.js plugins
+        Chart.register(ChartDataLabels);
+
+        function openStockGraph(stockName, stockAcronym) {
+            currentStockName = stockName;
+            currentStockAcronym = stockAcronym;
+            
+            document.getElementById('stock-graph-title').textContent = `${stockName} (${stockAcronym}) - Price History`;
+            document.getElementById('stock-graph-modal').style.display = 'block';
+            
+            // Reset view to day
+            currentStockView = 'day';
+            document.querySelectorAll('.stock-graph-view-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector('.stock-graph-view-tab').classList.add('active');
+            
+            loadStockGraphData();
+        }
+
+        function closeStockGraph() {
+            document.getElementById('stock-graph-modal').style.display = 'none';
+            
+            // Properly destroy chart
+            if (currentStockChart) {
+                currentStockChart.destroy();
+                currentStockChart = null;
+            }
+            
+            // Reset loading state
+            const loading = document.getElementById('stock-graph-loading');
+            const chartWrapper = document.getElementById('stock-graph-chart-wrapper');
+            loading.style.display = 'none';
+            chartWrapper.style.display = 'none';
+            loading.textContent = 'Loading historical data...';
+        }
+
+        function setStockGraphView(view) {
+            currentStockView = view;
+            
+            // Update tab states
+            document.querySelectorAll('.stock-graph-view-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Find and activate the correct tab
+            document.querySelectorAll('.stock-graph-view-tab').forEach(tab => {
+                if (tab.textContent.toLowerCase().includes(view)) {
+                    tab.classList.add('active');
+                }
+            });
+            
+            // Reload data with new view
+            loadStockGraphData();
+        }
+
+        async function loadStockGraphData() {
+            const loading = document.getElementById('stock-graph-loading');
+            const chartWrapper = document.getElementById('stock-graph-chart-wrapper');
+            
+            loading.style.display = 'block';
+            chartWrapper.style.display = 'none';
+            
+            try {
+                // Load all data from MongoDB
+                const response = await fetch('http://localhost:3000/api/stocks/all-data');
+                const result = await response.json();
+                
+                if (!result.success) {
+                    throw new Error(result.error || 'Failed to load data');
+                }
+
+                // Filter data for the specific stock (try exact match first, then partial match)
+                let stockData = result.data[currentStockName];
+                if (!stockData || stockData.length === 0) {
+                    // Try to find by partial name match
+                    const stockKeys = Object.keys(result.data);
+                    const matchingKey = stockKeys.find(key => 
+                        key.toLowerCase().includes(currentStockName.toLowerCase()) ||
+                        currentStockName.toLowerCase().includes(key.toLowerCase())
+                    );
+                    
+                    if (matchingKey) {
+                        stockData = result.data[matchingKey];
+                    }
+                }
+                
+                if (!stockData || stockData.length === 0) {
+                    loading.textContent = 'No historical data available for this stock';
+                    return;
+                }
+
+                // Process data based on view
+                const processedData = processStockDataForView(stockData, currentStockView);
+                createStockChart(processedData);
+                
+                loading.style.display = 'none';
+                chartWrapper.style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error loading stock data:', error);
+                loading.textContent = 'Failed to load historical data';
+            }
+        }
+
+        function processStockDataForView(stockData, view) {
+            const now = new Date();
+            let filteredData = stockData;
+            
+            if (view === 'day') {
+                // Filter to today only
+                const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                filteredData = stockData.filter(point => {
+                    const pointDate = new Date(point.timestamp);
+                    return pointDate >= today;
+                });
+            } else if (view === 'week') {
+                // Filter to last 7 days, then average by day
+                const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+                filteredData = stockData.filter(point => {
+                    const pointDate = new Date(point.timestamp);
+                    return pointDate >= weekAgo;
+                });
+                filteredData = aggregateStockDataByDay(filteredData);
+            } else if (view === 'month') {
+                // Filter to last 30 days, then average by day
+                const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+                filteredData = stockData.filter(point => {
+                    const pointDate = new Date(point.timestamp);
+                    return pointDate >= monthAgo;
+                });
+                filteredData = aggregateStockDataByDay(filteredData);
+            }
+            // For 'all' view, use all data as is
+            
+            return filteredData;
+        }
+
+        function aggregateStockDataByDay(stockData) {
+            const dailyData = {};
+            
+            // Group by day
+            stockData.forEach(point => {
+                const date = new Date(point.timestamp);
+                const dayKey = date.toISOString().split('T')[0]; // YYYY-MM-DD
+                
+                if (!dailyData[dayKey]) {
+                    dailyData[dayKey] = [];
+                }
+                dailyData[dayKey].push(point.price);
+            });
+            
+            // Calculate daily averages
+            return Object.keys(dailyData).map(dayKey => {
+                const prices = dailyData[dayKey];
+                const avgPrice = prices.reduce((sum, price) => sum + price, 0) / prices.length;
+                return {
+                    timestamp: new Date(dayKey + 'T12:00:00Z'), // Midday for the day
+                    price: avgPrice
+                };
+            }).sort((a, b) => a.timestamp - b.timestamp);
+        }
+
+        function createStockChart(data) {
+            // Destroy existing chart first
+            if (currentStockChart) {
+                currentStockChart.destroy();
+                currentStockChart = null;
+            }
+            
+            const ctx = document.getElementById('stock-graph-chart').getContext('2d');
+            
+            // Calculate price change for color coding
+            const firstPrice = data[0]?.price || 0;
+            const lastPrice = data[data.length - 1]?.price || 0;
+            const priceChange = lastPrice - firstPrice;
+            const isPositive = priceChange >= 0;
+            
+            // Create gradient
+            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            if (isPositive) {
+                gradient.addColorStop(0, 'rgba(34, 197, 94, 0.2)');
+                gradient.addColorStop(1, 'rgba(34, 197, 94, 0.05)');
+            } else {
+                gradient.addColorStop(0, 'rgba(239, 68, 68, 0.2)');
+                gradient.addColorStop(1, 'rgba(239, 68, 68, 0.05)');
+            }
+            
+            const dataset = {
+                label: currentStockName,
+                data: data.map(point => ({
+                    x: new Date(point.timestamp),
+                    y: point.price
+                })),
+                borderColor: isPositive ? '#22c55e' : '#ef4444',
+                backgroundColor: gradient,
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4,
+                pointRadius: 0,
+                pointHoverRadius: 8,
+                pointHoverBackgroundColor: isPositive ? '#22c55e' : '#ef4444',
+                pointHoverBorderColor: '#fff',
+                pointHoverBorderWidth: 2
+            };
+            
+            currentStockChart = new Chart(ctx, {
+                type: 'line',
+                data: { datasets: [dataset] },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    },
+                    plugins: {
+                        title: {
+                            display: false
+                        },
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                            titleColor: '#232526',
+                            bodyColor: '#232526',
+                            borderColor: '#e3e6ea',
+                            borderWidth: 1,
+                            cornerRadius: 8,
+                            padding: 12,
+                            displayColors: false,
+                            callbacks: {
+                                title: function(context) {
+                                    const date = new Date(context[0].parsed.x);
+                                    return date.toLocaleDateString('en-US', { 
+                                        weekday: 'long', 
+                                        year: 'numeric', 
+                                        month: 'long', 
+                                        day: 'numeric' 
+                                    });
+                                },
+                                label: function(context) {
+                                    const price = context.parsed.y;
+                                    const change = price - firstPrice;
+                                    const changePercent = (change / firstPrice) * 100;
+                                    const changeSymbol = change >= 0 ? '+' : '';
+                                    
+                                    return [
+                                        `Price: $${price.toLocaleString()}`,
+                                        `Change: ${changeSymbol}$${change.toFixed(2)} (${changeSymbol}${changePercent.toFixed(2)}%)`
+                                    ];
+                                }
+                            }
+                        },
+                        datalabels: {
+                            display: false // Hide data labels for cleaner look
+                        }
+                    },
+                    scales: {
+                        x: {
+                            type: 'time',
+                            time: {
+                                unit: currentStockView === 'day' ? 'hour' : 'day',
+                                displayFormats: {
+                                    hour: 'HH:mm',
+                                    day: 'MMM dd'
+                                }
+                            },
+                            title: {
+                                display: false
+                            },
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#6b7280',
+                                font: {
+                                    size: 11,
+                                    family: 'Inter, DM Sans, Arial, sans-serif'
+                                },
+                                padding: 8
+                            },
+                            border: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: false
+                            },
+                            grid: {
+                                color: 'rgba(107, 114, 128, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#6b7280',
+                                font: {
+                                    size: 11,
+                                    family: 'Inter, DM Sans, Arial, sans-serif'
+                                },
+                                padding: 8,
+                                callback: function(value) {
+                                    return '$' + value.toLocaleString();
+                                }
+                            },
+                            border: {
+                                display: false
+                            }
+                        }
+                    },
+                    elements: {
+                        point: {
+                            hoverRadius: 8,
+                            hoverBorderWidth: 2
+                        }
+                    }
+                }
+            });
+        }
     </script>
 </body>
 </html> 
