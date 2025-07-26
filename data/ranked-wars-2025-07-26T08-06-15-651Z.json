@@ -1,0 +1,6226 @@
+{
+  "timestamp": "2025-07-26T08:06:15.651Z",
+  "war_count": 311,
+  "wars": {
+    "28339": {
+      "factions": {
+        "46166": {
+          "name": "Low Level Inc.",
+          "score": 9679,
+          "chain": 254
+        },
+        "49862": {
+          "name": "Dirty Mike and the Boyz",
+          "score": 6649,
+          "chain": 6
+        }
+      },
+      "war": {
+        "start": 1753452000,
+        "end": 0,
+        "target": 5900,
+        "winner": 0
+      }
+    },
+    "28340": {
+      "factions": {
+        "22631": {
+          "name": "Halos Pulse",
+          "score": 2783,
+          "chain": 0
+        },
+        "51197": {
+          "name": "Ninja&#039;s Boot Camp",
+          "score": 1358,
+          "chain": 5
+        }
+      },
+      "war": {
+        "start": 1753387200,
+        "end": 0,
+        "target": 4524,
+        "winner": 0
+      }
+    },
+    "28341": {
+      "factions": {
+        "52929": {
+          "name": "TryHards",
+          "score": 0,
+          "chain": 0
+        },
+        "54122": {
+          "name": "ALCHEMILLA",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753545600,
+        "end": 0,
+        "target": 2000,
+        "winner": 0
+      }
+    },
+    "28342": {
+      "factions": {
+        "18090": {
+          "name": "REK&amp;morty",
+          "score": 0,
+          "chain": 0
+        },
+        "51145": {
+          "name": "Legion of Harbingers",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753524000,
+        "end": 0,
+        "target": 4600,
+        "winner": 0
+      }
+    },
+    "28343": {
+      "factions": {
+        "8085": {
+          "name": "Nuclear Blast",
+          "score": 16037,
+          "chain": 0
+        },
+        "36891": {
+          "name": "FLATLINE",
+          "score": 8096,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753459200,
+        "end": 0,
+        "target": 17900,
+        "winner": 0
+      }
+    },
+    "28344": {
+      "factions": {
+        "8677": {
+          "name": "Mana",
+          "score": 3031,
+          "chain": 0
+        },
+        "50344": {
+          "name": "Golden Jackals",
+          "score": 1623,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753390800,
+        "end": 0,
+        "target": 6424,
+        "winner": 0
+      }
+    },
+    "28345": {
+      "factions": {
+        "41160": {
+          "name": "The Shogunate",
+          "score": 2871,
+          "chain": 2
+        },
+        "52246": {
+          "name": "The Classroom",
+          "score": 169,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753448400,
+        "end": 1753512086,
+        "target": 2700,
+        "winner": 41160
+      }
+    },
+    "28346": {
+      "factions": {
+        "47314": {
+          "name": "The Cut",
+          "score": 3163,
+          "chain": 1
+        },
+        "49636": {
+          "name": "New Beginning",
+          "score": 558,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753362000,
+        "end": 0,
+        "target": 4320,
+        "winner": 0
+      }
+    },
+    "28347": {
+      "factions": {
+        "52855": {
+          "name": "NBA 4KT",
+          "score": 100,
+          "chain": 0
+        },
+        "54451": {
+          "name": "Lost Shinobi",
+          "score": 2000,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753444800,
+        "end": 1753510545,
+        "target": 1900,
+        "winner": 54451
+      }
+    },
+    "28348": {
+      "factions": {
+        "43836": {
+          "name": "LaFamilia",
+          "score": 5649,
+          "chain": 0
+        },
+        "50331": {
+          "name": "Duck Around &amp; Find Out",
+          "score": 1582,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753380000,
+        "end": 1753491656,
+        "target": 4048,
+        "winner": 43836
+      }
+    },
+    "28349": {
+      "factions": {
+        "8468": {
+          "name": "Bloodbath and Beyond",
+          "score": 20111,
+          "chain": 0
+        },
+        "8510": {
+          "name": "Ara Pacis",
+          "score": 8328,
+          "chain": 187
+        }
+      },
+      "war": {
+        "start": 1753462800,
+        "end": 0,
+        "target": 17300,
+        "winner": 0
+      }
+    },
+    "28350": {
+      "factions": {
+        "51700": {
+          "name": "Fodder.",
+          "score": 0,
+          "chain": 0
+        },
+        "53987": {
+          "name": "Fsociety",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753560000,
+        "end": 0,
+        "target": 2000,
+        "winner": 0
+      }
+    },
+    "28351": {
+      "factions": {
+        "53494": {
+          "name": "Covenant of Darkington",
+          "score": 0,
+          "chain": 0
+        },
+        "53506": {
+          "name": "ECHOES OF RUIN",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753542000,
+        "end": 0,
+        "target": 2400,
+        "winner": 0
+      }
+    },
+    "28352": {
+      "factions": {
+        "50104": {
+          "name": "The Big, Smol &amp; The Swole",
+          "score": 0,
+          "chain": 0
+        },
+        "52817": {
+          "name": "Happy Enders",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753545600,
+        "end": 0,
+        "target": 4300,
+        "winner": 0
+      }
+    },
+    "28353": {
+      "factions": {
+        "52374": {
+          "name": "CottonTail Crew - Origin",
+          "score": 2194,
+          "chain": 14
+        },
+        "53557": {
+          "name": "Battlefield Angels",
+          "score": 1900,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753358400,
+        "end": 0,
+        "target": 1659,
+        "winner": 0
+      }
+    },
+    "28354": {
+      "factions": {
+        "38662": {
+          "name": "OTF Headquarters",
+          "score": 0,
+          "chain": 0
+        },
+        "49561": {
+          "name": "The Four Twenty H-V-F",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753549200,
+        "end": 0,
+        "target": 6100,
+        "winner": 0
+      }
+    },
+    "28355": {
+      "factions": {
+        "8317": {
+          "name": "Naughty Souls",
+          "score": 4617,
+          "chain": 0
+        },
+        "15644": {
+          "name": "New Sith Order",
+          "score": 22324,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753459200,
+        "end": 1753502690,
+        "target": 17700,
+        "winner": 15644
+      }
+    },
+    "28356": {
+      "factions": {
+        "15083": {
+          "name": "Leeches",
+          "score": 12445,
+          "chain": 0
+        },
+        "36660": {
+          "name": "Premature Attackulation",
+          "score": 3043,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753387200,
+        "end": 1753492821,
+        "target": 9400,
+        "winner": 15083
+      }
+    },
+    "28357": {
+      "factions": {
+        "7171": {
+          "name": "Torn Is Not Enough",
+          "score": 2390,
+          "chain": 0
+        },
+        "49916": {
+          "name": "Halls OF Valhalla",
+          "score": 1621,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753462800,
+        "end": 0,
+        "target": 5300,
+        "winner": 0
+      }
+    },
+    "28358": {
+      "factions": {
+        "41777": {
+          "name": "The Swarm",
+          "score": 0,
+          "chain": 0
+        },
+        "50743": {
+          "name": "Bargain Boozers CW",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753538400,
+        "end": 0,
+        "target": 4100,
+        "winner": 0
+      }
+    },
+    "28359": {
+      "factions": {
+        "53421": {
+          "name": "Naughty Kids HQ",
+          "score": 2487,
+          "chain": 0
+        },
+        "53429": {
+          "name": "The Sons Of Anarchy - T1",
+          "score": 387,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753358400,
+        "end": 1753439552,
+        "target": 2100,
+        "winner": 53421
+      }
+    },
+    "28360": {
+      "factions": {
+        "53136": {
+          "name": "Rogue Juniors",
+          "score": 0,
+          "chain": 0
+        },
+        "53397": {
+          "name": "The Devil&#8217;s Lounge",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753549200,
+        "end": 0,
+        "target": 2500,
+        "winner": 0
+      }
+    },
+    "28361": {
+      "factions": {
+        "53816": {
+          "name": "the Terrier brigade",
+          "score": 0,
+          "chain": 0
+        },
+        "54309": {
+          "name": "Cohort Fretensis",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753552800,
+        "end": 0,
+        "target": 1900,
+        "winner": 0
+      }
+    },
+    "28362": {
+      "factions": {
+        "7002": {
+          "name": "Karma Chameleons",
+          "score": 0,
+          "chain": 1
+        },
+        "7282": {
+          "name": "Luscious Dreams",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753552800,
+        "end": 0,
+        "target": 10900,
+        "winner": 0
+      }
+    },
+    "28363": {
+      "factions": {
+        "14441": {
+          "name": "Aurora Solaris",
+          "score": 4789,
+          "chain": 1
+        },
+        "46708": {
+          "name": "The Revenant",
+          "score": 14529,
+          "chain": 2439
+        }
+      },
+      "war": {
+        "start": 1753462800,
+        "end": 0,
+        "target": 13800,
+        "winner": 0
+      }
+    },
+    "28364": {
+      "factions": {
+        "8255": {
+          "name": "Requiem",
+          "score": 0,
+          "chain": 0
+        },
+        "13421": {
+          "name": "Wild Guardians",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753560000,
+        "end": 0,
+        "target": 7800,
+        "winner": 0
+      }
+    },
+    "28365": {
+      "factions": {
+        "54200": {
+          "name": "Saskatchewan Syndicate",
+          "score": 610,
+          "chain": 0
+        },
+        "54416": {
+          "name": "Ad Meliora (Recruiting)",
+          "score": 2153,
+          "chain": 1
+        }
+      },
+      "war": {
+        "start": 1753365600,
+        "end": 0,
+        "target": 1782,
+        "winner": 0
+      }
+    },
+    "28366": {
+      "factions": {
+        "29865": {
+          "name": "WTF Ducks",
+          "score": 17947,
+          "chain": 2308
+        },
+        "46442": {
+          "name": "The Resolute",
+          "score": 6603,
+          "chain": 778
+        }
+      },
+      "war": {
+        "start": 1753473600,
+        "end": 0,
+        "target": 14800,
+        "winner": 0
+      }
+    },
+    "28367": {
+      "factions": {
+        "47957": {
+          "name": "Twin Ravens",
+          "score": 14094,
+          "chain": 0
+        },
+        "53254": {
+          "name": "New Horizon",
+          "score": 6796,
+          "chain": 1
+        }
+      },
+      "war": {
+        "start": 1753372800,
+        "end": 1753471959,
+        "target": 7296,
+        "winner": 47957
+      }
+    },
+    "28368": {
+      "factions": {
+        "40399": {
+          "name": "WIT-Mayhem",
+          "score": 0,
+          "chain": 0
+        },
+        "46588": {
+          "name": "Grim Reapers",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753552800,
+        "end": 0,
+        "target": 10800,
+        "winner": 0
+      }
+    },
+    "28369": {
+      "factions": {
+        "49319": {
+          "name": "SCHIZOPHRENIACS",
+          "score": 0,
+          "chain": 0
+        },
+        "50278": {
+          "name": "The Wild  Dragons",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753542000,
+        "end": 0,
+        "target": 5600,
+        "winner": 0
+      }
+    },
+    "28370": {
+      "factions": {
+        "40385": {
+          "name": "Death Before Dishonor",
+          "score": 1503,
+          "chain": 0
+        },
+        "47841": {
+          "name": "League of Minions",
+          "score": 2488,
+          "chain": 368
+        }
+      },
+      "war": {
+        "start": 1753470000,
+        "end": 0,
+        "target": 4300,
+        "winner": 0
+      }
+    },
+    "28371": {
+      "factions": {
+        "47838": {
+          "name": "Fallout Shelter",
+          "score": 8996,
+          "chain": 0
+        },
+        "50267": {
+          "name": "Hallucinogenics",
+          "score": 2163,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753383600,
+        "end": 1753472493,
+        "target": 6831,
+        "winner": 47838
+      }
+    },
+    "28372": {
+      "factions": {
+        "51042": {
+          "name": "Starlight",
+          "score": 643,
+          "chain": 3
+        },
+        "53249": {
+          "name": "55th St Asylum",
+          "score": 3893,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753455600,
+        "end": 0,
+        "target": 5300,
+        "winner": 0
+      }
+    },
+    "28373": {
+      "factions": {
+        "52657": {
+          "name": "Armed Response Unit 1",
+          "score": 1053,
+          "chain": 0
+        },
+        "53651": {
+          "name": "SHADOWCOMPANY",
+          "score": 1013,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753351200,
+        "end": 0,
+        "target": 1617,
+        "winner": 0
+      }
+    },
+    "28374": {
+      "factions": {
+        "8869": {
+          "name": "Bendetti",
+          "score": 2302,
+          "chain": 16
+        },
+        "52834": {
+          "name": "Mullet Mafia",
+          "score": 1480,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753401600,
+        "end": 0,
+        "target": 3822,
+        "winner": 0
+      }
+    },
+    "28376": {
+      "factions": {
+        "44811": {
+          "name": "AshBorne",
+          "score": 5075,
+          "chain": 716
+        },
+        "52799": {
+          "name": "Bingo Loco",
+          "score": 635,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753466400,
+        "end": 0,
+        "target": 6700,
+        "winner": 0
+      }
+    },
+    "28377": {
+      "factions": {
+        "39781": {
+          "name": "Zenith Rising",
+          "score": 2520,
+          "chain": 0
+        },
+        "52015": {
+          "name": "Hostile Acquisitions",
+          "score": 806,
+          "chain": 1
+        }
+      },
+      "war": {
+        "start": 1753362000,
+        "end": 0,
+        "target": 4400,
+        "winner": 0
+      }
+    },
+    "28378": {
+      "factions": {
+        "50362": {
+          "name": "SHADOWS.",
+          "score": 1521,
+          "chain": 0
+        },
+        "54286": {
+          "name": "Alpha Syndicate",
+          "score": 53,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753448400,
+        "end": 0,
+        "target": 2900,
+        "winner": 0
+      }
+    },
+    "28379": {
+      "factions": {
+        "50709": {
+          "name": "TMNT- Michelangelo",
+          "score": 0,
+          "chain": 0
+        },
+        "52284": {
+          "name": "Defenders Of Torn Unite",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753542000,
+        "end": 0,
+        "target": 4300,
+        "winner": 0
+      }
+    },
+    "28380": {
+      "factions": {
+        "53597": {
+          "name": "Rich Forever Cartel",
+          "score": 2216,
+          "chain": 1
+        },
+        "53956": {
+          "name": "--The Tavern--",
+          "score": 115,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753372800,
+        "end": 1753452867,
+        "target": 2100,
+        "winner": 53597
+      }
+    },
+    "28381": {
+      "factions": {
+        "53100": {
+          "name": "Menacing Monkeys",
+          "score": 0,
+          "chain": 0
+        },
+        "54121": {
+          "name": "Rabid Misfits",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753545600,
+        "end": 0,
+        "target": 1800,
+        "winner": 0
+      }
+    },
+    "28382": {
+      "factions": {
+        "53275": {
+          "name": "Torn Networks",
+          "score": 263,
+          "chain": 0
+        },
+        "53912": {
+          "name": "Rosarium",
+          "score": 1396,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753455600,
+        "end": 0,
+        "target": 2100,
+        "winner": 0
+      }
+    },
+    "28383": {
+      "factions": {
+        "8838": {
+          "name": "Pack Attack",
+          "score": 1459,
+          "chain": 1
+        },
+        "53403": {
+          "name": "Crimson Dragons",
+          "score": 1406,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753387200,
+        "end": 0,
+        "target": 1740,
+        "winner": 0
+      }
+    },
+    "28384": {
+      "factions": {
+        "53160": {
+          "name": "BJSFTW",
+          "score": 0,
+          "chain": 0
+        },
+        "53708": {
+          "name": "The Gravy Boat",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753549200,
+        "end": 0,
+        "target": 2000,
+        "winner": 0
+      }
+    },
+    "28385": {
+      "factions": {
+        "52063": {
+          "name": "Torn City Cartel",
+          "score": 922,
+          "chain": 0
+        },
+        "53614": {
+          "name": "Rome Wasnt Built In a Day",
+          "score": 1001,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753412400,
+        "end": 0,
+        "target": 2162,
+        "winner": 0
+      }
+    },
+    "28386": {
+      "factions": {
+        "50310": {
+          "name": "classicvirgin",
+          "score": 3500,
+          "chain": 0
+        },
+        "52835": {
+          "name": "Angels of Domination",
+          "score": 1254,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753358400,
+        "end": 0,
+        "target": 2607,
+        "winner": 0
+      }
+    },
+    "28387": {
+      "factions": {
+        "49413": {
+          "name": "Green &#039;Peace&#039;",
+          "score": 0,
+          "chain": 0
+        },
+        "50613": {
+          "name": "BRC   Supreme",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753570800,
+        "end": 0,
+        "target": 5800,
+        "winner": 0
+      }
+    },
+    "28388": {
+      "factions": {
+        "50643": {
+          "name": "Caramel Chocolate Winter",
+          "score": 1369,
+          "chain": 1
+        },
+        "51218": {
+          "name": "Magus Optimum",
+          "score": 2084,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753466400,
+        "end": 0,
+        "target": 3000,
+        "winner": 0
+      }
+    },
+    "28389": {
+      "factions": {
+        "10940": {
+          "name": "B.A. Rebel Fawns",
+          "score": 3079,
+          "chain": 84
+        },
+        "37933": {
+          "name": "The Sell Sword Group",
+          "score": 475,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753488000,
+        "end": 0,
+        "target": 5000,
+        "winner": 0
+      }
+    },
+    "28390": {
+      "factions": {
+        "51208": {
+          "name": "The Associates",
+          "score": 1075,
+          "chain": 0
+        },
+        "52355": {
+          "name": "Spider-Verse",
+          "score": 3478,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753358400,
+        "end": 1753457441,
+        "target": 2400,
+        "winner": 52355
+      }
+    },
+    "28391": {
+      "factions": {
+        "8536": {
+          "name": "White Walkers",
+          "score": 0,
+          "chain": 0
+        },
+        "48039": {
+          "name": "(INQ) Schola Progenium",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 3300,
+        "winner": 0
+      }
+    },
+    "28392": {
+      "factions": {
+        "53011": {
+          "name": "T&#039;C OUTKAST BASE 1",
+          "score": 703,
+          "chain": 0
+        },
+        "54209": {
+          "name": "* 95th Rifles *",
+          "score": 1339,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753452000,
+        "end": 0,
+        "target": 2400,
+        "winner": 0
+      }
+    },
+    "28393": {
+      "factions": {
+        "9517": {
+          "name": "OverWatch",
+          "score": 23145,
+          "chain": 1
+        },
+        "32395": {
+          "name": "-Aurora-",
+          "score": 8934,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753390800,
+        "end": 1753444394,
+        "target": 14200,
+        "winner": 9517
+      }
+    },
+    "28394": {
+      "factions": {
+        "51382": {
+          "name": "jolly fellows",
+          "score": 0,
+          "chain": 0
+        },
+        "51541": {
+          "name": "Static Disturbance",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 2200,
+        "winner": 0
+      }
+    },
+    "28395": {
+      "factions": {
+        "8795": {
+          "name": "The Brotherhood of Battle",
+          "score": 0,
+          "chain": 0
+        },
+        "43325": {
+          "name": "Crime Syndicate",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753542000,
+        "end": 0,
+        "target": 13900,
+        "winner": 0
+      }
+    },
+    "28396": {
+      "factions": {
+        "38511": {
+          "name": "Bellazzurro Family",
+          "score": 571,
+          "chain": 0
+        },
+        "50247": {
+          "name": "Crimes and Chimes",
+          "score": 1776,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753466400,
+        "end": 0,
+        "target": 2700,
+        "winner": 0
+      }
+    },
+    "28397": {
+      "factions": {
+        "42685": {
+          "name": "WarDogs Outpost",
+          "score": 2504,
+          "chain": 0
+        },
+        "48058": {
+          "name": "Banty Shack",
+          "score": 8343,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753383600,
+        "end": 1753498856,
+        "target": 5824,
+        "winner": 48058
+      }
+    },
+    "28398": {
+      "factions": {
+        "53026": {
+          "name": "OseanWorld.",
+          "score": 1212,
+          "chain": 0
+        },
+        "53085": {
+          "name": "Clan Myth",
+          "score": 397,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753466400,
+        "end": 0,
+        "target": 2100,
+        "winner": 0
+      }
+    },
+    "28399": {
+      "factions": {
+        "11376": {
+          "name": "Also Impulse",
+          "score": 17807,
+          "chain": 15
+        },
+        "14820": {
+          "name": "Unbroken Legion",
+          "score": 19750,
+          "chain": 1046
+        }
+      },
+      "war": {
+        "start": 1753376400,
+        "end": 0,
+        "target": 9828,
+        "winner": 0
+      }
+    },
+    "28400": {
+      "factions": {
+        "51933": {
+          "name": "Clown College",
+          "score": 1083,
+          "chain": 0
+        },
+        "52032": {
+          "name": "War Criminals",
+          "score": 897,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753412400,
+        "end": 0,
+        "target": 1880,
+        "winner": 0
+      }
+    },
+    "28401": {
+      "factions": {
+        "34247": {
+          "name": "Veloce",
+          "score": 6922,
+          "chain": 0
+        },
+        "37537": {
+          "name": "SYN - The Regiment",
+          "score": 2276,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753362000,
+        "end": 1753477255,
+        "target": 4641,
+        "winner": 34247
+      }
+    },
+    "28402": {
+      "factions": {
+        "946": {
+          "name": "PT-IronHearts",
+          "score": 0,
+          "chain": 0
+        },
+        "41702": {
+          "name": "Arcadia Rising",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 12700,
+        "winner": 0
+      }
+    },
+    "28403": {
+      "factions": {
+        "48145": {
+          "name": "The Morganite Wolf Pack",
+          "score": 1091,
+          "chain": 29
+        },
+        "53890": {
+          "name": "House of Fire",
+          "score": 5,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753459200,
+        "end": 0,
+        "target": 2300,
+        "winner": 0
+      }
+    },
+    "28404": {
+      "factions": {
+        "47467": {
+          "name": "Margem Sul",
+          "score": 0,
+          "chain": 0
+        },
+        "54339": {
+          "name": "BLACKOUT MOB",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753563600,
+        "end": 0,
+        "target": 2400,
+        "winner": 0
+      }
+    },
+    "28405": {
+      "factions": {
+        "37155": {
+          "name": "Planet-Express",
+          "score": 1222,
+          "chain": 0
+        },
+        "49624": {
+          "name": "TLM: Half Past Murder",
+          "score": 3793,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753398000,
+        "end": 0,
+        "target": 3960,
+        "winner": 0
+      }
+    },
+    "28406": {
+      "factions": {
+        "16057": {
+          "name": "Glory to Heroes",
+          "score": 15159,
+          "chain": 0
+        },
+        "42961": {
+          "name": "The Rebel Army",
+          "score": 5073,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753455600,
+        "end": 0,
+        "target": 13400,
+        "winner": 0
+      }
+    },
+    "28407": {
+      "factions": {
+        "51605": {
+          "name": "The Night Owls",
+          "score": 985,
+          "chain": 0
+        },
+        "53530": {
+          "name": "Torn Street Saints",
+          "score": 2766,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753380000,
+        "end": 1753505152,
+        "target": 1780,
+        "winner": 53530
+      }
+    },
+    "28408": {
+      "factions": {
+        "50946": {
+          "name": "Mandatory Hairstyles",
+          "score": 0,
+          "chain": 0
+        },
+        "53180": {
+          "name": "Bounty Hunters' Guild",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753552800,
+        "end": 0,
+        "target": 3100,
+        "winner": 0
+      }
+    },
+    "28409": {
+      "factions": {
+        "53321": {
+          "name": "TMNT-Donatello",
+          "score": 363,
+          "chain": 0
+        },
+        "53459": {
+          "name": "The Twilight Order!",
+          "score": 732,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753462800,
+        "end": 0,
+        "target": 2000,
+        "winner": 0
+      }
+    },
+    "28410": {
+      "factions": {
+        "49967": {
+          "name": "Sandline",
+          "score": 6369,
+          "chain": 0
+        },
+        "53680": {
+          "name": "The Crack Shack",
+          "score": 467,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753387200,
+        "end": 1753469240,
+        "target": 5900,
+        "winner": 49967
+      }
+    },
+    "28411": {
+      "factions": {
+        "46392": {
+          "name": "Hell Inc.",
+          "score": 0,
+          "chain": 0
+        },
+        "50529": {
+          "name": "Mergers and acquisitions",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 8900,
+        "winner": 0
+      }
+    },
+    "28412": {
+      "factions": {
+        "52528": {
+          "name": "THE FYA CA$H GANG",
+          "score": 173,
+          "chain": 0
+        },
+        "53836": {
+          "name": "THE BLACK HOUSE",
+          "score": 2574,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753441200,
+        "end": 1753487409,
+        "target": 2400,
+        "winner": 53836
+      }
+    },
+    "28414": {
+      "factions": {
+        "525": {
+          "name": "Ministry of Mayhem",
+          "score": 0,
+          "chain": 0
+        },
+        "22295": {
+          "name": "Aquarius",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753560000,
+        "end": 0,
+        "target": 15400,
+        "winner": 0
+      }
+    },
+    "28415": {
+      "factions": {
+        "49707": {
+          "name": "T&#039;c outkasts",
+          "score": 0,
+          "chain": 0
+        },
+        "54075": {
+          "name": "Zero To Hero",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753538400,
+        "end": 0,
+        "target": 2000,
+        "winner": 0
+      }
+    },
+    "28416": {
+      "factions": {
+        "47812": {
+          "name": "The Fiends",
+          "score": 876,
+          "chain": 0
+        },
+        "48243": {
+          "name": "Little Lizards",
+          "score": 724,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753466400,
+        "end": 0,
+        "target": 3900,
+        "winner": 0
+      }
+    },
+    "28417": {
+      "factions": {
+        "53861": {
+          "name": "The Squeekers(RECRUITING)",
+          "score": 1224,
+          "chain": 0
+        },
+        "54123": {
+          "name": "AkariCore",
+          "score": 505,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753398000,
+        "end": 0,
+        "target": 1710,
+        "winner": 0
+      }
+    },
+    "28418": {
+      "factions": {
+        "42505": {
+          "name": "BoW - Hidden Shadows",
+          "score": 0,
+          "chain": 0
+        },
+        "47648": {
+          "name": "Rising Heroes",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 10800,
+        "winner": 0
+      }
+    },
+    "28419": {
+      "factions": {
+        "47226": {
+          "name": "The Midnight Clinic",
+          "score": 9864,
+          "chain": 0
+        },
+        "49010": {
+          "name": "Academy of Killers BR",
+          "score": 3861,
+          "chain": 4
+        }
+      },
+      "war": {
+        "start": 1753455600,
+        "end": 1753507791,
+        "target": 6000,
+        "winner": 47226
+      }
+    },
+    "28420": {
+      "factions": {
+        "8475": {
+          "name": "Dictatura Testudo Ferrea",
+          "score": 1217,
+          "chain": 0
+        },
+        "52040": {
+          "name": "Desert Falcon",
+          "score": 2131,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753394400,
+        "end": 0,
+        "target": 2314,
+        "winner": 0
+      }
+    },
+    "28421": {
+      "factions": {
+        "32037": {
+          "name": "Sky Lab",
+          "score": 1027,
+          "chain": 0
+        },
+        "51325": {
+          "name": "ShadowWizard Money Gang",
+          "score": 959,
+          "chain": 11
+        }
+      },
+      "war": {
+        "start": 1753495200,
+        "end": 0,
+        "target": 4000,
+        "winner": 0
+      }
+    },
+    "28422": {
+      "factions": {
+        "52875": {
+          "name": "TS (ThinkStation)",
+          "score": 0,
+          "chain": 0
+        },
+        "53376": {
+          "name": "Cartel of Gladiators",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753531200,
+        "end": 0,
+        "target": 2200,
+        "winner": 0
+      }
+    },
+    "28423": {
+      "factions": {
+        "7709": {
+          "name": "Vulpes Vulpes",
+          "score": 0,
+          "chain": 0
+        },
+        "21665": {
+          "name": "Monarch Army of Light",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753534800,
+        "end": 0,
+        "target": 17700,
+        "winner": 0
+      }
+    },
+    "28424": {
+      "factions": {
+        "47710": {
+          "name": "PT-GuemLand",
+          "score": 1481,
+          "chain": 2
+        },
+        "49617": {
+          "name": "Filthy_Casuals",
+          "score": 417,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753441200,
+        "end": 0,
+        "target": 6200,
+        "winner": 0
+      }
+    },
+    "28425": {
+      "factions": {
+        "20341": {
+          "name": "Ophidians",
+          "score": 0,
+          "chain": 0
+        },
+        "44445": {
+          "name": "Combat Ready HQ",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753552800,
+        "end": 0,
+        "target": 6000,
+        "winner": 0
+      }
+    },
+    "28426": {
+      "factions": {
+        "8124": {
+          "name": "NF Legacy",
+          "score": 1990,
+          "chain": 0
+        },
+        "15595": {
+          "name": "Lusty Lizards",
+          "score": 11593,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753390800,
+        "end": 1753461636,
+        "target": 9600,
+        "winner": 15595
+      }
+    },
+    "28427": {
+      "factions": {
+        "8103": {
+          "name": "The Hidden Agenda",
+          "score": 916,
+          "chain": 0
+        },
+        "43752": {
+          "name": "Ghost  Squad",
+          "score": 1125,
+          "chain": 1
+        }
+      },
+      "war": {
+        "start": 1753452000,
+        "end": 0,
+        "target": 5100,
+        "winner": 0
+      }
+    },
+    "28428": {
+      "factions": {
+        "50241": {
+          "name": "Bucket o' Blood",
+          "score": 1820,
+          "chain": 1
+        },
+        "53693": {
+          "name": "Web-Warriors",
+          "score": 550,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753362000,
+        "end": 0,
+        "target": 1680,
+        "winner": 0
+      }
+    },
+    "28429": {
+      "factions": {
+        "51122": {
+          "name": "Kagu-tsuchi clan",
+          "score": 0,
+          "chain": 0
+        },
+        "54333": {
+          "name": "Stun Zeed",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753567200,
+        "end": 0,
+        "target": 2300,
+        "winner": 0
+      }
+    },
+    "28430": {
+      "factions": {
+        "45889": {
+          "name": "HitMan Mafia",
+          "score": 421,
+          "chain": 0
+        },
+        "51304": {
+          "name": "Legion Of Doom",
+          "score": 2697,
+          "chain": 67
+        }
+      },
+      "war": {
+        "start": 1753455600,
+        "end": 0,
+        "target": 2400,
+        "winner": 0
+      }
+    },
+    "28431": {
+      "factions": {
+        "50315": {
+          "name": "Bloodlust",
+          "score": 0,
+          "chain": 0
+        },
+        "52870": {
+          "name": "Department of Injustice",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 3800,
+        "winner": 0
+      }
+    },
+    "28432": {
+      "factions": {
+        "53581": {
+          "name": "Secret Service",
+          "score": 0,
+          "chain": 0
+        },
+        "54397": {
+          "name": "Smokey&#039;s Bandits",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753538400,
+        "end": 0,
+        "target": 1800,
+        "winner": 0
+      }
+    },
+    "28433": {
+      "factions": {
+        "14438": {
+          "name": "Core",
+          "score": 1140,
+          "chain": 0
+        },
+        "49805": {
+          "name": "Just DU it!",
+          "score": 551,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753390800,
+        "end": 0,
+        "target": 4400,
+        "winner": 0
+      }
+    },
+    "28434": {
+      "factions": {
+        "13848": {
+          "name": "BreakingBad",
+          "score": 0,
+          "chain": 0
+        },
+        "48264": {
+          "name": "Yahoo&#8217;s Yahooligans",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753542000,
+        "end": 0,
+        "target": 3600,
+        "winner": 0
+      }
+    },
+    "28435": {
+      "factions": {
+        "9503": {
+          "name": "TSFTS Microbrewery",
+          "score": 1995,
+          "chain": 0
+        },
+        "27211": {
+          "name": "W.M.D",
+          "score": 6268,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753473600,
+        "end": 0,
+        "target": 6400,
+        "winner": 0
+      }
+    },
+    "28436": {
+      "factions": {
+        "50002": {
+          "name": "Not A Cult",
+          "score": 0,
+          "chain": 0
+        },
+        "53698": {
+          "name": "Militant",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753567200,
+        "end": 0,
+        "target": 2400,
+        "winner": 0
+      }
+    },
+    "28437": {
+      "factions": {
+        "53285": {
+          "name": "Morty Academy-WO",
+          "score": 63,
+          "chain": 0
+        },
+        "54180": {
+          "name": "THE CRIMSON CULT",
+          "score": 190,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753509600,
+        "end": 0,
+        "target": 1900,
+        "winner": 0
+      }
+    },
+    "28438": {
+      "factions": {
+        "51906": {
+          "name": "Mouthy Mercs",
+          "score": 0,
+          "chain": 0
+        },
+        "52267": {
+          "name": "Hippy War Commune",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753567200,
+        "end": 0,
+        "target": 4200,
+        "winner": 0
+      }
+    },
+    "28439": {
+      "factions": {
+        "37426": {
+          "name": "Monarch Embassy",
+          "score": 555,
+          "chain": 0
+        },
+        "50457": {
+          "name": "Tranquility Base",
+          "score": 2592,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753380000,
+        "end": 0,
+        "target": 4760,
+        "winner": 0
+      }
+    },
+    "28440": {
+      "factions": {
+        "9455": {
+          "name": "Bleed",
+          "score": 2454,
+          "chain": 0
+        },
+        "37803": {
+          "name": "PT-PimpTuga",
+          "score": 3531,
+          "chain": 1
+        }
+      },
+      "war": {
+        "start": 1753462800,
+        "end": 0,
+        "target": 7700,
+        "winner": 0
+      }
+    },
+    "28441": {
+      "factions": {
+        "39010": {
+          "name": "SCALLYWAGS",
+          "score": 0,
+          "chain": 0
+        },
+        "48040": {
+          "name": "The Psychonauts",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753563600,
+        "end": 0,
+        "target": 9800,
+        "winner": 0
+      }
+    },
+    "28442": {
+      "factions": {
+        "50085": {
+          "name": "Rise of the Remnant",
+          "score": 0,
+          "chain": 0
+        },
+        "50630": {
+          "name": "Ordo Veteris Dominii",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753563600,
+        "end": 0,
+        "target": 6400,
+        "winner": 0
+      }
+    },
+    "28443": {
+      "factions": {
+        "28460": {
+          "name": "Gangstas With Attitude",
+          "score": 8520,
+          "chain": 0
+        },
+        "35776": {
+          "name": "IA Black",
+          "score": 2582,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753387200,
+        "end": 0,
+        "target": 7482,
+        "winner": 0
+      }
+    },
+    "28444": {
+      "factions": {
+        "49955": {
+          "name": "WGAW",
+          "score": 0,
+          "chain": 0
+        },
+        "51896": {
+          "name": "Order 66",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753534800,
+        "end": 0,
+        "target": 3100,
+        "winner": 0
+      }
+    },
+    "28445": {
+      "factions": {
+        "47914": {
+          "name": "New World Alliance",
+          "score": 266,
+          "chain": 0
+        },
+        "49922": {
+          "name": "Warhawks",
+          "score": 2259,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753480800,
+        "end": 0,
+        "target": 4800,
+        "winner": 0
+      }
+    },
+    "28446": {
+      "factions": {
+        "52568": {
+          "name": "STAR DUST 2.0",
+          "score": 0,
+          "chain": 0
+        },
+        "53604": {
+          "name": "Guardians of the Light",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 2500,
+        "winner": 0
+      }
+    },
+    "28447": {
+      "factions": {
+        "51644": {
+          "name": "Ironclad Union",
+          "score": 2780,
+          "chain": 0
+        },
+        "54447": {
+          "name": "The Burn Unit",
+          "score": 690,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753365600,
+        "end": 1753498308,
+        "target": 2088,
+        "winner": 51644
+      }
+    },
+    "28448": {
+      "factions": {
+        "52333": {
+          "name": "Anti Social Social Club",
+          "score": 2015,
+          "chain": 0
+        },
+        "52608": {
+          "name": "OWASP",
+          "score": 4185,
+          "chain": 11
+        }
+      },
+      "war": {
+        "start": 1753462800,
+        "end": 0,
+        "target": 3700,
+        "winner": 0
+      }
+    },
+    "28449": {
+      "factions": {
+        "49306": {
+          "name": "Gilligan&#039;s Island",
+          "score": 0,
+          "chain": 0
+        },
+        "52510": {
+          "name": "Grim Korp",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753534800,
+        "end": 0,
+        "target": 3200,
+        "winner": 0
+      }
+    },
+    "28450": {
+      "factions": {
+        "54004": {
+          "name": "Blood Knights",
+          "score": 3609,
+          "chain": 0
+        },
+        "54102": {
+          "name": "GRIT",
+          "score": 906,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753387200,
+        "end": 1753509207,
+        "target": 2700,
+        "winner": 54004
+      }
+    },
+    "28451": {
+      "factions": {
+        "5431": {
+          "name": "[Redacted]",
+          "score": 4558,
+          "chain": 0
+        },
+        "44762": {
+          "name": "Monarch Retardation",
+          "score": 2608,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753470000,
+        "end": 0,
+        "target": 8800,
+        "winner": 0
+      }
+    },
+    "28452": {
+      "factions": {
+        "51054": {
+          "name": "Jovangers union(HIRING)",
+          "score": 7,
+          "chain": 0
+        },
+        "53474": {
+          "name": "Raven Clan",
+          "score": 2293,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753376400,
+        "end": 1753465927,
+        "target": 2277,
+        "winner": 53474
+      }
+    },
+    "28453": {
+      "factions": {
+        "47859": {
+          "name": "Ghost Riders",
+          "score": 0,
+          "chain": 0
+        },
+        "51291": {
+          "name": "Forge INC",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753538400,
+        "end": 0,
+        "target": 3300,
+        "winner": 0
+      }
+    },
+    "28454": {
+      "factions": {
+        "50808": {
+          "name": "Solo Leveling",
+          "score": 6,
+          "chain": 0
+        },
+        "53381": {
+          "name": "WIDE AWAKE",
+          "score": 859,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753477200,
+        "end": 0,
+        "target": 3600,
+        "winner": 0
+      }
+    },
+    "28455": {
+      "factions": {
+        "9370": {
+          "name": "Cipher",
+          "score": 11504,
+          "chain": 107
+        },
+        "35140": {
+          "name": "Vault 76",
+          "score": 13778,
+          "chain": 57
+        }
+      },
+      "war": {
+        "start": 1753387200,
+        "end": 0,
+        "target": 8526,
+        "winner": 0
+      }
+    },
+    "28456": {
+      "factions": {
+        "12249": {
+          "name": "Aurora Surrealis",
+          "score": 2279,
+          "chain": 0
+        },
+        "14581": {
+          "name": "Happy Vegemites",
+          "score": 16785,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753448400,
+        "end": 1753485094,
+        "target": 14500,
+        "winner": 14581
+      }
+    },
+    "28458": {
+      "factions": {
+        "15930": {
+          "name": "HellBound",
+          "score": 0,
+          "chain": 0
+        },
+        "17587": {
+          "name": "Nomads 2.0",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 7800,
+        "winner": 0
+      }
+    },
+    "28459": {
+      "factions": {
+        "37185": {
+          "name": "Catch 22",
+          "score": 0,
+          "chain": 0
+        },
+        "46666": {
+          "name": "Fluffy Kittens",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753570800,
+        "end": 0,
+        "target": 11500,
+        "winner": 0
+      }
+    },
+    "28460": {
+      "factions": {
+        "45592": {
+          "name": "TheWhisperers",
+          "score": 0,
+          "chain": 0
+        },
+        "54078": {
+          "name": "Nightfall Cartel",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753570800,
+        "end": 0,
+        "target": 3100,
+        "winner": 0
+      }
+    },
+    "28461": {
+      "factions": {
+        "20554": {
+          "name": "Samurai Warlords*",
+          "score": 10886,
+          "chain": 0
+        },
+        "41363": {
+          "name": "WIT-Revolution",
+          "score": 2281,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753459200,
+        "end": 1753503467,
+        "target": 8600,
+        "winner": 20554
+      }
+    },
+    "28462": {
+      "factions": {
+        "50440": {
+          "name": "The Desert Rats.",
+          "score": 2700,
+          "chain": 32
+        },
+        "50785": {
+          "name": "The Revenant Respawn",
+          "score": 1064,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753387200,
+        "end": 0,
+        "target": 3915,
+        "winner": 0
+      }
+    },
+    "28463": {
+      "factions": {
+        "51506": {
+          "name": "PR - Consortio Novum",
+          "score": 2494,
+          "chain": 0
+        },
+        "53010": {
+          "name": "Edo",
+          "score": 403,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753401600,
+        "end": 1753496157,
+        "target": 2037,
+        "winner": 51506
+      }
+    },
+    "28464": {
+      "factions": {
+        "14686": {
+          "name": "Endless Endeavor",
+          "score": 0,
+          "chain": 2
+        },
+        "40959": {
+          "name": "EPIC Mafia",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753542000,
+        "end": 0,
+        "target": 13700,
+        "winner": 0
+      }
+    },
+    "28465": {
+      "factions": {
+        "53163": {
+          "name": "Kingstone mafia HQ",
+          "score": 0,
+          "chain": 0
+        },
+        "53781": {
+          "name": "Valhalla’s dawn",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753549200,
+        "end": 0,
+        "target": 2200,
+        "winner": 0
+      }
+    },
+    "28466": {
+      "factions": {
+        "14386": {
+          "name": "Blue Rock Cartel (BRC)",
+          "score": 0,
+          "chain": 0
+        },
+        "48184": {
+          "name": "Soulless Mafia",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753563600,
+        "end": 0,
+        "target": 7800,
+        "winner": 0
+      }
+    },
+    "28467": {
+      "factions": {
+        "51719": {
+          "name": "Lycans",
+          "score": 1758,
+          "chain": 0
+        },
+        "53462": {
+          "name": "Murder Was The Case",
+          "score": 1787,
+          "chain": 49
+        }
+      },
+      "war": {
+        "start": 1753372800,
+        "end": 0,
+        "target": 2573,
+        "winner": 0
+      }
+    },
+    "28468": {
+      "factions": {
+        "30584": {
+          "name": "Disorderly Conduct",
+          "score": 0,
+          "chain": 0
+        },
+        "42055": {
+          "name": "Dead Fragment",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753542000,
+        "end": 0,
+        "target": 6600,
+        "winner": 0
+      }
+    },
+    "28469": {
+      "factions": {
+        "46778": {
+          "name": "Burger Town",
+          "score": 0,
+          "chain": 0
+        },
+        "54248": {
+          "name": "Transformers",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753527600,
+        "end": 0,
+        "target": 2800,
+        "winner": 0
+      }
+    },
+    "28470": {
+      "factions": {
+        "51569": {
+          "name": "Psych Ward 2B",
+          "score": 0,
+          "chain": 0
+        },
+        "51624": {
+          "name": "Bamboo Union",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753545600,
+        "end": 0,
+        "target": 2400,
+        "winner": 0
+      }
+    },
+    "28471": {
+      "factions": {
+        "44594": {
+          "name": "The WarSluts",
+          "score": 7094,
+          "chain": 374
+        },
+        "52827": {
+          "name": "The Krystal Empire",
+          "score": 2784,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753466400,
+        "end": 0,
+        "target": 7300,
+        "winner": 0
+      }
+    },
+    "28472": {
+      "factions": {
+        "51447": {
+          "name": "2nd Chance",
+          "score": 0,
+          "chain": 0
+        },
+        "52566": {
+          "name": "Demonic Outcasts",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 4300,
+        "winner": 0
+      }
+    },
+    "28473": {
+      "factions": {
+        "25288": {
+          "name": "The Horizon Initiative",
+          "score": 6063,
+          "chain": 5
+        },
+        "40380": {
+          "name": "Seshlehem",
+          "score": 2411,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753387200,
+        "end": 0,
+        "target": 5307,
+        "winner": 0
+      }
+    },
+    "28474": {
+      "factions": {
+        "54408": {
+          "name": "Crimson coven",
+          "score": 0,
+          "chain": 0
+        },
+        "54508": {
+          "name": "SCP GHosts",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753563600,
+        "end": 0,
+        "target": 1900,
+        "winner": 0
+      }
+    },
+    "28475": {
+      "factions": {
+        "52116": {
+          "name": "HoTA - La Montagne",
+          "score": 0,
+          "chain": 0
+        },
+        "54160": {
+          "name": "LuMiNoSiTy",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 2200,
+        "winner": 0
+      }
+    },
+    "28476": {
+      "factions": {
+        "48443": {
+          "name": "Knockout - Ringside",
+          "score": 0,
+          "chain": 0
+        },
+        "48680": {
+          "name": "BlackWatch",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 7700,
+        "winner": 0
+      }
+    },
+    "28477": {
+      "factions": {
+        "6731": {
+          "name": "The Next Level",
+          "score": 0,
+          "chain": 0
+        },
+        "16628": {
+          "name": "Chain Reaction",
+          "score": 0,
+          "chain": 2
+        }
+      },
+      "war": {
+        "start": 1753552800,
+        "end": 0,
+        "target": 17900,
+        "winner": 0
+      }
+    },
+    "28478": {
+      "factions": {
+        "7093": {
+          "name": "Halos",
+          "score": 0,
+          "chain": 0
+        },
+        "8384": {
+          "name": "Savage Plague",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753560000,
+        "end": 0,
+        "target": 11600,
+        "winner": 0
+      }
+    },
+    "28479": {
+      "factions": {
+        "54376": {
+          "name": "S.C.P",
+          "score": 193,
+          "chain": 0
+        },
+        "54509": {
+          "name": "The Mages Guild",
+          "score": 344,
+          "chain": 2
+        }
+      },
+      "war": {
+        "start": 1753506000,
+        "end": 0,
+        "target": 1900,
+        "winner": 0
+      }
+    },
+    "28480": {
+      "factions": {
+        "52994": {
+          "name": "Moretti Crime Family",
+          "score": 1271,
+          "chain": 1
+        },
+        "53527": {
+          "name": "The Rising Stars",
+          "score": 208,
+          "chain": 23
+        }
+      },
+      "war": {
+        "start": 1753477200,
+        "end": 0,
+        "target": 3200,
+        "winner": 0
+      }
+    },
+    "28481": {
+      "factions": {
+        "52652": {
+          "name": "The Consortium",
+          "score": 3032,
+          "chain": 0
+        },
+        "53841": {
+          "name": "Moon Rabbits",
+          "score": 3962,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753394400,
+        "end": 0,
+        "target": 2492,
+        "winner": 0
+      }
+    },
+    "28482": {
+      "factions": {
+        "50423": {
+          "name": "The Flying Dragons",
+          "score": 2335,
+          "chain": 0
+        },
+        "52276": {
+          "name": "The Brotherhood of Cats",
+          "score": 1002,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753473600,
+        "end": 0,
+        "target": 2400,
+        "winner": 0
+      }
+    },
+    "28483": {
+      "factions": {
+        "937": {
+          "name": "Sport Club",
+          "score": 8000,
+          "chain": 1
+        },
+        "23952": {
+          "name": "Midnight Plague",
+          "score": 4053,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753383600,
+        "end": 0,
+        "target": 14706,
+        "winner": 0
+      }
+    },
+    "28484": {
+      "factions": {
+        "50208": {
+          "name": "PR - Pontifical Guard",
+          "score": 1776,
+          "chain": 0
+        },
+        "51855": {
+          "name": "Chaos Cartel",
+          "score": 8081,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753470000,
+        "end": 0,
+        "target": 7200,
+        "winner": 0
+      }
+    },
+    "28485": {
+      "factions": {
+        "49892": {
+          "name": "Grim Towne",
+          "score": 0,
+          "chain": 0
+        },
+        "54186": {
+          "name": "Kagetora",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753567200,
+        "end": 0,
+        "target": 2400,
+        "winner": 0
+      }
+    },
+    "28486": {
+      "factions": {
+        "50482": {
+          "name": "Orphan Grinder",
+          "score": 0,
+          "chain": 0
+        },
+        "51523": {
+          "name": "Torn Bootcamp",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753552800,
+        "end": 0,
+        "target": 1900,
+        "winner": 0
+      }
+    },
+    "28487": {
+      "factions": {
+        "54273": {
+          "name": "War MongerZ",
+          "score": 0,
+          "chain": 0
+        },
+        "54326": {
+          "name": "Scarlet Talons",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753542000,
+        "end": 0,
+        "target": 2000,
+        "winner": 0
+      }
+    },
+    "28488": {
+      "factions": {
+        "231": {
+          "name": "Destructive Anomaly",
+          "score": 2005,
+          "chain": 0
+        },
+        "12094": {
+          "name": "Nuclear Fusion",
+          "score": 5002,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753383600,
+        "end": 0,
+        "target": 15136,
+        "winner": 0
+      }
+    },
+    "28489": {
+      "factions": {
+        "8520": {
+          "name": "Xenon",
+          "score": 15502,
+          "chain": 0
+        },
+        "15446": {
+          "name": "Druggies in Snuggies",
+          "score": 8157,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753448400,
+        "end": 0,
+        "target": 18000,
+        "winner": 0
+      }
+    },
+    "28490": {
+      "factions": {
+        "10820": {
+          "name": "Lithium",
+          "score": 11901,
+          "chain": 1033
+        },
+        "15222": {
+          "name": "Mortiferi",
+          "score": 17028,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753387200,
+        "end": 0,
+        "target": 9831,
+        "winner": 0
+      }
+    },
+    "28491": {
+      "factions": {
+        "48563": {
+          "name": "Morty&#039;s Mindblowers-WO",
+          "score": 173,
+          "chain": 0
+        },
+        "51961": {
+          "name": "Kyoto Syndicate",
+          "score": 569,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753488000,
+        "end": 0,
+        "target": 1900,
+        "winner": 0
+      }
+    },
+    "28492": {
+      "factions": {
+        "49196": {
+          "name": "HD - Hellmarch Division",
+          "score": 453,
+          "chain": 0
+        },
+        "50334": {
+          "name": "Noble Vanguard",
+          "score": 360,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753459200,
+        "end": 0,
+        "target": 3400,
+        "winner": 0
+      }
+    },
+    "28493": {
+      "factions": {
+        "50986": {
+          "name": "Maelstrom Syndicate",
+          "score": 843,
+          "chain": 1
+        },
+        "51674": {
+          "name": "Strikeforce",
+          "score": 794,
+          "chain": 2
+        }
+      },
+      "war": {
+        "start": 1753372800,
+        "end": 0,
+        "target": 2241,
+        "winner": 0
+      }
+    },
+    "28494": {
+      "factions": {
+        "37450": {
+          "name": "Wargasm-DNA",
+          "score": 8535,
+          "chain": 212
+        },
+        "41218": {
+          "name": "Forgotten Realm",
+          "score": 3385,
+          "chain": 48
+        }
+      },
+      "war": {
+        "start": 1753459200,
+        "end": 0,
+        "target": 6500,
+        "winner": 0
+      }
+    },
+    "28495": {
+      "factions": {
+        "6557": {
+          "name": "The Turtle Club",
+          "score": 1863,
+          "chain": 0
+        },
+        "50706": {
+          "name": "REBELLION",
+          "score": 423,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753362000,
+        "end": 0,
+        "target": 3520,
+        "winner": 0
+      }
+    },
+    "28496": {
+      "factions": {
+        "51740": {
+          "name": "BONE THUGGIN MAFIA",
+          "score": 0,
+          "chain": 0
+        },
+        "52671": {
+          "name": "United Legion",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753567200,
+        "end": 0,
+        "target": 3600,
+        "winner": 0
+      }
+    },
+    "28497": {
+      "factions": {
+        "9055": {
+          "name": "Natural Selection IV",
+          "score": 0,
+          "chain": 0
+        },
+        "14821": {
+          "name": "JFK - Future Killers",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753538400,
+        "end": 0,
+        "target": 17900,
+        "winner": 0
+      }
+    },
+    "28498": {
+      "factions": {
+        "52914": {
+          "name": "The Board of Empires",
+          "score": 349,
+          "chain": 2
+        },
+        "53453": {
+          "name": "369",
+          "score": 1299,
+          "chain": 1
+        }
+      },
+      "war": {
+        "start": 1753455600,
+        "end": 0,
+        "target": 2100,
+        "winner": 0
+      }
+    },
+    "28499": {
+      "factions": {
+        "53952": {
+          "name": "Reckless Insurgency",
+          "score": 1894,
+          "chain": 0
+        },
+        "54214": {
+          "name": "DIE BOKKE",
+          "score": 1256,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753376400,
+        "end": 0,
+        "target": 1680,
+        "winner": 0
+      }
+    },
+    "28500": {
+      "factions": {
+        "52375": {
+          "name": "OwlsInTheShadows",
+          "score": 457,
+          "chain": 0
+        },
+        "53847": {
+          "name": "INT Brotherhood Teamsters",
+          "score": 774,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753419600,
+        "end": 0,
+        "target": 1824,
+        "winner": 0
+      }
+    },
+    "28501": {
+      "factions": {
+        "29107": {
+          "name": "Hello High",
+          "score": 1325,
+          "chain": 0
+        },
+        "37595": {
+          "name": "Firequackers",
+          "score": 7705,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753358400,
+        "end": 1753491655,
+        "target": 6364,
+        "winner": 37595
+      }
+    },
+    "28502": {
+      "factions": {
+        "52907": {
+          "name": "Vendetta Union",
+          "score": 0,
+          "chain": 0
+        },
+        "54246": {
+          "name": "Darkened shadows",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753549200,
+        "end": 0,
+        "target": 2100,
+        "winner": 0
+      }
+    },
+    "28503": {
+      "factions": {
+        "51053": {
+          "name": "Ile Ogun",
+          "score": 528,
+          "chain": 0
+        },
+        "51739": {
+          "name": "Torn City Crew",
+          "score": 341,
+          "chain": 11
+        }
+      },
+      "war": {
+        "start": 1753470000,
+        "end": 0,
+        "target": 2200,
+        "winner": 0
+      }
+    },
+    "28504": {
+      "factions": {
+        "46627": {
+          "name": "KOTOR",
+          "score": 0,
+          "chain": 0
+        },
+        "51671": {
+          "name": "The Imperial Empire",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753538400,
+        "end": 0,
+        "target": 5300,
+        "winner": 0
+      }
+    },
+    "28505": {
+      "factions": {
+        "43545": {
+          "name": "Crystal Cartel",
+          "score": 0,
+          "chain": 0
+        },
+        "49777": {
+          "name": "League of Corinth",
+          "score": 0,
+          "chain": 1
+        }
+      },
+      "war": {
+        "start": 1753545600,
+        "end": 0,
+        "target": 6200,
+        "winner": 0
+      }
+    },
+    "28506": {
+      "factions": {
+        "10140": {
+          "name": "In Memory of the Fallen",
+          "score": 0,
+          "chain": 0
+        },
+        "28073": {
+          "name": "Shiny Hoard Avian Team",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753563600,
+        "end": 0,
+        "target": 13300,
+        "winner": 0
+      }
+    },
+    "28508": {
+      "factions": {
+        "53631": {
+          "name": "TheProNoobZ",
+          "score": 1071,
+          "chain": 0
+        },
+        "54308": {
+          "name": "Corporate Takeover",
+          "score": 2513,
+          "chain": 45
+        }
+      },
+      "war": {
+        "start": 1753470000,
+        "end": 0,
+        "target": 2200,
+        "winner": 0
+      }
+    },
+    "28509": {
+      "factions": {
+        "20303": {
+          "name": "The Saviors",
+          "score": 8220,
+          "chain": 0
+        },
+        "44092": {
+          "name": "Chaos Theory",
+          "score": 1792,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753390800,
+        "end": 0,
+        "target": 8096,
+        "winner": 0
+      }
+    },
+    "28510": {
+      "factions": {
+        "41803": {
+          "name": "THE TEABAGGERS",
+          "score": 6540,
+          "chain": 0
+        },
+        "48526": {
+          "name": "Cosmosis",
+          "score": 2529,
+          "chain": 1
+        }
+      },
+      "war": {
+        "start": 1753477200,
+        "end": 0,
+        "target": 6000,
+        "winner": 0
+      }
+    },
+    "28511": {
+      "factions": {
+        "52863": {
+          "name": "TGC",
+          "score": 0,
+          "chain": 0
+        },
+        "53190": {
+          "name": "Kingdom of Sora",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753538400,
+        "end": 0,
+        "target": 2400,
+        "winner": 0
+      }
+    },
+    "28512": {
+      "factions": {
+        "47100": {
+          "name": "Salt in the Wound",
+          "score": 3772,
+          "chain": 0
+        },
+        "49651": {
+          "name": "Exalibur",
+          "score": 1260,
+          "chain": 1
+        }
+      },
+      "war": {
+        "start": 1753358400,
+        "end": 1753467580,
+        "target": 2511,
+        "winner": 47100
+      }
+    },
+    "28513": {
+      "factions": {
+        "50230": {
+          "name": "The Panturas",
+          "score": 963,
+          "chain": 0
+        },
+        "53020": {
+          "name": "Los Blancos Eldorado",
+          "score": 452,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753448400,
+        "end": 0,
+        "target": 3200,
+        "winner": 0
+      }
+    },
+    "28514": {
+      "factions": {
+        "14365": {
+          "name": "JFK 2.1",
+          "score": 6407,
+          "chain": 0
+        },
+        "21368": {
+          "name": "Escensio Incursus",
+          "score": 2410,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753390800,
+        "end": 0,
+        "target": 15840,
+        "winner": 0
+      }
+    },
+    "28515": {
+      "factions": {
+        "48747": {
+          "name": "Gooderfellas",
+          "score": 0,
+          "chain": 0
+        },
+        "48790": {
+          "name": "Soldiers of Darkness",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753567200,
+        "end": 0,
+        "target": 5300,
+        "winner": 0
+      }
+    },
+    "28516": {
+      "factions": {
+        "38097": {
+          "name": "Kentucky Fried Criminals",
+          "score": 0,
+          "chain": 0
+        },
+        "53428": {
+          "name": "dumb",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753545600,
+        "end": 0,
+        "target": 5000,
+        "winner": 0
+      }
+    },
+    "28517": {
+      "factions": {
+        "54175": {
+          "name": "TNM - Le Galline Family",
+          "score": 1502,
+          "chain": 0
+        },
+        "54226": {
+          "name": "Natural Born Mafia",
+          "score": 432,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753448400,
+        "end": 0,
+        "target": 1900,
+        "winner": 0
+      }
+    },
+    "28518": {
+      "factions": {
+        "7115": {
+          "name": "Republic Of Futuria",
+          "score": 3112,
+          "chain": 0
+        },
+        "38847": {
+          "name": "Vigilantes",
+          "score": 11945,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753383600,
+        "end": 1753497723,
+        "target": 8832,
+        "winner": 38847
+      }
+    },
+    "28519": {
+      "factions": {
+        "46088": {
+          "name": "The Den Of Thieves",
+          "score": 0,
+          "chain": 0
+        },
+        "50245": {
+          "name": "Familia Delinquentium",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753560000,
+        "end": 0,
+        "target": 4500,
+        "winner": 0
+      }
+    },
+    "28520": {
+      "factions": {
+        "50246": {
+          "name": "Wolfram &amp; Hart",
+          "score": 1258,
+          "chain": 196
+        },
+        "50510": {
+          "name": "Ca$hmere Talon$",
+          "score": 338,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753473600,
+        "end": 0,
+        "target": 3200,
+        "winner": 0
+      }
+    },
+    "28521": {
+      "factions": {
+        "8001": {
+          "name": "The Corporation",
+          "score": 3694,
+          "chain": 8
+        },
+        "50070": {
+          "name": "Business &amp; Trade Family",
+          "score": 9194,
+          "chain": 1
+        }
+      },
+      "war": {
+        "start": 1753380000,
+        "end": 1753433548,
+        "target": 5500,
+        "winner": 50070
+      }
+    },
+    "28522": {
+      "factions": {
+        "45965": {
+          "name": "HoTA - Soldiers",
+          "score": 1627,
+          "chain": 0
+        },
+        "51708": {
+          "name": "Tribunal Global Network",
+          "score": 4534,
+          "chain": 1
+        }
+      },
+      "war": {
+        "start": 1753462800,
+        "end": 1753505854,
+        "target": 2900,
+        "winner": 51708
+      }
+    },
+    "28523": {
+      "factions": {
+        "51200": {
+          "name": "The Bottomless Pit",
+          "score": 2052,
+          "chain": 0
+        },
+        "52234": {
+          "name": "Hell&#039;s Reapers",
+          "score": 3497,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753376400,
+        "end": 0,
+        "target": 2016,
+        "winner": 0
+      }
+    },
+    "28524": {
+      "factions": {
+        "43123": {
+          "name": "Penguins with Guns",
+          "score": 1126,
+          "chain": 0
+        },
+        "49685": {
+          "name": "Democratic strike",
+          "score": 761,
+          "chain": 2
+        }
+      },
+      "war": {
+        "start": 1753470000,
+        "end": 0,
+        "target": 2600,
+        "winner": 0
+      }
+    },
+    "28525": {
+      "factions": {
+        "24106": {
+          "name": "The Almanac",
+          "score": 4080,
+          "chain": 0
+        },
+        "38634": {
+          "name": "Takut Bini Army of Light",
+          "score": 2277,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753362000,
+        "end": 0,
+        "target": 4400,
+        "winner": 0
+      }
+    },
+    "28526": {
+      "factions": {
+        "18415": {
+          "name": "Mickey Mouse Clubhouse",
+          "score": 0,
+          "chain": 0
+        },
+        "51471": {
+          "name": "SPAHN RANCH",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 5600,
+        "winner": 0
+      }
+    },
+    "28527": {
+      "factions": {
+        "53905": {
+          "name": "Glockboys (RECRUITING)",
+          "score": 183,
+          "chain": 0
+        },
+        "54344": {
+          "name": "Blackwater Crew",
+          "score": 867,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753448400,
+        "end": 0,
+        "target": 1900,
+        "winner": 0
+      }
+    },
+    "28528": {
+      "factions": {
+        "31412": {
+          "name": "Error [404]",
+          "score": 0,
+          "chain": 0
+        },
+        "37786": {
+          "name": "Momentum",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753545600,
+        "end": 0,
+        "target": 6100,
+        "winner": 0
+      }
+    },
+    "28529": {
+      "factions": {
+        "50740": {
+          "name": "Noble Chocolate Winter",
+          "score": 3253,
+          "chain": 0
+        },
+        "53745": {
+          "name": "Flames of New Dream",
+          "score": 353,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753380000,
+        "end": 1753445839,
+        "target": 2900,
+        "winner": 50740
+      }
+    },
+    "28530": {
+      "factions": {
+        "50424": {
+          "name": "Ethereal Blade",
+          "score": 756,
+          "chain": 3
+        },
+        "52128": {
+          "name": "The Pilgrimage",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753470000,
+        "end": 0,
+        "target": 2100,
+        "winner": 0
+      }
+    },
+    "28531": {
+      "factions": {
+        "13307": {
+          "name": "Goblin Horde",
+          "score": 6507,
+          "chain": 0
+        },
+        "16079": {
+          "name": "Below the Wake",
+          "score": 8509,
+          "chain": 1
+        }
+      },
+      "war": {
+        "start": 1753383600,
+        "end": 0,
+        "target": 7396,
+        "winner": 0
+      }
+    },
+    "28532": {
+      "factions": {
+        "53933": {
+          "name": "Lumina Guards",
+          "score": 0,
+          "chain": 0
+        },
+        "54012": {
+          "name": "Blacklist Syndicate",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753524000,
+        "end": 0,
+        "target": 1900,
+        "winner": 0
+      }
+    },
+    "28533": {
+      "factions": {
+        "52764": {
+          "name": "Pocket Aces",
+          "score": 1685,
+          "chain": 0
+        },
+        "53576": {
+          "name": "THE SYNDICATE [NF EMPIRE]",
+          "score": 111,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753459200,
+        "end": 0,
+        "target": 4300,
+        "winner": 0
+      }
+    },
+    "28534": {
+      "factions": {
+        "47676": {
+          "name": "Kitsune Sanctuary",
+          "score": 1521,
+          "chain": 0
+        },
+        "51926": {
+          "name": "Inglorious Basterds",
+          "score": 8025,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753376400,
+        "end": 1753460253,
+        "target": 6500,
+        "winner": 51926
+      }
+    },
+    "28535": {
+      "factions": {
+        "50609": {
+          "name": "Phoenix Elysium",
+          "score": 0,
+          "chain": 0
+        },
+        "54107": {
+          "name": "Anarchist  Legion",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 2200,
+        "winner": 0
+      }
+    },
+    "28536": {
+      "factions": {
+        "9420": {
+          "name": "The Pusheen Army",
+          "score": 0,
+          "chain": 0
+        },
+        "23193": {
+          "name": "Materia",
+          "score": 0,
+          "chain": 1
+        }
+      },
+      "war": {
+        "start": 1753560000,
+        "end": 0,
+        "target": 14600,
+        "winner": 0
+      }
+    },
+    "28537": {
+      "factions": {
+        "52550": {
+          "name": "Blood Pact",
+          "score": 117,
+          "chain": 0
+        },
+        "53032": {
+          "name": "C.U.P.I.N.S.",
+          "score": 864,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753484400,
+        "end": 0,
+        "target": 3200,
+        "winner": 0
+      }
+    },
+    "28538": {
+      "factions": {
+        "43793": {
+          "name": "Backstreet Bozos",
+          "score": 0,
+          "chain": 0
+        },
+        "51011": {
+          "name": "Butcher &amp; Blackbird INC",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 3100,
+        "winner": 0
+      }
+    },
+    "28539": {
+      "factions": {
+        "50960": {
+          "name": "The District",
+          "score": 1767,
+          "chain": 27
+        },
+        "52787": {
+          "name": "Bliss",
+          "score": 1628,
+          "chain": 3
+        }
+      },
+      "war": {
+        "start": 1753390800,
+        "end": 0,
+        "target": 2992,
+        "winner": 0
+      }
+    },
+    "28540": {
+      "factions": {
+        "52748": {
+          "name": "The Coiled Order",
+          "score": 1243,
+          "chain": 0
+        },
+        "53632": {
+          "name": "Aotearoa Family",
+          "score": 78,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753462800,
+        "end": 0,
+        "target": 3400,
+        "winner": 0
+      }
+    },
+    "28541": {
+      "factions": {
+        "51404": {
+          "name": "The Gambino Goons",
+          "score": 0,
+          "chain": 0
+        },
+        "53863": {
+          "name": "Dominus Astra",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753545600,
+        "end": 0,
+        "target": 2300,
+        "winner": 0
+      }
+    },
+    "28542": {
+      "factions": {
+        "48635": {
+          "name": "Rockstars",
+          "score": 0,
+          "chain": 0
+        },
+        "48911": {
+          "name": "Die Blade",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753545600,
+        "end": 0,
+        "target": 5400,
+        "winner": 0
+      }
+    },
+    "28544": {
+      "factions": {
+        "13377": {
+          "name": "The Brotherhood of War",
+          "score": 0,
+          "chain": 0
+        },
+        "28349": {
+          "name": "Dexter&#039;s Laboratory",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753552800,
+        "end": 0,
+        "target": 14400,
+        "winner": 0
+      }
+    },
+    "28545": {
+      "factions": {
+        "38675": {
+          "name": "The Legion of Evil",
+          "score": 366,
+          "chain": 0
+        },
+        "49573": {
+          "name": "Nine Hells: Fast&amp;Furious",
+          "score": 2414,
+          "chain": 72
+        }
+      },
+      "war": {
+        "start": 1753466400,
+        "end": 0,
+        "target": 4000,
+        "winner": 0
+      }
+    },
+    "28546": {
+      "factions": {
+        "52026": {
+          "name": "Savage Warlords",
+          "score": 1719,
+          "chain": 3
+        },
+        "52240": {
+          "name": "Bergin crew",
+          "score": 579,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753380000,
+        "end": 0,
+        "target": 1615,
+        "winner": 0
+      }
+    },
+    "28547": {
+      "factions": {
+        "46144": {
+          "name": "SKS MUTATED",
+          "score": 536,
+          "chain": 0
+        },
+        "49147": {
+          "name": "Gladiators",
+          "score": 1843,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753455600,
+        "end": 0,
+        "target": 6100,
+        "winner": 0
+      }
+    },
+    "28548": {
+      "factions": {
+        "50695": {
+          "name": "Neon Nexus",
+          "score": 0,
+          "chain": 0
+        },
+        "52603": {
+          "name": "Midas Touch",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753567200,
+        "end": 0,
+        "target": 3000,
+        "winner": 0
+      }
+    },
+    "28549": {
+      "factions": {
+        "50680": {
+          "name": "The Shack",
+          "score": 0,
+          "chain": 0
+        },
+        "51915": {
+          "name": "Faster Than Light",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753567200,
+        "end": 0,
+        "target": 4400,
+        "winner": 0
+      }
+    },
+    "28550": {
+      "factions": {
+        "48965": {
+          "name": "Kushindo",
+          "score": 2027,
+          "chain": 0
+        },
+        "53709": {
+          "name": "Good Burger",
+          "score": 680,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753383600,
+        "end": 0,
+        "target": 2838,
+        "winner": 0
+      }
+    },
+    "28551": {
+      "factions": {
+        "40692": {
+          "name": "Kingdom of Asgard",
+          "score": 1901,
+          "chain": 4
+        },
+        "44865": {
+          "name": "Violent Resolution",
+          "score": 12622,
+          "chain": 1585
+        }
+      },
+      "war": {
+        "start": 1753466400,
+        "end": 0,
+        "target": 13400,
+        "winner": 0
+      }
+    },
+    "28552": {
+      "factions": {
+        "46673": {
+          "name": "Mechanized Midgets",
+          "score": 0,
+          "chain": 0
+        },
+        "51166": {
+          "name": "Bigger on the Inside",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 5600,
+        "winner": 0
+      }
+    },
+    "28553": {
+      "factions": {
+        "17991": {
+          "name": "TC Mafia Chain Gang",
+          "score": 3362,
+          "chain": 0
+        },
+        "42741": {
+          "name": "Black  Lotus  Society",
+          "score": 4662,
+          "chain": 1
+        }
+      },
+      "war": {
+        "start": 1753318800,
+        "end": 0,
+        "target": 4352,
+        "winner": 0
+      }
+    },
+    "28554": {
+      "factions": {
+        "45421": {
+          "name": "Ricefields of Neverland",
+          "score": 115,
+          "chain": 0
+        },
+        "51164": {
+          "name": "Lowkey Lunatics",
+          "score": 277,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753459200,
+        "end": 0,
+        "target": 5300,
+        "winner": 0
+      }
+    },
+    "28555": {
+      "factions": {
+        "8400": {
+          "name": "Lingering Insanity",
+          "score": 0,
+          "chain": 0
+        },
+        "33007": {
+          "name": "HAKA",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753542000,
+        "end": 0,
+        "target": 13700,
+        "winner": 0
+      }
+    },
+    "28556": {
+      "factions": {
+        "37563": {
+          "name": "TSFTS Moonshiners",
+          "score": 3606,
+          "chain": 0
+        },
+        "51167": {
+          "name": "Torns M.C.",
+          "score": 1853,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753383600,
+        "end": 0,
+        "target": 3096,
+        "winner": 0
+      }
+    },
+    "28557": {
+      "factions": {
+        "52699": {
+          "name": "The Kingdom of Fire",
+          "score": 0,
+          "chain": 0
+        },
+        "54260": {
+          "name": "Assassins",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753560000,
+        "end": 0,
+        "target": 2300,
+        "winner": 0
+      }
+    },
+    "28558": {
+      "factions": {
+        "8836": {
+          "name": "Vinerri",
+          "score": 3011,
+          "chain": 0
+        },
+        "9533": {
+          "name": "Natural Selection",
+          "score": 8798,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753448400,
+        "end": 0,
+        "target": 17600,
+        "winner": 0
+      }
+    },
+    "28559": {
+      "factions": {
+        "38547": {
+          "name": "Unbroken Nixies",
+          "score": 0,
+          "chain": 0
+        },
+        "43428": {
+          "name": "The Madhouse Resurrection",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753560000,
+        "end": 0,
+        "target": 11000,
+        "winner": 0
+      }
+    },
+    "28560": {
+      "factions": {
+        "50229": {
+          "name": "The Golden Circle",
+          "score": 0,
+          "chain": 0
+        },
+        "51373": {
+          "name": "Golden Knights",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753545600,
+        "end": 0,
+        "target": 2400,
+        "winner": 0
+      }
+    },
+    "28561": {
+      "factions": {
+        "11162": {
+          "name": "InQuest",
+          "score": 5023,
+          "chain": 0
+        },
+        "48640": {
+          "name": "Phoenix Ascent",
+          "score": 2086,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753383600,
+        "end": 0,
+        "target": 6880,
+        "winner": 0
+      }
+    },
+    "28562": {
+      "factions": {
+        "50573": {
+          "name": "ECLIPSE VANGUARD",
+          "score": 690,
+          "chain": 0
+        },
+        "53876": {
+          "name": "TVault",
+          "score": 444,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753459200,
+        "end": 0,
+        "target": 2900,
+        "winner": 0
+      }
+    },
+    "28563": {
+      "factions": {
+        "46700": {
+          "name": "Bleeding Streets",
+          "score": 0,
+          "chain": 0
+        },
+        "47445": {
+          "name": "Blade of Vengeance",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 3800,
+        "winner": 0
+      }
+    },
+    "28564": {
+      "factions": {
+        "6895": {
+          "name": "Iron Rose Cartel",
+          "score": 0,
+          "chain": 0
+        },
+        "44467": {
+          "name": "The Hogs",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 11300,
+        "winner": 0
+      }
+    },
+    "28565": {
+      "factions": {
+        "48087": {
+          "name": "Endless Euphoria",
+          "score": 0,
+          "chain": 0
+        },
+        "51282": {
+          "name": "Our Gang",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753563600,
+        "end": 0,
+        "target": 4200,
+        "winner": 0
+      }
+    },
+    "28566": {
+      "factions": {
+        "49695": {
+          "name": "The Shogunate Spy",
+          "score": 332,
+          "chain": 0
+        },
+        "53456": {
+          "name": "Frozen Tooth Gang",
+          "score": 3004,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753383600,
+        "end": 1753506633,
+        "target": 2670,
+        "winner": 53456
+      }
+    },
+    "28567": {
+      "factions": {
+        "50479": {
+          "name": "Knights Templar",
+          "score": 254,
+          "chain": 0
+        },
+        "51316": {
+          "name": "Pixel Ninjas",
+          "score": 1171,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753448400,
+        "end": 0,
+        "target": 3000,
+        "winner": 0
+      }
+    },
+    "28568": {
+      "factions": {
+        "37402": {
+          "name": "LAB HQ",
+          "score": 0,
+          "chain": 0
+        },
+        "39549": {
+          "name": "Good Guys",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 6900,
+        "winner": 0
+      }
+    },
+    "28569": {
+      "factions": {
+        "19060": {
+          "name": "Fallout",
+          "score": 5800,
+          "chain": 0
+        },
+        "48206": {
+          "name": "ADHD Team",
+          "score": 908,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753354800,
+        "end": 1753462108,
+        "target": 4888,
+        "winner": 19060
+      }
+    },
+    "28570": {
+      "factions": {
+        "14432": {
+          "name": "160th SOAR Night Stalkers",
+          "score": 4938,
+          "chain": 0
+        },
+        "34623": {
+          "name": "Viking Emus",
+          "score": 6912,
+          "chain": 233
+        }
+      },
+      "war": {
+        "start": 1753441200,
+        "end": 0,
+        "target": 10200,
+        "winner": 0
+      }
+    },
+    "28571": {
+      "factions": {
+        "50428": {
+          "name": "Blade Runners",
+          "score": 0,
+          "chain": 0
+        },
+        "50723": {
+          "name": "Shaggers",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753552800,
+        "end": 0,
+        "target": 5100,
+        "winner": 0
+      }
+    },
+    "28572": {
+      "factions": {
+        "53066": {
+          "name": "NunsXXXNuns",
+          "score": 0,
+          "chain": 0
+        },
+        "54228": {
+          "name": "The Loyal Reign",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753567200,
+        "end": 0,
+        "target": 1900,
+        "winner": 0
+      }
+    },
+    "28573": {
+      "factions": {
+        "52052": {
+          "name": "Special Task Force",
+          "score": 707,
+          "chain": 0
+        },
+        "54296": {
+          "name": "The Radicals",
+          "score": 1700,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753387200,
+        "end": 0,
+        "target": 2523,
+        "winner": 0
+      }
+    },
+    "28574": {
+      "factions": {
+        "53707": {
+          "name": "ACAB",
+          "score": 0,
+          "chain": 0
+        },
+        "54264": {
+          "name": "TOMB - KRAKEN",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753560000,
+        "end": 0,
+        "target": 1900,
+        "winner": 0
+      }
+    },
+    "28575": {
+      "factions": {
+        "50426": {
+          "name": "The Abyssal horde",
+          "score": 0,
+          "chain": 0
+        },
+        "53947": {
+          "name": "Straw hat crew",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753552800,
+        "end": 0,
+        "target": 3600,
+        "winner": 0
+      }
+    },
+    "28576": {
+      "factions": {
+        "11108": {
+          "name": "REK Juniors",
+          "score": 883,
+          "chain": 0
+        },
+        "52867": {
+          "name": "Darwin&#039;s Theory",
+          "score": 325,
+          "chain": 7
+        }
+      },
+      "war": {
+        "start": 1753477200,
+        "end": 0,
+        "target": 2900,
+        "winner": 0
+      }
+    },
+    "28577": {
+      "factions": {
+        "9036": {
+          "name": "The Black Pearl",
+          "score": 7547,
+          "chain": 1
+        },
+        "21234": {
+          "name": "Underground Nation",
+          "score": 4065,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753369200,
+        "end": 0,
+        "target": 10906,
+        "winner": 0
+      }
+    },
+    "28578": {
+      "factions": {
+        "52363": {
+          "name": "T.R.A.C.E.Y",
+          "score": 0,
+          "chain": 3
+        },
+        "53171": {
+          "name": "The S.C.P. Foundation",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753545600,
+        "end": 0,
+        "target": 1900,
+        "winner": 0
+      }
+    },
+    "28579": {
+      "factions": {
+        "44746": {
+          "name": "Chromatic Sloths",
+          "score": 1339,
+          "chain": 0
+        },
+        "51839": {
+          "name": "Veritas Legion",
+          "score": 3667,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753470000,
+        "end": 0,
+        "target": 6000,
+        "winner": 0
+      }
+    },
+    "28580": {
+      "factions": {
+        "17055": {
+          "name": "nBk rest easy Ozzy",
+          "score": 7336,
+          "chain": 12
+        },
+        "49450": {
+          "name": "The Couch Potatoes",
+          "score": 7404,
+          "chain": 15
+        }
+      },
+      "war": {
+        "start": 1753315200,
+        "end": 0,
+        "target": 3953,
+        "winner": 0
+      }
+    },
+    "28581": {
+      "factions": {
+        "52093": {
+          "name": "-3ternal Nightmare",
+          "score": 0,
+          "chain": 0
+        },
+        "53887": {
+          "name": "The Tideborn Legion",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753534800,
+        "end": 0,
+        "target": 2300,
+        "winner": 0
+      }
+    },
+    "28582": {
+      "factions": {
+        "47635": {
+          "name": "Get Rich or Die Tryin",
+          "score": 0,
+          "chain": 0
+        },
+        "51815": {
+          "name": "Drugs are us",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753563600,
+        "end": 0,
+        "target": 4700,
+        "winner": 0
+      }
+    },
+    "28583": {
+      "factions": {
+        "52557": {
+          "name": "The Eternal Order",
+          "score": 0,
+          "chain": 0
+        },
+        "53976": {
+          "name": "Dragons Isle",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753552800,
+        "end": 0,
+        "target": 3100,
+        "winner": 0
+      }
+    },
+    "28584": {
+      "factions": {
+        "47515": {
+          "name": "Project at Eden&#039;s Gate",
+          "score": 0,
+          "chain": 0
+        },
+        "50963": {
+          "name": "Fallen Fists",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753545600,
+        "end": 0,
+        "target": 4100,
+        "winner": 0
+      }
+    },
+    "28585": {
+      "factions": {
+        "15256": {
+          "name": "Defenestration",
+          "score": 1524,
+          "chain": 0
+        },
+        "48636": {
+          "name": "Keepers Of The Light",
+          "score": 3879,
+          "chain": 15
+        }
+      },
+      "war": {
+        "start": 1753470000,
+        "end": 0,
+        "target": 4800,
+        "winner": 0
+      }
+    },
+    "28586": {
+      "factions": {
+        "18560": {
+          "name": "Chrondawgs",
+          "score": 3006,
+          "chain": 1
+        },
+        "21040": {
+          "name": "Monarch Vanguard",
+          "score": 6851,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753390800,
+        "end": 0,
+        "target": 8008,
+        "winner": 0
+      }
+    },
+    "28587": {
+      "factions": {
+        "52345": {
+          "name": "Immortale Sanguine",
+          "score": 361,
+          "chain": 0
+        },
+        "54105": {
+          "name": "Lemniscate",
+          "score": 70,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753477200,
+        "end": 0,
+        "target": 1700,
+        "winner": 0
+      }
+    },
+    "28588": {
+      "factions": {
+        "49134": {
+          "name": "WAR-HIVE  HQ",
+          "score": 0,
+          "chain": 0
+        },
+        "50951": {
+          "name": "The Gambino Family",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753538400,
+        "end": 0,
+        "target": 2600,
+        "winner": 0
+      }
+    },
+    "28589": {
+      "factions": {
+        "51151": {
+          "name": "The Peaki Blinders",
+          "score": 0,
+          "chain": 0
+        },
+        "54068": {
+          "name": "Purgatory&#039;s Rejects",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753549200,
+        "end": 0,
+        "target": 3800,
+        "winner": 0
+      }
+    },
+    "28590": {
+      "factions": {
+        "50028": {
+          "name": "The Akatsukis",
+          "score": 793,
+          "chain": 1
+        },
+        "53529": {
+          "name": "TBH_",
+          "score": 1487,
+          "chain": 1
+        }
+      },
+      "war": {
+        "start": 1753387200,
+        "end": 0,
+        "target": 2523,
+        "winner": 0
+      }
+    },
+    "28591": {
+      "factions": {
+        "10566": {
+          "name": "The Rifle Company",
+          "score": 9479,
+          "chain": 465
+        },
+        "15226": {
+          "name": "Whitenoise",
+          "score": 2875,
+          "chain": 33
+        }
+      },
+      "war": {
+        "start": 1753441200,
+        "end": 0,
+        "target": 8400,
+        "winner": 0
+      }
+    },
+    "28592": {
+      "factions": {
+        "51491": {
+          "name": "Dark Legacies",
+          "score": 0,
+          "chain": 0
+        },
+        "54233": {
+          "name": "The Forsaken Realm",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 2100,
+        "winner": 0
+      }
+    },
+    "28593": {
+      "factions": {
+        "52292": {
+          "name": "THE GHOST TOWN",
+          "score": 714,
+          "chain": 0
+        },
+        "54207": {
+          "name": "The PeachSlappers",
+          "score": 2659,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753390800,
+        "end": 1753486715,
+        "target": 1940,
+        "winner": 54207
+      }
+    },
+    "28594": {
+      "factions": {
+        "52023": {
+          "name": "EBK-EVERY BODY KILLERS",
+          "score": 564,
+          "chain": 0
+        },
+        "54070": {
+          "name": "Ths confederacy",
+          "score": 63,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753459200,
+        "end": 0,
+        "target": 1900,
+        "winner": 0
+      }
+    },
+    "28595": {
+      "factions": {
+        "9171": {
+          "name": "Occul2us",
+          "score": 649,
+          "chain": 0
+        },
+        "51357": {
+          "name": "Lupi",
+          "score": 678,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753387200,
+        "end": 0,
+        "target": 3828,
+        "winner": 0
+      }
+    },
+    "28596": {
+      "factions": {
+        "48769": {
+          "name": "The Coalition",
+          "score": 2924,
+          "chain": 357
+        },
+        "50699": {
+          "name": "Star-Light-Warriors",
+          "score": 261,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753455600,
+        "end": 0,
+        "target": 5400,
+        "winner": 0
+      }
+    },
+    "28597": {
+      "factions": {
+        "9405": {
+          "name": "Voidbringers",
+          "score": 3069,
+          "chain": 1
+        },
+        "11898": {
+          "name": "Attack Mode",
+          "score": 1917,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753390800,
+        "end": 0,
+        "target": 6512,
+        "winner": 0
+      }
+    },
+    "28598": {
+      "factions": {
+        "9110": {
+          "name": "Siege",
+          "score": 11785,
+          "chain": 1
+        },
+        "27312": {
+          "name": "SA Succession",
+          "score": 2683,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753452000,
+        "end": 0,
+        "target": 18000,
+        "winner": 0
+      }
+    },
+    "28599": {
+      "factions": {
+        "9412": {
+          "name": "BLACK STATUES",
+          "score": 0,
+          "chain": 0
+        },
+        "42435": {
+          "name": "Nub Army",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753560000,
+        "end": 0,
+        "target": 14300,
+        "winner": 0
+      }
+    },
+    "28600": {
+      "factions": {
+        "49507": {
+          "name": "Atomic Warfare",
+          "score": 0,
+          "chain": 0
+        },
+        "52740": {
+          "name": "Torn Havoc Cartel",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 2300,
+        "winner": 0
+      }
+    },
+    "28601": {
+      "factions": {
+        "13737": {
+          "name": "The War Rig",
+          "score": 0,
+          "chain": 0
+        },
+        "52756": {
+          "name": "The Doll House",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 8200,
+        "winner": 0
+      }
+    },
+    "28602": {
+      "factions": {
+        "53248": {
+          "name": "The Convergence",
+          "score": 1276,
+          "chain": 0
+        },
+        "53805": {
+          "name": "Syndicate 404",
+          "score": 3230,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753376400,
+        "end": 1753485969,
+        "target": 1953,
+        "winner": 53805
+      }
+    },
+    "28603": {
+      "factions": {
+        "33999": {
+          "name": "Reluctant Horrors",
+          "score": 124,
+          "chain": 0
+        },
+        "49927": {
+          "name": "Viking Family",
+          "score": 1351,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753473600,
+        "end": 0,
+        "target": 5900,
+        "winner": 0
+      }
+    },
+    "28604": {
+      "factions": {
+        "9357": {
+          "name": "Monarch Mavericks",
+          "score": 0,
+          "chain": 0
+        },
+        "26312": {
+          "name": "JFK - Misfits",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753538400,
+        "end": 0,
+        "target": 16700,
+        "winner": 0
+      }
+    },
+    "28605": {
+      "factions": {
+        "41225": {
+          "name": "PT-erodactyls",
+          "score": 0,
+          "chain": 0
+        },
+        "47878": {
+          "name": "Righteous Aura",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753545600,
+        "end": 0,
+        "target": 7700,
+        "winner": 0
+      }
+    },
+    "28606": {
+      "factions": {
+        "50467": {
+          "name": "D0p3 Kr3w",
+          "score": 2539,
+          "chain": 6
+        },
+        "50783": {
+          "name": "Embers HQ",
+          "score": 4399,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753372800,
+        "end": 0,
+        "target": 3071,
+        "winner": 0
+      }
+    },
+    "28607": {
+      "factions": {
+        "52793": {
+          "name": "Crimson Tech",
+          "score": 0,
+          "chain": 0
+        },
+        "53350": {
+          "name": "Mild Inconvenience",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753563600,
+        "end": 0,
+        "target": 3200,
+        "winner": 0
+      }
+    },
+    "28608": {
+      "factions": {
+        "44547": {
+          "name": "MORTAL WARLORDS",
+          "score": 672,
+          "chain": 0
+        },
+        "51716": {
+          "name": "Develop (Hiring)",
+          "score": 555,
+          "chain": 4
+        }
+      },
+      "war": {
+        "start": 1753444800,
+        "end": 0,
+        "target": 2900,
+        "winner": 0
+      }
+    },
+    "28609": {
+      "factions": {
+        "47614": {
+          "name": "Equity X",
+          "score": 3116,
+          "chain": 10
+        },
+        "50433": {
+          "name": "Golden Dawn Mafia",
+          "score": 835,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753394400,
+        "end": 0,
+        "target": 3827,
+        "winner": 0
+      }
+    },
+    "28610": {
+      "factions": {
+        "39756": {
+          "name": "Abusement Park",
+          "score": 6251,
+          "chain": 5
+        },
+        "40518": {
+          "name": "Monarch Optimus",
+          "score": 3003,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753473600,
+        "end": 0,
+        "target": 18000,
+        "winner": 0
+      }
+    },
+    "28611": {
+      "factions": {
+        "49793": {
+          "name": "Schrute Farms #1",
+          "score": 0,
+          "chain": 0
+        },
+        "52380": {
+          "name": "The Klingon Empire",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753542000,
+        "end": 0,
+        "target": 4400,
+        "winner": 0
+      }
+    },
+    "28612": {
+      "factions": {
+        "54346": {
+          "name": "SPARTAN&#039;S",
+          "score": 212,
+          "chain": 1
+        },
+        "54434": {
+          "name": "King Clan",
+          "score": 194,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753506000,
+        "end": 0,
+        "target": 1900,
+        "winner": 0
+      }
+    },
+    "28613": {
+      "factions": {
+        "16696": {
+          "name": "PT-Guemedolphinos",
+          "score": 714,
+          "chain": 0
+        },
+        "45415": {
+          "name": "PT-SunnyVale",
+          "score": 2267,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753372800,
+        "end": 0,
+        "target": 6059,
+        "winner": 0
+      }
+    },
+    "28614": {
+      "factions": {
+        "15961": {
+          "name": "Raven Peaks",
+          "score": 0,
+          "chain": 0
+        },
+        "52043": {
+          "name": "Legitimate Skill Division",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753538400,
+        "end": 0,
+        "target": 4500,
+        "winner": 0
+      }
+    },
+    "28615": {
+      "factions": {
+        "16053": {
+          "name": "Asylum 2.0",
+          "score": 0,
+          "chain": 0
+        },
+        "44404": {
+          "name": "S.C.A.R. - DELTA GREEN",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753560000,
+        "end": 0,
+        "target": 9700,
+        "winner": 0
+      }
+    },
+    "28616": {
+      "factions": {
+        "11782": {
+          "name": "Ghostmobile",
+          "score": 0,
+          "chain": 0
+        },
+        "13726": {
+          "name": "Ludus Magnus",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753563600,
+        "end": 0,
+        "target": 5000,
+        "winner": 0
+      }
+    },
+    "28617": {
+      "factions": {
+        "15929": {
+          "name": "The Inquisition",
+          "score": 8223,
+          "chain": 0
+        },
+        "27902": {
+          "name": "SMTH - Concord",
+          "score": 3126,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753448400,
+        "end": 0,
+        "target": 13400,
+        "winner": 0
+      }
+    },
+    "28618": {
+      "factions": {
+        "13665": {
+          "name": "PT-Penguins",
+          "score": 5517,
+          "chain": 1
+        },
+        "41929": {
+          "name": "Valor",
+          "score": 122,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753369200,
+        "end": 0,
+        "target": 14760,
+        "winner": 0
+      }
+    },
+    "28619": {
+      "factions": {
+        "52653": {
+          "name": "Money for life",
+          "score": 0,
+          "chain": 0
+        },
+        "54073": {
+          "name": "Frog Swamp",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 2000,
+        "winner": 0
+      }
+    },
+    "28620": {
+      "factions": {
+        "10098": {
+          "name": "Moo Farms",
+          "score": 0,
+          "chain": 0
+        },
+        "52815": {
+          "name": "Space Sweepers",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753531200,
+        "end": 0,
+        "target": 4900,
+        "winner": 0
+      }
+    },
+    "28621": {
+      "factions": {
+        "53593": {
+          "name": "Ghost Keepers",
+          "score": 0,
+          "chain": 0
+        },
+        "54028": {
+          "name": "~Legionaries~",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753552800,
+        "end": 0,
+        "target": 2100,
+        "winner": 0
+      }
+    },
+    "28622": {
+      "factions": {
+        "9041": {
+          "name": "PT-Calculated",
+          "score": 3440,
+          "chain": 0
+        },
+        "22781": {
+          "name": "The Wolverines",
+          "score": 9746,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753459200,
+        "end": 0,
+        "target": 17700,
+        "winner": 0
+      }
+    },
+    "28623": {
+      "factions": {
+        "49953": {
+          "name": "BoW - 4.20",
+          "score": 3670,
+          "chain": 57
+        },
+        "52042": {
+          "name": "DM_Faction",
+          "score": 1499,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753398000,
+        "end": 0,
+        "target": 3780,
+        "winner": 0
+      }
+    },
+    "28624": {
+      "factions": {
+        "48948": {
+          "name": "One-Piece X",
+          "score": 801,
+          "chain": 0
+        },
+        "49646": {
+          "name": "Immortal Warriors",
+          "score": 1497,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753470000,
+        "end": 0,
+        "target": 3800,
+        "winner": 0
+      }
+    },
+    "28626": {
+      "factions": {
+        "48077": {
+          "name": "Champagne Killers",
+          "score": 114,
+          "chain": 0
+        },
+        "49430": {
+          "name": "Cheesecake Factory",
+          "score": 3894,
+          "chain": 211
+        }
+      },
+      "war": {
+        "start": 1753401600,
+        "end": 0,
+        "target": 4368,
+        "winner": 0
+      }
+    },
+    "28627": {
+      "factions": {
+        "49515": {
+          "name": "Holy Crucible Of Monarch",
+          "score": 1601,
+          "chain": 0
+        },
+        "53623": {
+          "name": "Science Class",
+          "score": 2805,
+          "chain": 14
+        }
+      },
+      "war": {
+        "start": 1753380000,
+        "end": 0,
+        "target": 2125,
+        "winner": 0
+      }
+    },
+    "28628": {
+      "factions": {
+        "9674": {
+          "name": "Smells like Sex",
+          "score": 9947,
+          "chain": 0
+        },
+        "37132": {
+          "name": "Morte Subita",
+          "score": 445,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753470000,
+        "end": 1753499512,
+        "target": 9500,
+        "winner": 9674
+      }
+    },
+    "28629": {
+      "factions": {
+        "51078": {
+          "name": "Astral Alliance",
+          "score": 338,
+          "chain": 0
+        },
+        "54151": {
+          "name": "GrindTime",
+          "score": 2259,
+          "chain": 3
+        }
+      },
+      "war": {
+        "start": 1753369200,
+        "end": 0,
+        "target": 2214,
+        "winner": 0
+      }
+    },
+    "28630": {
+      "factions": {
+        "49384": {
+          "name": "Organised Chaos",
+          "score": 3564,
+          "chain": 47
+        },
+        "49924": {
+          "name": "OnlyXans",
+          "score": 813,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753462800,
+        "end": 0,
+        "target": 5500,
+        "winner": 0
+      }
+    },
+    "28631": {
+      "factions": {
+        "8537": {
+          "name": "NNGO",
+          "score": 2024,
+          "chain": 0
+        },
+        "11796": {
+          "name": "SMTH - Bright Summit",
+          "score": 5013,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753362000,
+        "end": 0,
+        "target": 14400,
+        "winner": 0
+      }
+    },
+    "28632": {
+      "factions": {
+        "15286": {
+          "name": "Luscious Nightmares",
+          "score": 11379,
+          "chain": 0
+        },
+        "25025": {
+          "name": "DP Warriors",
+          "score": 5294,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753452000,
+        "end": 0,
+        "target": 14900,
+        "winner": 0
+      }
+    },
+    "28633": {
+      "factions": {
+        "41291": {
+          "name": "Phoenix X",
+          "score": 5859,
+          "chain": 0
+        },
+        "51089": {
+          "name": "The Thornhelm Guard",
+          "score": 1403,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753390800,
+        "end": 0,
+        "target": 6688,
+        "winner": 0
+      }
+    },
+    "28634": {
+      "factions": {
+        "54190": {
+          "name": "GridlockGang",
+          "score": 0,
+          "chain": 0
+        },
+        "54371": {
+          "name": "Strawhat -Pirates",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753563600,
+        "end": 0,
+        "target": 1900,
+        "winner": 0
+      }
+    },
+    "28635": {
+      "factions": {
+        "8989": {
+          "name": "JUX HQ",
+          "score": 0,
+          "chain": 0
+        },
+        "12893": {
+          "name": "Darkline",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753560000,
+        "end": 0,
+        "target": 18000,
+        "winner": 0
+      }
+    },
+    "28636": {
+      "factions": {
+        "10739": {
+          "name": "The Next Level - Forge",
+          "score": 14483,
+          "chain": 1
+        },
+        "11428": {
+          "name": "Swiss Squad",
+          "score": 5385,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753477200,
+        "end": 0,
+        "target": 17600,
+        "winner": 0
+      }
+    },
+    "28637": {
+      "factions": {
+        "49164": {
+          "name": "The Torn Division",
+          "score": 0,
+          "chain": 0
+        },
+        "51238": {
+          "name": "The Fat Elephant",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753545600,
+        "end": 0,
+        "target": 5300,
+        "winner": 0
+      }
+    },
+    "28638": {
+      "factions": {
+        "8422": {
+          "name": "Monarch Cupid",
+          "score": 0,
+          "chain": 0
+        },
+        "11747": {
+          "name": "Natural Selection II",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753552800,
+        "end": 0,
+        "target": 18000,
+        "winner": 0
+      }
+    },
+    "28639": {
+      "factions": {
+        "3241": {
+          "name": "JFK",
+          "score": 6308,
+          "chain": 0
+        },
+        "8867": {
+          "name": "Monarch Chrysalis",
+          "score": 2606,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753365600,
+        "end": 0,
+        "target": 13203,
+        "winner": 0
+      }
+    },
+    "28640": {
+      "factions": {
+        "9356": {
+          "name": "SMTH - Party Animals",
+          "score": 2402,
+          "chain": 0
+        },
+        "16443": {
+          "name": "Undead Covenant",
+          "score": 5712,
+          "chain": 2
+        }
+      },
+      "war": {
+        "start": 1753452000,
+        "end": 0,
+        "target": 13100,
+        "winner": 0
+      }
+    },
+    "28641": {
+      "factions": {
+        "51572": {
+          "name": "Winter Fell",
+          "score": 0,
+          "chain": 1
+        },
+        "52431": {
+          "name": "TMNT - Leonardo",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753556400,
+        "end": 0,
+        "target": 3300,
+        "winner": 0
+      }
+    },
+    "28642": {
+      "factions": {
+        "8336": {
+          "name": "Monarch HQ",
+          "score": 5559,
+          "chain": 0
+        },
+        "10174": {
+          "name": "AQUA-Poseidon",
+          "score": 2429,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753372800,
+        "end": 0,
+        "target": 14857,
+        "winner": 0
+      }
+    },
+    "28643": {
+      "factions": {
+        "10610": {
+          "name": "NPO - Strength",
+          "score": 15182,
+          "chain": 0
+        },
+        "27370": {
+          "name": "Desert Eagle",
+          "score": 2473,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753462800,
+        "end": 1753494312,
+        "target": 12700,
+        "winner": 10610
+      }
+    },
+    "28644": {
+      "factions": {
+        "19": {
+          "name": "39th Street Killers",
+          "score": 14521,
+          "chain": 0
+        },
+        "20747": {
+          "name": "Damage Inc",
+          "score": 4489,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753362000,
+        "end": 0,
+        "target": 14320,
+        "winner": 0
+      }
+    },
+    "28645": {
+      "factions": {
+        "16381": {
+          "name": "Sirens of Estuary",
+          "score": 0,
+          "chain": 0
+        },
+        "50559": {
+          "name": "Noobs With Attitude",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753552800,
+        "end": 0,
+        "target": 4700,
+        "winner": 0
+      }
+    },
+    "28646": {
+      "factions": {
+        "366": {
+          "name": "Evolution",
+          "score": 265,
+          "chain": 0
+        },
+        "13784": {
+          "name": "WarBirds",
+          "score": 18180,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753459200,
+        "end": 1753484115,
+        "target": 17900,
+        "winner": 13784
+      }
+    },
+    "28647": {
+      "factions": {
+        "11581": {
+          "name": "Natural Selection III",
+          "score": 1516,
+          "chain": 1
+        },
+        "18736": {
+          "name": "Monarch Research",
+          "score": 5133,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753365600,
+        "end": 0,
+        "target": 14580,
+        "winner": 0
+      }
+    },
+    "28648": {
+      "factions": {
+        "44390": {
+          "name": "Torn Cinematic Universe",
+          "score": 0,
+          "chain": 0
+        },
+        "49951": {
+          "name": "Topp Opps",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753524000,
+        "end": 0,
+        "target": 2700,
+        "winner": 0
+      }
+    },
+    "28649": {
+      "factions": {
+        "478": {
+          "name": "PT-ShadowRazers",
+          "score": 9938,
+          "chain": 0
+        },
+        "10184": {
+          "name": "Iconoclast",
+          "score": 3004,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753470000,
+        "end": 0,
+        "target": 17700,
+        "winner": 0
+      }
+    },
+    "28650": {
+      "factions": {
+        "20465": {
+          "name": "SMTH - Phoenix Nirvana",
+          "score": 4021,
+          "chain": 0
+        },
+        "21526": {
+          "name": "NS Bomb Shelter",
+          "score": 6044,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753362000,
+        "end": 0,
+        "target": 14400,
+        "winner": 0
+      }
+    },
+    "28651": {
+      "factions": {
+        "33458": {
+          "name": "SA House of Mischief",
+          "score": 5114,
+          "chain": 4926
+        },
+        "36134": {
+          "name": "SMTH - Silver Hand",
+          "score": 10892,
+          "chain": 160
+        }
+      },
+      "war": {
+        "start": 1753455600,
+        "end": 0,
+        "target": 14400,
+        "winner": 0
+      }
+    },
+    "28652": {
+      "factions": {
+        "49666": {
+          "name": "THE SALT-BORN",
+          "score": 5042,
+          "chain": 16
+        },
+        "50450": {
+          "name": "Chatty Chatty Bang Bang",
+          "score": 1876,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753376400,
+        "end": 0,
+        "target": 5040,
+        "winner": 0
+      }
+    },
+    "28653": {
+      "factions": {
+        "230": {
+          "name": "PT-Family",
+          "score": 0,
+          "chain": 0
+        },
+        "8151": {
+          "name": "Chromatic",
+          "score": 0,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753542000,
+        "end": 0,
+        "target": 17000,
+        "winner": 0
+      }
+    },
+    "28654": {
+      "factions": {
+        "8706": {
+          "name": "Carbon",
+          "score": 11070,
+          "chain": 0
+        },
+        "16312": {
+          "name": "39th Street Killers X",
+          "score": 3884,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753455600,
+        "end": 0,
+        "target": 17400,
+        "winner": 0
+      }
+    },
+    "28655": {
+      "factions": {
+        "7835": {
+          "name": "Monarch Mutation",
+          "score": 6291,
+          "chain": 0
+        },
+        "7969": {
+          "name": "WIT-Premier",
+          "score": 2304,
+          "chain": 0
+        }
+      },
+      "war": {
+        "start": 1753369200,
+        "end": 0,
+        "target": 14268,
+        "winner": 0
+      }
+    }
+  }
+}
